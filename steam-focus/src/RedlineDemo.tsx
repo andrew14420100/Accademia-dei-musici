@@ -10,7 +10,7 @@ import {
   useCurrentFrame,
 } from 'remotion';
 import anchors from '../public/s3_anchors.json';
-import track from '../public/s2_track.json';
+import track from '../public/track_runner.json';
 import {Callout} from './components/Callout';
 import {Reframe, Reframing, toScreen} from './components/Reframe';
 import {ShowBug} from './components/ShowBug';
@@ -60,7 +60,7 @@ const pt = (name: keyof typeof anchors.points, i: number) => {
 
 const RunnerCallout: React.FC = () => {
   const frame = useCurrentFrame();
-  const runner = track.runner[Math.min(track.runner.length - 1, frame)];
+  const runner = track.points[Math.min(track.points.length - 1, frame)];
   // Chest height of the tracked player.
   const a = toScreen(R2, frame, runner[0], runner[1] - 45);
   return (

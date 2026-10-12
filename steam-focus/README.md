@@ -53,7 +53,7 @@ Master a −14 LUFS, −1 dBTP.
 ```bash
 npm install
 WORK=/percorso/lavoro ./scripts/fetch_assets.sh     # trailer, pagina Steam, logo, Blender
-python3 scripts/track_runner.py public/s2_combat.mp4 public/s2_track.json
+python3 scripts/track_point.py public/s2_combat.mp4 868 590 90 180 54 public/track_runner.json
 $WORK/blender-4.2.23-linux-x64/blender -b --factory-startup \
   --python blender/redline_steam_page.py -- --assets $WORK/assets --plate $WORK/plate \
   --out $WORK/render_s3 --anchors public/s3_anchors.json --samples 16
