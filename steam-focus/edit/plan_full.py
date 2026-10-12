@@ -137,7 +137,8 @@ SHOTS = {
         dict(id="w_inspect2", src="G", sin=17.25, cx=[[0, 960], [3, 1000]], dur=None),
     ],
     "steam": [dict(id="s3", src="S3", sin=0, cx=None, dur=None)],
-    "outro": [dict(id="o_ecc", src="G", sin=379.78, cx=[[0, 960]], dur=None)],
+    # zoom past the trailer's letterbox bars
+    "outro": [dict(id="o_ecc", src="G", sin=379.78, cx=[[0, 960]], zoom=[1.24, 1.3], dur=None)],
 }
 
 edl = []
