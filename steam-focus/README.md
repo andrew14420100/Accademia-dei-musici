@@ -88,6 +88,32 @@ Note di metodo:
 - **Voce.** Non posso ascoltarla. È verificata con la trascrizione automatica del mix finale (WER sull'intero testo) e va comunque ascoltata da una persona prima della pubblicazione.
 - **Diritti.** Vedi `narration/steam_focus_ecc_redline_sources.txt`. Il video resta un'**anteprima privata** finché l'uso delle clip e dell'audio NetEase non è verificato.
 
+## Revisione v2 — master 2160×3840, 60 FPS (issue #2, aggiornata)
+
+La v1 (1080p/30) resta in `out/v1_1080p30_*`, nei file `*_v1.json`/`.srt` e nel commit `dea4b07`.
+
+**Render 4K/60 reale**
+- La composizione `RedlineFull4K` è 2160×3840 a 60 fps. Il layout è scritto in unità 1080×1920 e impaginato con `zoom: 2` CSS: testi, tracciati SVG e ritagli della pagina Steam vengono rasterizzati a 4K, non ingranditi.
+- Tutte le animazioni usano `useBaseFrame()`, cioè il frame frazionario a 30 fps. A 60 fps sono quindi calcolate davvero a 60 fps; `Sequence`, `Freeze` e tracking vengono convertiti o interpolati.
+- **Footage:** la sorgente ufficiale è 1080p/30, quindi l'output è 4K ma il gameplay non è 4K nativo. L'interpolazione 30→60 (FFmpeg `minterpolate` a compensazione di moto) è applicata solo alle inquadrature con movimento di camera regolare (`public/full60/list.json`). Le inquadrature con armi in primo piano, esplosioni o panoramiche rapide restano a cadenza 30, perché l'interpolazione vi produce "fantasmi" (verificato su fotogrammi campione).
+- **Scena Blender:** a 4K su CPU servono ~98 s/frame (~16 h per la versione a 60 fps), quindi si usa il render 1080p con il movimento di camera interpolato. I primi 42 frame (esplosione nel mirino) restano a 30. Per il 4K nativo su GPU: `scripts/blender_gpu_4k.sh`.
+- **Render a segmenti riprendibile:** `scripts/render_4k60.sh` (`SMOKE=1` per il test di 8 s). Ogni segmento è verificato con ffprobe; le giunzioni sono senza ricodifica.
+
+**Montaggio, grafica e testo**
+- **Gancio:** "Questo è il nuovo ECC: REDLINE" e titolo a schermo entro 0,3 s.
+- **Analisi editoriali:** movimento/copertura e il rapporto 4.500 ÷ 400 ≈ 11 mine. Compaiono in schede tratteggiate "Analisi STEAM FOCUS · non verificata in partita", distinte dai dati ufficiali.
+- **Capitolo 07:** ponte Blender, poi ritagli autentici a densità 3× della pagina Steam del 12/10/2026 (titolo, data, sviluppatore/editore, wishlist, tabella lingue), mostrati in schede 3D con le parti rilevanti evidenziate. La pagina non resta più ferma per 15 s.
+- **Grafica:**
+  - rotazioni 3D di camera tra i capitoli al posto della "frusta";
+  - targhe di capitolo compatte;
+  - firma STEAM FOCUS di 1,6 s, senza loghi di terzi;
+  - il logo Steam compare solo nella vera intestazione della pagina.
+- **Safe area TikTok:** testi entro x 64–940 e y 170–1440. Sottotitoli 48 px sopra la fascia della didascalia; la scheda di analisi sul negozio è spostata dopo la chiusura del negozio, così non copre i prezzi.
+
+**Voce e audio**
+- **Pronuncia:** varianti fonetiche scelte per confidenza della trascrizione: "Stìiim" 0,98 contro 0,63, "Nèt Iis" trascritto esattamente come NetEase, "Questo è il nuovo E C C Rèdlain". Analisi acustica di intonazione e ritmo (librosa). La voce resta **da ascoltare da una persona**.
+- **Nessun audio dei trailer:** colonna sonora originale procedurale (`audio/score.py`, 100 BPM, La minore) più design sintetizzato, con la musica a −12 dB sotto la voce. Sul mix completo la trascrizione automatica coincide con il testo. Lo script v1 è conservato in `audio/build_full_audio_v1.py`.
+
 ## Licenze e scelte di strumenti
 
 - **Remotion:** gratuito per privati, aziende con al massimo 3 dipendenti e non profit,

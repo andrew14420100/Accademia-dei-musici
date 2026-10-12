@@ -346,6 +346,9 @@ export const Signature: React.FC<{frames: number}> = ({frames}) => {
         <Kicker tint={color.dim} style={{fontSize: 24}}>
           Format indipendente · non affiliato a Valve o NetEase
         </Kicker>
+        <Kicker tint={color.dim} style={{fontSize: 24, marginTop: 8}}>
+          Voce sintetica (IA) · immagini: trailer ufficiale ECC: REDLINE
+        </Kicker>
       </div>
     </AbsoluteFill>
   );

@@ -1,6 +1,9 @@
 STEAM FOCUS — ECC: REDLINE · reportage verticale (9:16) · fonti e stato dei diritti
 Verifica dei fatti: 12 ottobre 2026 (pagina Steam e API appdetails ricontrollate al momento del montaggio)
 
+VERSIONE: v2 — master 2160x3840, 60 fps (out/steam_focus_ecc_redline_full_4K_60fps.mp4)
+v1 (1080p30, con audio dei trailer) conservata in out/v1_1080p30_* e nel commit dea4b07.
+
 STATO: ANTEPRIMA PRIVATA — NON PRONTO ALLA PUBBLICAZIONE
 Il video usa materiale di terzi (NetEase Games, Valve) senza una licenza esplicita.
 Prima di pubblicarlo serve la verifica dei diritti indicata sotto.
@@ -36,6 +39,10 @@ Distinzione tra mostrato e descritto:
 - La zona sicura nel capitolo 01 è uno SCHEMA ILLUSTRATIVO, non la zona reale della partita.
 - Ruoli (scudo, supporto, ingresso): riassunto della descrizione ufficiale, non
   identificati nei singoli atleti del filmato.
+- ANALISI EDITORIALI (v2), etichettate a schermo "Analisi STEAM FOCUS · non verificata
+  in partita": (1) sparare in movimento rende il tempismo importante quanto la
+  copertura; (2) 4.500 ÷ 400 ≈ 11: una siringa costa quanto circa 11 mine (calcolo
+  sui prezzi visibili). Sono letture, non prove di gameplay.
 Non dichiarati (di proposito): numero di giocatori per partita, prestazioni, nomi delle
 mappe, data di uscita, prezzi delle microtransazioni, prove personali.
 
@@ -48,11 +55,15 @@ a) Clip di gameplay — trailer ufficiale "Gameplay Footage" della pagina Steam
    funzionale, citazione della fonte, nessuna concorrenza all'opera originale.
    Questo non è un parere legale. Opzioni: chiedere il press kit / l'autorizzazione a
    NetEase, oppure usare materiale catturato personalmente.
-   L'audio dei trailer (effetti e musica) è anch'esso © NetEase ed è nel mix sotto la
-   voce: è il rischio maggiore per il Content ID delle piattaforme. Il mix senza
-   audio dei trailer si può generare escludendo il bed in audio/build_full_audio.py.
-b) Pagina Steam catturata (Chromium headless, 12 ottobre 2026): layout © Valve,
-   contenuti © NetEase. Usata per documentare lo stato della scheda.
+   v2: l'audio dei trailer (musica ed effetti © NetEase) NON è più usato. Il mix
+   contiene solo la voce sintetica, una colonna sonora originale generata dal
+   codice (audio/score.py) e sound design sintetizzato: nessuna traccia di terzi.
+   Restano da chiarire i diritti sulle immagini.
+b) Pagina Steam catturata (Chromium headless, 12 ottobre 2026, densità 3x; ricontrollata
+   per la v2 lo stesso giorno): layout © Valve, contenuti © NetEase. Ritagli autentici
+   mostrati nel capitolo 07 (titolo, data, sviluppatore/editore, wishlist, lingue).
+   Il logo Steam compare solo come parte della vera intestazione della pagina; la
+   firma finale è solo STEAM FOCUS (nessun lockup con marchi di terzi).
 c) Logo Steam: versione "inverse" ufficiale dal PDF delle linee guida Valve
    (steam_brandGuidelines.pdf), isolato, senza alterazioni, con ® e nota legale
    ufficiale in italiano. Nessun lockup con STEAM FOCUS. Valve si riserva di
