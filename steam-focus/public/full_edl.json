@@ -1092,16 +1092,38 @@
    "id": "w_inspect",
    "section": "weapons",
    "src": "G",
-   "sin": 4.2,
+   "sin": 5.3,
    "from": 2618,
-   "frames": 170,
+   "frames": 72,
    "cx": [
     [
      0,
      900
     ],
     [
-     4,
+     2.4,
+     960
+    ]
+   ],
+   "zoom": null,
+   "cy": null,
+   "freezeAfter": null,
+   "allow_cuts": []
+  },
+  {
+   "id": "w_inspect2",
+   "section": "weapons",
+   "src": "G",
+   "sin": 17.25,
+   "from": 2690,
+   "frames": 98,
+   "cx": [
+    [
+     0,
+     960
+    ],
+    [
+     3,
      1000
     ]
    ],

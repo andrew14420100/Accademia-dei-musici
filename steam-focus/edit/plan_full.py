@@ -132,7 +132,9 @@ SHOTS = {
     "weapons": [
         dict(id="w_range", src="G", sin=28.7, cx=[[0, 960]], dur=2.2),
         dict(id="w_scope", src="G", sin=32.7, cx=[[0, 900]], dur=3.3),
-        dict(id="w_inspect", src="G", sin=4.2, cx=[[0, 900], [4, 1000]], dur=None),
+        # the trailer dips to black around 6.7 s: two pieces around the fade
+        dict(id="w_inspect", src="G", sin=5.3, cx=[[0, 900], [2.4, 960]], dur=2.4),
+        dict(id="w_inspect2", src="G", sin=17.25, cx=[[0, 960], [3, 1000]], dur=None),
     ],
     "steam": [dict(id="s3", src="S3", sin=0, cx=None, dur=None)],
     "outro": [dict(id="o_ecc", src="G", sin=379.78, cx=[[0, 960]], dur=None)],
