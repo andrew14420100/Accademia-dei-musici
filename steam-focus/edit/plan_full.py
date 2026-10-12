@@ -209,25 +209,42 @@ def chunks_of(text):
     return [[w.replace("\u00a0", " ") for w in p_] for p_ in parts]
 
 
+def word_starts(line, words):
+    """Start time (s, line-relative) of each text word, aligned on characters
+    to the ASR tokens, so apostrophes, numbers and acronyms still line up."""
+    asr = line["words"]
+    if len(asr) == len(words):
+        return [w[0] for w in asr]
+    tn = [norm(w) for w in words]
+    an = [norm(w[2]) for w in asr]
+    t_total, a_total = sum(map(len, tn)) or 1, sum(map(len, an)) or 1
+    a_cum, c = [], 0
+    for x in an:
+        a_cum.append(c)
+        c += len(x)
+    out_, c = [], 0
+    for x in tn:
+        target = c * a_total / t_total
+        k = max(i for i, v in enumerate(a_cum) if v <= target + 1e-6)
+        # interpolate inside the ASR token
+        seg = max(1, len(an[k]))
+        frac = min(1.0, (target - a_cum[k]) / seg)
+        st, en = asr[k][0], asr[k][1]
+        out_.append(st + (en - st) * frac)
+        c += len(x)
+    return out_
+
+
 cues = []
 for l in lines:
-    tw = [w for g in chunks_of(l["text"]) for w in g]
-    tw = " ".join(tw).split()
-    asr = l["words"]
-    same = len(asr) == len(tw)
-    total_c = sum(len(w) + 1 for w in tw)
-    idx = 0
     groups = chunks_of(l["text"])
+    tw = [w for g in groups for w in g]
+    starts = word_starts(l, tw)
+    idx = 0
     for gi, g in enumerate(groups):
-        if same:
-            st = l["start"] + asr[idx][0]
-        else:
-            st = l["start"] + l["dur"] * sum(len(w) + 1 for w in tw[:idx]) / total_c
+        st = l["start"] + starts[idx]
         idx += len(g)
-        if gi + 1 < len(groups):
-            en = (l["start"] + asr[idx][0]) if same else l["start"] + l["dur"] * sum(len(w) + 1 for w in tw[:idx]) / total_c
-        else:
-            en = l["end"] + 0.15
+        en = l["start"] + starts[idx] if gi + 1 < len(groups) else l["end"] + 0.15
         cues.append({"from": round(max(st - 0.05, l["start"]) * FPS), "to": round(en * FPS), "text": " ".join(g)})
 for a_, b_ in zip(cues, cues[1:]):
     a_["to"] = min(a_["to"], b_["from"])
