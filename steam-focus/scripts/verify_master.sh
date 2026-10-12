@@ -12,8 +12,8 @@ set -euo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
 WORK="${WORK:?set WORK}"
 QC="${QC:-$HERE/out/qc}"
-M="$HERE/out/steam_focus_ecc_redline_full_4K_60fps.mp4"
-P="$WORK/picture_4k60.mp4"
+M="${MASTER:-$HERE/out/steam_focus_ecc_redline_full_4K_60fps.mp4}"
+P="${PICTURE:-$WORK/picture_4k60.mp4}"
 mkdir -p "$QC"
 cd "$HERE"
 

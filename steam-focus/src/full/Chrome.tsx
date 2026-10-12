@@ -1,7 +1,17 @@
 import {AbsoluteFill, getInputProps, interpolate} from 'remotion';
-import {MaskLine, progress, Rule} from '../components/Type';
+import {progress} from '../components/Type';
 import {color, easeOut, font, SAFE, useBaseFrame} from '../design';
+import {Lockup} from '../brand/Lockup';
 import {EDL} from './edl';
+import bugContrast from '../../public/bug_contrast.json';
+
+const BUG_H = 50;
+
+/** Scrim strength behind the lockup per shot (from scripts/bug_contrast.py: bright shots get more). */
+const bugScrim = (frame: number) => {
+  const s = EDL.shots.find((x) => frame >= x.from && frame < x.from + x.frames);
+  return s ? ((bugContrast as Record<string, number>)[s.id] ?? 0.6) : 0.6;
+};
 
 export const CHAPTERS: Record<string, {n: string; title: string}> = {
   identity: {n: '01', title: 'Identità'},
@@ -28,6 +38,8 @@ export const Bug: React.FC = () => {
   const out = interpolate(frame, [sig - 8, sig], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const chStart = ch ? EDL.sections[sec][0] : 0;
   const chIn = ch ? progress(frame, chStart + 2, 12) : 0;
+  const reveal = interpolate(frame, [3, 15], [0, 1], {easing: easeOut, extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const scrim = bugScrim(frame);
   const pageScrim = interpolate(frame, [steam[0] + EDL.s3.bridge - 70, steam[0] + EDL.s3.bridge - 40], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
@@ -37,34 +49,45 @@ export const Bug: React.FC = () => {
       <AbsoluteFill
         style={{
           opacity: pageScrim,
-          background: 'linear-gradient(180deg, rgba(7,9,12,0.82) 0px, rgba(7,9,12,0.5) 240px, rgba(7,9,12,0) 400px)',
+          background: 'linear-gradient(180deg, rgba(11,22,38,0.82) 0px, rgba(11,22,38,0.5) 240px, rgba(11,22,38,0) 400px)',
         }}
       />
-      <div style={{position: 'absolute', left: SAFE.left, top: SAFE.top, textShadow: '0 1px 14px rgba(0,0,0,0.5)'}}>
-        <MaskLine at={4}>
-          <div style={{display: 'flex', alignItems: 'center', gap: 14}}>
-            <div style={{width: 14, height: 14, backgroundColor: color.redline, transform: 'rotate(45deg)'}} />
-            <div style={{fontFamily: font.display, fontWeight: 700, fontSize: 36, letterSpacing: '0.26em', color: color.paper}}>
-              STEAM FOCUS
-            </div>
-          </div>
-        </MaskLine>
-        <div style={{marginTop: 10, marginBottom: 10}}>
-          <Rule at={8} width={250} thickness={2} />
+      {/* soft local scrim: keeps the lockup readable on bright shots without a panel */}
+      <AbsoluteFill
+        style={{
+          opacity: scrim,
+          background: 'radial-gradient(520px 260px at 170px 205px, rgba(11,22,38,0.62), rgba(11,22,38,0) 100%)',
+        }}
+      />
+      <div style={{position: 'absolute', left: SAFE.left, top: SAFE.top}}>
+        <div
+          style={{
+            clipPath: `inset(0 ${(1 - reveal) * 100}% 0 0)`,
+            filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.55))',
+            position: 'relative',
+          }}
+        >
+          <Lockup height={BUG_H} />
         </div>
         <div
           style={{
+            marginTop: 12,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
             fontFamily: font.mono,
             fontWeight: 600,
-            fontSize: 22,
+            fontSize: 20,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
             color: color.dim,
-            opacity: ch ? chIn : 1,
+            textShadow: '0 1px 10px rgba(0,0,0,0.7)',
+            opacity: ch ? chIn : reveal,
             transform: `translateY(${(1 - (ch ? chIn : 1)) * 8}px)`,
           }}
         >
-          {ch ? `${ch.n} · ${ch.title}` : 'Nº 01 · ECC: REDLINE'}
+          <div style={{width: 18, height: 2, backgroundColor: color.steam}} />
+          {ch ? `${ch.n} · ${ch.title}` : 'ECC: REDLINE'}
         </div>
       </div>
     </AbsoluteFill>
@@ -98,13 +121,13 @@ export const ChapterTitle: React.FC<{section: string; hold?: number}> = ({sectio
           transformOrigin: 'left center',
           transform: `rotateY(${rot}deg)`,
           padding: '16px 28px 18px 22px',
-          borderLeft: `6px solid ${color.redline}`,
-          background: 'linear-gradient(90deg, rgba(8,10,14,0.72), rgba(8,10,14,0.0))',
+          borderLeft: `6px solid ${color.steam}`,
+          background: 'linear-gradient(90deg, rgba(11,22,38,0.78), rgba(19,40,63,0.35) 70%, rgba(19,40,63,0))',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        <div style={{fontFamily: font.mono, fontWeight: 700, fontSize: 24, letterSpacing: '0.18em', color: color.redline}}>
+        <div style={{fontFamily: font.mono, fontWeight: 700, fontSize: 22, letterSpacing: '0.18em', color: color.steam}}>
           CAPITOLO {ch.n}
         </div>
         <div
@@ -146,6 +169,19 @@ const raisedBottom = (from: number) => {
   return s ? RAISED[s.id] : SAFE.bottom;
 };
 
+/** Key terms in Steam blue (discreet: same weight and size, colour only). */
+const KEY = /(ECC: REDLINE|NetEase Games|NetEase|Galaxy Studio|Steam|free-to-play|quattro|ruolo|scivolat[ae]|rampino|rimbalzi|crediti|400|4\.500|balistica|rinculo|maneggevolezza|ottiche|roaming|movimento|lista dei desideri|italiano)/gi;
+const highlight = (text: string) =>
+  text.split(KEY).map((part, i) =>
+    i % 2 ? (
+      <span key={i} style={{color: color.steam}}>
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+
 export const Subtitles: React.FC = () => {
   const frame = useBaseFrame();
   // `--props='{"noSubs":true}'` renders clean stills (cover); the video always has them.
@@ -176,11 +212,11 @@ export const Subtitles: React.FC = () => {
           textAlign: 'center',
           padding: '12px 22px 14px',
           borderRadius: 10,
-          backgroundColor: 'rgba(8,10,14,0.6)',
+          backgroundColor: 'rgba(11,22,38,0.6)',
           textShadow: '0 2px 6px rgba(0,0,0,0.6)',
         }}
       >
-        {cue.text}
+        {highlight(cue.text)}
       </div>
     </div>
   );

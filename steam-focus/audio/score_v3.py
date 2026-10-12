@@ -291,7 +291,9 @@ LAYERS = {
 }
 
 
-def build(total_s, sections, signature_at, fps, cue_hits=()):
+def build(total_s, sections, signature_at, fps, cue_hits=(), drop_at=None):
+    """drop_at: time (s) the hook drums come in; before it the hook is impact + bass + synths,
+    so the title line (ECC: REDLINE) is not covered by hats and kicks."""
     N = int((total_s + 0.1) * SR)
     drums = np.zeros((N, 2))
     bass = np.zeros((N, 2))
@@ -325,15 +327,16 @@ def build(total_s, sections, signature_at, fps, cue_hits=()):
         nxt = b
         stop = (nxt - t) < BEAT / 2 and sec not in ('outro',) and t > 1
         # identity: half the snares until halfway (build); hook: first beat is the impact
-        if kick_on and not stop:
+        pre_drop = drop_at is not None and sec == 'hook' and t < drop_at
+        if kick_on and not stop and not pre_drop:
             if sub == 0:
                 put(drums, K, t, 1.0 if beat in (0, 2) else 0.85)
             if sec in ('movement', 'outro') and beat == 3 and sub == 2 and bar % 2:
                 put(drums, K, t, 0.6)
-        if snare_on and not stop and sub == 0 and beat in (1, 3):
+        if snare_on and not stop and not pre_drop and sub == 0 and beat in (1, 3):
             if snare_on >= 1 or sec_progress(t) > 0.5:
                 put(drums, stereo(SN, 0.05), t, 0.9)
-        if hats_on and not stop:
+        if hats_on and not stop and not pre_drop:
             vel = (0.35, 0.18, 0.75, 0.2)[sub] * hats_on
             h = HO if (sub == 2 and beat == 3 and bar % 2 == 1) else HC
             put(drums, stereo(h, 0.35 if sub % 2 else -0.25), t + (0.012 if sub % 2 else 0), vel)
@@ -341,9 +344,9 @@ def build(total_s, sections, signature_at, fps, cue_hits=()):
             put(drums, stereo(tom(150 - 20 * sub), -0.3 + 0.2 * sub), t, 0.55)
         if perc == 2 and not stop:
             if sub in (1, 3) and (beat + sub) % 3 == 0:
-                put(drums, stereo(RM, 0.4), t, 0.5)
+                put(drums, stereo(RM, 0.4), t, 0.32)
             if sub == 3:
-                put(drums, stereo(TK, -0.5 if beat % 2 else 0.5), t, 0.45)
+                put(drums, stereo(TK, -0.5 if beat % 2 else 0.5), t, 0.28)
         # bass
         if bass_style != 'none' and not stop:
             if bass_style == 'roll' and sub != 0:
@@ -374,6 +377,9 @@ def build(total_s, sections, signature_at, fps, cue_hits=()):
 
     # chapter transitions: riser into an impact on the cut; hook starts on an impact
     put(fx, impact(1.1), 0.0)
+    if drop_at:  # build into the hook drop
+        put(fx, riser(min(BAR, drop_at)), drop_at - min(BAR, drop_at), 0.45)
+        put(fx, impact(0.75), drop_at)
     for name in ('identity', 'movement', 'squad', 'reentry', 'economy', 'weapons', 'steam', 'outro'):
         if name not in secs:
             continue

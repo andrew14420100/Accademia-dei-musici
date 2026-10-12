@@ -16,7 +16,7 @@ export const Loupe: React.FC<{
   box: {x: number; y: number; w: number};
   kicker: string;
   tint?: string;
-}> = ({s, region, at, until, box, kicker, tint = color.redline}) => {
+}> = ({s, region, at, until, box, kicker, tint = color.steam}) => {
   const frame = useBaseFrame();
   if (frame < at || frame > until + 10) return null;
   const p = interpolate(frame, [at, at + 12], [0, 1], {easing: easeOut, extrapolateRight: 'clamp'});

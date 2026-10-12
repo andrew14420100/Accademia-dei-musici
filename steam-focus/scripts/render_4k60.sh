@@ -7,7 +7,8 @@
 #   WORK=... SMOKE=1 ./scripts/render_4k60.sh              # 8 s smoke test only
 #
 # Env: SEG (frames per segment, default 600 = 10 s), CONC (Remotion
-# concurrency, default 2 — 4K tabs are memory-heavy), CRF (default 16).
+# concurrency, default 2 — 4K tabs are memory-heavy), CRF (default 16),
+# SEGDIR (segment cache, default $WORK/seg4k), MIX (pre-master wav), OUT (master path).
 set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
@@ -16,7 +17,10 @@ CHROME="${CHROME:-/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/hea
 SEG="${SEG:-600}"
 CONC="${CONC:-2}"
 CRF="${CRF:-16}"
-OUTDIR="$WORK/seg4k"
+OUTDIR="${SEGDIR:-$WORK/seg4k}"
+MIX="${MIX:-$WORK/full_mix_v2.wav}"
+OUT="${OUT:-$HERE/out/steam_focus_ecc_redline_full_4K_60fps.mp4}"
+PIC="$OUTDIR/picture_4k60.mp4"
 mkdir -p "$OUTDIR" "$HERE/out"
 cd "$HERE"
 
@@ -62,13 +66,13 @@ for ((a = 0; a < TOTAL; a += SEG)); do
 done
 
 # Join (stream copy: every segment starts on an IDR frame, same encoder settings).
-ffmpeg -loglevel error -y -f concat -safe 0 -i "$OUTDIR/list.txt" -c copy "$WORK/picture_4k60.mp4"
+ffmpeg -loglevel error -y -f concat -safe 0 -i "$OUTDIR/list.txt" -c copy "$PIC"
 
 # Master: mix normalised to -14 LUFS with a true-peak safety limiter.
-ffmpeg -loglevel error -y -i "$WORK/picture_4k60.mp4" -i "$WORK/full_mix_v2.wav" \
+ffmpeg -loglevel error -y -i "$PIC" -i "$MIX" \
   -filter_complex "[1:a]loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.80:attack=3:release=60:level=disabled,aresample=48000[a]" \
   -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 320k -ar 48000 -movflags +faststart -shortest \
-  "$HERE/out/steam_focus_ecc_redline_full_4K_60fps.mp4"
+  "$OUT"
 
 ffprobe -v error -count_frames -show_entries stream=codec_name,width,height,avg_frame_rate,r_frame_rate,nb_read_frames \
-  -show_entries format=duration,size -of compact "$HERE/out/steam_focus_ecc_redline_full_4K_60fps.mp4"
+  -show_entries format=duration,size -of compact "$OUT"

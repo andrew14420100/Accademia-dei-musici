@@ -30,7 +30,7 @@ const RevivePin: React.FC<{s: Shot}> = ({s}) => {
       labelSide="above"
       at={2}
       until={revive.points.length - 4}
-      tint={color.redline}
+      tint={color.steam}
       kicker="Visto nel filmato"
       title="Rianimazione"
       sub="Un compagno lo rimette in piedi"
@@ -52,7 +52,7 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
       top={620}
       until={endOf(s) + shot('i_hall').frames - 6}
       items={[
-        {at: w(s, 'id1', 'galaxy'), k: 'Sviluppo · pagina Steam', v: 'Galaxy Studio', tint: color.redline},
+        {at: w(s, 'id1', 'galaxy'), k: 'Sviluppo · pagina Steam', v: 'Galaxy Studio', tint: color.steam},
         {at: w(s, 'id1', 'netease'), k: 'Sviluppatore ed editore', v: 'NetEase Games', tint: color.steam},
       ]}
     />
@@ -87,8 +87,8 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
       top={360}
       until={endOf(s) + shot('m_wall').frames + shot('m_grapple_fp').frames - 10}
       items={[
-        {at: w(s, 'mov3', 'rampino'), k: 'Estende la catena', v: 'Rampino', tint: color.redline},
-        {at: w(s, 'mov3', 'rimbalzi'), k: 'Estende la catena', v: 'Rimbalzi a parete', tint: color.redline},
+        {at: w(s, 'mov3', 'rampino'), k: 'Estende la catena', v: 'Rampino', tint: color.steam},
+        {at: w(s, 'mov3', 'rimbalzi'), k: 'Estende la catena', v: 'Rimbalzi a parete', tint: color.steam},
       ]}
     />
   ),
@@ -177,9 +177,9 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
       top={360}
       until={endOf(s) + shot('w_scope').frames - 8}
       items={[
-        {at: w(s, 'wp1', 'balistica'), k: 'Taratura dichiarata', v: 'Balistica', tint: color.redline},
-        {at: w(s, 'wp1', 'rinculo'), k: 'Taratura dichiarata', v: 'Rinculo', tint: color.redline},
-        {at: w(s, 'wp1', 'maneggevolezza'), k: 'Taratura dichiarata', v: 'Maneggevolezza', tint: color.redline},
+        {at: w(s, 'wp1', 'balistica'), k: 'Taratura dichiarata', v: 'Balistica', tint: color.steam},
+        {at: w(s, 'wp1', 'rinculo'), k: 'Taratura dichiarata', v: 'Rinculo', tint: color.steam},
+        {at: w(s, 'wp1', 'maneggevolezza'), k: 'Taratura dichiarata', v: 'Maneggevolezza', tint: color.steam},
       ]}
     />
   ),

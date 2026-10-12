@@ -1,4 +1,5 @@
-import {AbsoluteFill, interpolate } from 'remotion';
+import {Lockup, LOCKUP_RATIO} from '../brand/Lockup';
+import {AbsoluteFill, interpolate, staticFile} from 'remotion';
 import {Kicker, MaskLine, progress} from '../components/Type';
 import {color, easeOut, font, HEIGHT, SAFE, WIDTH, useBaseFrame} from '../design';
 
@@ -46,7 +47,7 @@ export const Chain: React.FC<{steps: Array<{at: number; label: string}>; top: nu
   const appear = progress(frame, steps[0].at - 6, 10);
   return (
     <div style={{position: 'absolute', left: SAFE.left, right: WIDTH - SAFE.right, top, opacity: out * appear}}>
-      <Kicker tint={color.redline} style={{marginBottom: 14, textShadow: shadow}}>
+      <Kicker tint={color.steam} style={{marginBottom: 14, textShadow: shadow}}>
         {kicker}
       </Kicker>
       <div style={{display: 'flex', gap: 10}}>
@@ -55,7 +56,7 @@ export const Chain: React.FC<{steps: Array<{at: number; label: string}>; top: nu
           return (
             <div key={s.label} style={{flex: 1}}>
               <div style={{height: 6, backgroundColor: 'rgba(255,255,255,0.25)', borderRadius: 3, overflow: 'hidden'}}>
-                <div style={{height: '100%', width: `${on * 100}%`, backgroundColor: i === steps.length - 1 ? color.redline : color.paper}} />
+                <div style={{height: '100%', width: `${on * 100}%`, backgroundColor: i === steps.length - 1 ? color.steam : color.paper}} />
               </div>
               <div
                 style={{
@@ -93,14 +94,14 @@ export const Roles: React.FC<{roles: Array<{at: number; k: string; v: string}>; 
             style={{
               flex: 1,
               padding: '16px 18px 18px',
-              borderTop: `4px solid ${color.redline}`,
-              background: 'linear-gradient(180deg, rgba(8,10,14,0.62), rgba(8,10,14,0.0))',
+              borderTop: `4px solid ${color.steam}`,
+              background: 'linear-gradient(180deg, rgba(11,22,38,0.62), rgba(11,22,38,0.0))',
               opacity: p,
               transform: `perspective(900px) rotateX(${(1 - p) * 35}deg) translateY(${(1 - p) * 20}px)`,
               transformOrigin: 'top',
             }}
           >
-            <Kicker tint={color.redline} style={{fontSize: 20}}>
+            <Kicker tint={color.steam} style={{fontSize: 20}}>
               {r.k}
             </Kicker>
             <div style={{fontFamily: font.display, fontWeight: 700, fontSize: 44, lineHeight: 1, color: color.paper, marginTop: 6, textShadow: shadow}}>
@@ -138,7 +139,7 @@ export const SafeZone: React.FC<{at: number; until: number; cx: number; cy: numb
         <circle cx={cx} cy={cy} r={r} fill="none" stroke={color.paper} strokeWidth={4} />
       </svg>
       <div style={{position: 'absolute', left: SAFE.left, top: cy - r0 - 120, textShadow: shadow}}>
-        <Kicker tint={color.redline}>Schema illustrativo</Kicker>
+        <Kicker tint={color.steam}>Schema illustrativo</Kicker>
         <div style={{fontFamily: font.display, fontWeight: 700, fontSize: 64, color: color.paper, textTransform: 'uppercase'}}>
           La zona sicura si stringe
         </div>
@@ -155,7 +156,7 @@ export const UiTag: React.FC<{x: number; y: number; at: number; until: number; l
   until,
   label,
   value,
-  tint = color.redline,
+  tint = color.steam,
   side = 'right',
 }) => {
   const frame = useBaseFrame();
@@ -293,7 +294,7 @@ export const AnalysisCard: React.FC<{at: number; until: number; top: number; tit
           border: `3px dashed ${color.paper}`,
           borderRadius: 10,
           padding: '18px 24px 22px',
-          background: 'rgba(8,10,14,0.55)',
+          background: 'rgba(11,22,38,0.55)',
           backdropFilter: 'blur(6px)',
           maxWidth: 820,
         }}
@@ -310,49 +311,52 @@ export const AnalysisCard: React.FC<{at: number; until: number; top: number; tit
   );
 };
 
-/** 1.6 s programme sign-off: STEAM FOCUS only, no third-party logos. */
+/** 1.6 s programme sign-off: the STEAM FOCUS lockup lands in depth, light passes, disclosures. */
 export const Signature: React.FC<{frames: number}> = ({frames}) => {
   const frame = useBaseFrame();
-  const dim = interpolate(frame, [0, 6], [0, 0.88], {extrapolateRight: 'clamp'});
-  const a = progress(frame, 1, 10);
-  const b = progress(frame, 4, 10);
-  const rule = progress(frame, 6, 12);
-  const streak = interpolate(frame, [8, 26], [-20, 120], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const dim = interpolate(frame, [0, 6], [0, 0.9], {extrapolateRight: 'clamp'});
+  const land = interpolate(frame, [1, 13], [0, 1], {easing: easeOut, extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const rule = progress(frame, 8, 12);
+  const sweep = interpolate(frame, [9, 30], [-20, 130], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const out = interpolate(frame, [frames - 5, frames], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const W = SAFE.right - SAFE.left - 40;
   return (
     <AbsoluteFill style={{opacity: out}}>
-      <AbsoluteFill style={{backgroundColor: color.ink, opacity: dim}} />
-      <div style={{position: 'absolute', left: SAFE.left + 20, top: 700, overflow: 'hidden'}}>
-        <div style={{display: 'flex', alignItems: 'center', gap: 22, transform: `translateY(${(1 - a) * 110}%)`}}>
-          <div style={{width: 34, height: 34, backgroundColor: color.redline, transform: `rotate(45deg) scale(${a})`}} />
-          <div style={{fontFamily: font.display, fontWeight: 700, fontSize: 168, lineHeight: 0.9, color: color.paper, letterSpacing: '0.04em'}}>STEAM</div>
-        </div>
-      </div>
-      <div style={{position: 'absolute', left: SAFE.left + 76, top: 860, overflow: 'hidden'}}>
+      <AbsoluteFill style={{background: `radial-gradient(90% 60% at 50% 45%, ${color.night}, ${color.ink})`, opacity: dim}} />
+      <div style={{position: 'absolute', left: SAFE.left + 20, top: 760, width: W, perspective: 1400}}>
         <div
           style={{
-            fontFamily: font.display,
-            fontWeight: 700,
-            fontSize: 168,
-            lineHeight: 0.9,
-            color: color.redline,
-            letterSpacing: '0.04em',
-            transform: `translateY(${(1 - b) * 110}%)`,
-            backgroundImage: `linear-gradient(100deg, ${color.redline} ${streak - 10}%, #FF8A8F ${streak}%, ${color.redline} ${streak + 10}%)`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            position: 'relative',
+            transformOrigin: '50% 100%',
+            transform: `translateY(${(1 - land) * 60}px) rotateX(${(1 - land) * 38}deg) scale(${0.9 + 0.1 * land})`,
+            opacity: land,
+            filter: `blur(${(1 - land) * 6}px) drop-shadow(0 18px 40px rgba(0,0,0,0.55))`,
           }}
         >
-          FOCUS
+          <Lockup height={W / LOCKUP_RATIO} />
+          {/* light pass clipped to the lockup's own shape (no blend modes: no box artefacts) */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: `linear-gradient(105deg, rgba(255,255,255,0) ${sweep - 9}%, rgba(255,255,255,0.55) ${sweep}%, rgba(255,255,255,0) ${sweep + 9}%)`,
+              WebkitMaskImage: `url(${staticFile('brand/steam_focus/steam_focus_mono_white.svg')})`,
+              WebkitMaskSize: '100% 100%',
+              maskImage: `url(${staticFile('brand/steam_focus/steam_focus_mono_white.svg')})`,
+              maskSize: '100% 100%',
+            }}
+          />
         </div>
-      </div>
-      <div style={{position: 'absolute', left: SAFE.left + 76, top: 1036, height: 6, width: 560 * rule, backgroundColor: color.paper}} />
-      <div style={{position: 'absolute', left: SAFE.left + 76, top: 1066, opacity: rule}}>
-        {['Format indipendente · voce sintetica (IA)', 'Non affiliato a Valve o NetEase', 'Immagini: trailer ufficiale ECC: REDLINE'].map((line, i) => (
-          <Kicker key={i} tint={color.dim} style={{fontSize: 22, letterSpacing: '0.1em', marginTop: i ? 8 : 0, whiteSpace: 'nowrap'}}>
-            {line}
-          </Kicker>
-        ))}
+        <div style={{marginTop: 34, height: 4, width: W * rule, background: `linear-gradient(90deg, ${color.steam}, rgba(102,192,244,0))`}} />
+        <div style={{marginTop: 22, opacity: rule}}>
+          {['Format indipendente · non affiliato a Valve o NetEase', 'Steam e il logo Steam sono marchi di Valve Corporation', 'Voce sintetica (IA) · immagini: trailer ufficiale ECC: REDLINE'].map(
+            (line, i) => (
+              <Kicker key={i} tint={color.dim} style={{fontSize: 19, letterSpacing: '0.08em', marginTop: i ? 8 : 0, whiteSpace: 'nowrap'}}>
+                {line}
+              </Kicker>
+            ),
+          )}
+        </div>
       </div>
     </AbsoluteFill>
   );

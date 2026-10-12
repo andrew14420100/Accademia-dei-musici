@@ -1,5 +1,6 @@
 import {loadFont} from '@remotion/fonts';
 import {Easing, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
+import {alpha, palette, type} from './theme';
 
 // STEAM FOCUS — vertical news format.
 export const WIDTH = 1080;
@@ -11,27 +12,32 @@ export const FPS = 30;
 // TikTok 9:16 safe area (top tabs, right action rail, bottom caption band).
 export const SAFE = {left: 64, right: 940, top: 170, bottom: 1440};
 
+// v3: values come from the central tokens in theme.ts.
 export const color = {
-  ink: '#0A0D12',
-  paper: '#F3F5F7',
-  dim: 'rgba(243,245,247,0.72)',
+  ink: palette.ink,
+  night: palette.night,
+  petrol: palette.petrol,
+  paper: palette.paper,
+  frost: palette.frost,
+  dim: 'rgba(243,245,247,0.74)',
   // Accent for data that comes from the Steam store page.
-  steam: '#66C0F4',
-  // Accent for data about the game itself (ECC: REDLINE brand red).
-  redline: '#E3262E',
-  glass: 'rgba(9,12,17,0.90)',
-  hairline: 'rgba(255,255,255,0.16)',
+  steam: palette.sky,
+  // Accent for facts about the game itself (ECC: REDLINE brand red), used sparingly.
+  redline: palette.redline,
+  glass: alpha.glass,
+  hairline: alpha.hairline,
 };
 
 export const font = {
-  display: 'Barlow Condensed',
-  text: 'Inter Tight',
-  mono: 'JetBrains Mono',
+  display: type.display,
+  text: type.text,
+  mono: type.mono,
 };
 
 export const fontsReady = Promise.all([
-  loadFont({family: font.display, url: staticFile('fonts/BarlowCondensed-SemiBold.ttf'), weight: '600'}),
-  loadFont({family: font.display, url: staticFile('fonts/BarlowCondensed-Bold.ttf'), weight: '700'}),
+  loadFont({family: font.display, url: staticFile('fonts/SairaCondensed-500.ttf'), weight: '500'}),
+  loadFont({family: font.display, url: staticFile('fonts/SairaCondensed-600.ttf'), weight: '600'}),
+  loadFont({family: font.display, url: staticFile('fonts/SairaCondensed-700.ttf'), weight: '700'}),
   loadFont({family: font.text, url: staticFile('fonts/InterTight.ttf'), weight: '100 900'}),
   loadFont({family: font.mono, url: staticFile('fonts/JetBrainsMono.ttf'), weight: '100 800'}),
 ]);

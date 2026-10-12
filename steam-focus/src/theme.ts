@@ -26,9 +26,10 @@ export const alpha = {
   textShadow: '0 2px 10px rgba(0,0,0,0.65)',
 } as const;
 
-/** Free fonts (SIL OFL), chosen for affinity with the Steam store look. Not Valve fonts. */
+/** Free fonts (SIL OFL), chosen for affinity with the Steam store look. Not Valve fonts.
+ *  The STEAM FOCUS lockup sets FOCUS in Montserrat 700 to match the Steam wordmark. */
 export const type = {
-  display: 'Saira', // titles, chapter plates, wordmark, numbers
+  display: 'Saira Condensed', // titles, chapter plates, values, numbers
   text: 'Inter Tight', // subtitles, body copy
   mono: 'JetBrains Mono', // labels, HUD-style kickers
   // sizes in 1080x1920 design pixels (x2 in the 4K master)

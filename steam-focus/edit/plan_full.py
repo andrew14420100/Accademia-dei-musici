@@ -18,7 +18,7 @@ FPS = 30
 timing = json.load(open(sys.argv[1]))
 OUT = sys.argv[2]
 
-GAP_LINE, GAP_SECTION, START = 0.32, 1.0, 0.9
+GAP_LINE, GAP_SECTION, START = 0.27, 0.75, 0.9  # v3: tighter pace (v2: 0.32, 1.0)
 LEAD = 0.35            # picture changes slightly before the voice of a new section
 S3_FRAMES = 292
 S3_BRIDGE = 165        # Blender frames used: scope blast -> pull-back -> plate lands
@@ -91,13 +91,13 @@ SHOTS = {
         dict(id="h_squad", src="G", sin=60.12, cx=[[0, 960]], until=("hook2", "scivolate")),
         dict(id="h_slide", src="G", sin=264.1, cx=[[0, 1000]], until=("hook2", "rampino")),
         dict(id="h_grapple", src="G", sin=329.25, cx=[[0, 960]], until=("hook2", "crediti")),
-        dict(id="h_credits", src="G", sin=153.05, cx=[[0, 900]], dur=None),
+        dict(id="h_credits", src="G", sin=152.99, cx=[[0, 900]], dur=None, freeze_after=2.36),  # v3: hold the last frame before the 155.40 cut
     ],
     "identity": [
         dict(id="i_arena", src="G", sin=217.24, cx=[[0, 900], [2, 960]], dur=2.05),
         dict(id="i_hall", src="G", sin=219.42, cx=[[0, 960]], dur=2.0),
         dict(id="i_descent", src="G", sin=66.8, cx=[[0, 900], [3, 1000]], until=("id3", "si")),
-        dict(id="i_map", src="G", sin=71.6, cx=[[0, 1010], [6, 980]], dur=None),
+        dict(id="i_map", src="G", sin=71.72, cx=[[0, 1010], [6, 980]], dur=None),
     ],
     "movement": [
         dict(id="m_slide", src="G", sin=253.3, cx=[[0, 1000]], dur=3.9),
@@ -122,12 +122,12 @@ SHOTS = {
         dict(id="r_roof", src="G", sin=309.1, cx=[[0, 960]], dur=None),
     ],
     "economy": [
-        dict(id="e_kill", src="G", sin=167.32, cx=[[0, 1000]], dur=1.15),
-        dict(id="e_hud", src="G", sin=147.0, cx=[[0, 960], [5.9, 1000]], until=("ec2", "nel")),
+        dict(id="e_kill", src="G", sin=167.32, cx=[[0, 1000]], dur=1.45),
+        dict(id="e_hud", src="G", sin=146.99, cx=[[0, 960], [5.9, 1000]], until=("ec2", "nel")),
         # Shop UI is static: play the opening, then hold an annotated freeze.
         dict(id="e_shop", src="G", sin=96.6, cx=[[0, 580]], zoom=[1.06, 1.12], cy=600, freeze_after=1.1, until=("ec3", "piu")),
-        dict(id="e_funds", src="G", sin=98.45, cx=[[0, 420]], zoom=[1.38, 1.44], cy=720, dur=2.1),
-        dict(id="e_after", src="G", sin=101.9, cx=[[0, 960]], dur=None),
+        dict(id="e_funds", src="G", sin=98.45, cx=[[0, 420]], zoom=[1.38, 1.44], cy=720, dur=2.65),
+        dict(id="e_after", src="G", sin=101.88, cx=[[0, 960]], dur=None),
     ],
     "weapons": [
         dict(id="w_range", src="G", sin=28.7, cx=[[0, 960]], dur=2.2),
