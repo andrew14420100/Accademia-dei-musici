@@ -42,7 +42,7 @@ python3 audio/build_full_audio.py public/full_edl.json "$WORK" "$WORK/full_mix.w
 
 # 6. Master: fine grain, H.264 High 30 fps, AAC 48 kHz, -14 LUFS / -1 dBTP.
 ffmpeg -loglevel error -y -i "$WORK/full_picture.mp4" -i "$WORK/full_mix.wav" \
-  -filter_complex "[0:v]noise=c0s=3:c0f=t,format=yuv420p[v];[1:a]loudnorm=I=-14:TP=-1.0:LRA=11[a]" \
+  -filter_complex "[0:v]noise=c0s=3:c0f=t,format=yuv420p[v];[1:a]loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.80:attack=3:release=60:level=disabled,aresample=48000[a]" \
   -map "[v]" -map "[a]" -c:v libx264 -preset slow -crf 17 -profile:v high -level 4.2 -r 30 \
   -x264-params "aq-mode=3" -movflags +faststart -c:a aac -b:a 256k -ar 48000 -shortest \
   "$OUT/steam_focus_ecc_redline_full.mp4"
