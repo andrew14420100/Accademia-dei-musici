@@ -1,5 +1,5 @@
-import {interpolate, useCurrentFrame} from 'remotion';
-import {color, easeOut, font} from '../design';
+import {interpolate } from 'remotion';
+import {color, easeOut, font, useBaseFrame} from '../design';
 
 const p = (frame: number, start: number, len: number) =>
   interpolate(frame, [start, start + len], [0, 1], {
@@ -15,7 +15,7 @@ export const MaskLine: React.FC<{
   style?: React.CSSProperties;
   children: React.ReactNode;
 }> = ({at, len = 16, style, children}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   const t = p(frame, at, len);
   return (
     <div style={{overflow: 'hidden', paddingBottom: '0.08em', marginBottom: '-0.08em'}}>
@@ -32,7 +32,7 @@ export const Rule: React.FC<{at: number; width: number; len?: number; color?: st
   color: c = color.paper,
   thickness = 2,
 }) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   return <div style={{height: thickness, width: width * p(frame, at, len), backgroundColor: c}} />;
 };
 

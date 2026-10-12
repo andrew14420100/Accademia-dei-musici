@@ -1,35 +1,59 @@
 import {useEffect, useState} from 'react';
-import {AbsoluteFill, continueRender, delayRender, Sequence, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, continueRender, delayRender, Sequence, useVideoConfig} from 'remotion';
+import interp60 from '../../public/full60/list.json';
 import revive from '../../public/track_revive.json';
 import {Callout} from '../components/Callout';
 import {TitleBlock} from '../components/TitleBlock';
-import {color, fontsReady, SAFE} from '../design';
+import {color, fontsReady, SAFE, sampleTrack, useBaseFrame, useFrameScale} from '../design';
 import {Bug, ChapterTitle, Subtitles} from './Chrome';
 import {EDL, project, shot, Shot, wordAt} from './edl';
 import {FullShot} from './FullShot';
-import {Chain, DataStack, Note, Outro, Roles, SafeZone, UiTag} from './Graphics';
+import {AnalysisCard, Chain, DataStack, Note, Roles, SafeZone, Signature, UiTag} from './Graphics';
 import {Loupe} from './Loupe';
 import {SteamBlock} from './SteamBlock';
 
-export const FULL_FRAMES = EDL.frames;
+/** Duration in composition frames (EDL is authored in 30 fps base frames). */
+export const fullFrames = (fps: number) => (EDL.frames * fps) / EDL.fps;
 
-/** Local frame (inside a shot) of a spoken word. */
+/** Local base frame (inside a shot) of a spoken word. */
 const w = (s: Shot, line: string, word: string) => wordAt(line, word) - s.from;
 const endOf = (s: Shot) => s.frames;
 
+const RevivePin: React.FC<{s: Shot}> = ({s}) => {
+  const f = useBaseFrame();
+  const [x, y] = sampleTrack(revive.points, f);
+  const a = project(s, f, x, y - 40);
+  return (
+    <Callout
+      anchor={a}
+      dock={{x: SAFE.left, y: 600}}
+      labelSide="above"
+      at={2}
+      until={revive.points.length - 4}
+      tint={color.redline}
+      kicker="Visto nel filmato"
+      title="Rianimazione"
+      sub="Un compagno lo rimette in piedi"
+      variant="open"
+      width={820}
+    />
+  );
+};
+
 const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
+  // Hook: the game is named on screen within the first half second.
+  h_heli: () => <TitleBlock at={8} />,
   h_credits: (s) => (
-    <Loupe s={s} region={{x: 0, y: 950, w: 420, h: 95}} at={2} until={endOf(s)} box={{x: 120, y: 760, w: 840}} kicker="Crediti in partita" />
+    <Loupe s={s} region={{x: 0, y: 950, w: 420, h: 95}} at={2} until={endOf(s)} box={{x: 120, y: 760, w: 760}} kicker="Crediti in partita" />
   ),
-  h_heli: (s) => <TitleBlock at={w(s, 'hook2', 'chiama') + 6} />,
 
   i_arena: (s) => (
     <DataStack
       top={620}
       until={endOf(s) + shot('i_hall').frames - 6}
       items={[
-        {at: w(s, 'id1', 'galaxy'), k: 'Sviluppo', v: 'Galaxy Studio', tint: color.redline},
-        {at: w(s, 'id1', 'netis'), k: 'Sviluppatore ed editore su Steam', v: 'NetEase Games', tint: color.steam},
+        {at: w(s, 'id1', 'galaxy'), k: 'Sviluppo · pagina Steam', v: 'Galaxy Studio', tint: color.redline},
+        {at: w(s, 'id1', 'netease'), k: 'Sviluppatore ed editore', v: 'NetEase Games', tint: color.steam},
       ]}
     />
   ),
@@ -38,13 +62,13 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
       top={360}
       until={endOf(s) - 6}
       items={[
-        {at: w(s, 'id2', 'free'), k: 'Modello', v: 'Free-to-play', tint: color.steam},
+        {at: w(s, 'id2', 'free'), k: 'Modello · pagina Steam', v: 'Free-to-play', tint: color.steam},
         {at: w(s, 'id2', 'pc'), k: 'Piattaforma', v: 'PC · Windows 10/11', tint: color.steam},
         {at: w(s, 'id2', 'data'), k: 'Uscita', v: 'Da annunciare', tint: color.steam},
       ]}
     />
   ),
-  i_map: (s) => <SafeZone at={w(s, 'id3', 'zona') - 6} until={endOf(s) - 10} cx={540} cy={930} />,
+  i_map: (s) => <SafeZone at={w(s, 'id3', 'zona') - 6} until={endOf(s) - 10} cx={500} cy={930} />,
 
   m_slide: (s) => (
     <Chain
@@ -66,6 +90,15 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
         {at: w(s, 'mov3', 'rampino'), k: 'Estende la catena', v: 'Rampino', tint: color.redline},
         {at: w(s, 'mov3', 'rimbalzi'), k: 'Estende la catena', v: 'Rimbalzi a parete', tint: color.redline},
       ]}
+    />
+  ),
+  m_air: (s) => (
+    <AnalysisCard
+      at={w(s, 'mov4', 'lettura')}
+      until={endOf(s) + shot('m_air2').frames - 8}
+      top={340}
+      title="Tempismo > copertura?"
+      sub="Se si spara in movimento, la posizione cambia di continuo."
     />
   ),
 
@@ -91,29 +124,7 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
     />
   ),
 
-  r_revive: (s) => {
-    const RevivePin: React.FC = () => {
-      const f = useCurrentFrame();
-      const p = revive.points[Math.min(revive.points.length - 1, f)];
-      const a = project(s, f, p[0], p[1] - 40);
-      return (
-        <Callout
-          anchor={a}
-          dock={{x: SAFE.left, y: 560}}
-          labelSide="above"
-          at={2}
-          until={revive.points.length - 4}
-          tint={color.redline}
-          kicker="Visto nel filmato"
-          title="Rianimazione"
-          sub="Un compagno lo rimette in piedi"
-          variant="open"
-          width={860}
-        />
-      );
-    };
-    return <RevivePin />;
-  },
+  r_revive: (s) => <RevivePin s={s} />,
   r_roam: (s) => (
     <Note
       at={w(s, 're3', 'roaming') - 4}
@@ -126,7 +137,7 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
   ),
 
   e_hud: (s) => (
-    <Loupe s={s} region={{x: 0, y: 950, w: 420, h: 95}} at={w(s, 'ec1', 'crediti') - 4} until={endOf(s) - 6} box={{x: 120, y: 760, w: 840}} kicker="Crediti del giocatore" />
+    <Loupe s={s} region={{x: 0, y: 950, w: 420, h: 95}} at={w(s, 'ec1', 'crediti') - 4} until={endOf(s) - 6} box={{x: 120, y: 760, w: 760}} kicker="Crediti del giocatore" />
   ),
   e_shop: (s) => {
     const mine = project(s, 40, 597, 560);
@@ -140,8 +151,23 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
   },
   e_funds: (s) => {
     const funds = project(s, 30, 300, 793);
-    return <UiTag x={funds.x} y={funds.y} at={w(s, 'ec3', 'saldo')} until={endOf(s)} label="Saldo dopo gli acquisti" value="6.000 → 3.207" tint={color.paper} />;
+    return (
+      <AbsoluteFill>
+        <UiTag x={funds.x} y={funds.y} at={4} until={endOf(s)} label="Saldo dopo gli acquisti" value="6.000 → 3.207" tint={color.paper} />
+      </AbsoluteFill>
+    );
   },
+
+  // after the shop closes, so the card never covers prices or the balance
+  e_after: (s) => (
+    <AnalysisCard
+      at={2}
+      until={endOf(s) - 6}
+      top={340}
+      title="1 siringa ≈ 11 mine"
+      sub="4.500 ÷ 400: rialzarsi da soli o mettere pressione."
+    />
+  ),
 
   w_range: (s) => (
     <DataStack
@@ -157,7 +183,7 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
   w_inspect: (s) => (
     <Chain
       top={340}
-      until={endOf(s) - 4}
+      until={endOf(s) + shot('w_inspect2').frames - 4}
       steps={[
         {at: w(s, 'wp2', 'parti'), label: 'Parti'},
         {at: w(s, 'wp2', 'ottiche'), label: 'Ottiche'},
@@ -166,6 +192,9 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
     />
   ),
 };
+
+/** Overlays that must not outlive their own shot. */
+const SHOT_ONLY = new Set(['h_heli', 'h_credits']);
 
 const firstOfSection = new Set<string>();
 const lastOfSection = new Set<string>();
@@ -177,29 +206,36 @@ for (const sec of Object.keys(EDL.sections)) {
   }
 }
 
+const INTERP = new Set<string>((interp60 as {ids: string[]}).ids);
+
 export const RedlineFull: React.FC = () => {
   const [handle] = useState(() => delayRender('fonts'));
   useEffect(() => {
     fontsReady.then(() => continueRender(handle));
   }, [handle]);
+  const k = useFrameScale();
+  const {fps} = useVideoConfig();
+  // Base frames -> composition frames.
+  const F = (n: number) => Math.round(n * k);
+  const sig = EDL.signature;
 
-  const outro = EDL.sections.outro;
   return (
     <AbsoluteFill style={{backgroundColor: '#000'}}>
       {EDL.shots.map((s) => {
         if (s.src === 'S3') {
           const [a, b] = EDL.sections.steam;
           return (
-            <Sequence key={s.id} from={a} durationInFrames={b - a} name="S3 · Steam page (Blender)">
+            <Sequence key={s.id} from={F(a)} durationInFrames={F(b - a)} name="07 · Steam (Blender bridge + page)">
               <SteamBlock />
             </Sequence>
           );
         }
-        const whipIn = firstOfSection.has(s.id) && !['hook', 'outro'].includes(s.section);
-        const whipOut = lastOfSection.has(s.id) && !['weapons', 'outro'].includes(s.section);
+        const swingIn = firstOfSection.has(s.id) && !['hook', 'outro'].includes(s.section);
+        const swingOut = lastOfSection.has(s.id) && !['weapons', 'outro', 'hook'].includes(s.section);
+        const src = fps === 60 && INTERP.has(s.id) ? `full60/${s.id}.mp4` : undefined;
         return (
-          <Sequence key={s.id} from={s.from} durationInFrames={s.frames} name={s.id}>
-            <FullShot s={s} whipIn={whipIn} whipOut={whipOut} />
+          <Sequence key={s.id} from={F(s.from)} durationInFrames={F(s.frames)} name={s.id}>
+            <FullShot s={s} swingIn={swingIn} swingOut={swingOut} src={src} />
           </Sequence>
         );
       })}
@@ -209,30 +245,29 @@ export const RedlineFull: React.FC = () => {
       {EDL.shots
         .filter((s) => OVERLAYS[s.id])
         .map((s) => (
-          <Sequence key={`ov-${s.id}`} from={s.from} durationInFrames={EDL.sections[s.section][1] - s.from} name={`overlay ${s.id}`}>
+          <Sequence key={`ov-${s.id}`} from={F(s.from)} durationInFrames={F(SHOT_ONLY.has(s.id) ? s.frames : EDL.sections[s.section][1] - s.from)} name={`overlay ${s.id}`}>
             {OVERLAYS[s.id](s)}
           </Sequence>
         ))}
 
       {Object.keys(EDL.sections)
-        .filter((k) => !['hook', 'steam', 'outro'].includes(k))
-        .map((k) => (
-          <Sequence key={k} from={EDL.sections[k][0]} durationInFrames={70} name={`chapter ${k}`}>
-            <ChapterTitle section={k} />
+        .filter((sec) => !['hook', 'steam', 'outro'].includes(sec))
+        .map((sec) => (
+          <Sequence key={sec} from={F(EDL.sections[sec][0])} durationInFrames={F(60)} name={`chapter ${sec}`}>
+            <ChapterTitle section={sec} />
           </Sequence>
         ))}
-
-      <Sequence from={outro[0]} durationInFrames={outro[1] - outro[0]} name="outro card">
-        <Outro questionAt={wordAt('end2', 'secondo') - outro[0]} />
-      </Sequence>
 
       <AbsoluteFill
         style={{background: 'radial-gradient(120% 75% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.30) 100%)', pointerEvents: 'none'}}
       />
-      <Sequence from={0} durationInFrames={outro[0]} name="bug">
+      <Sequence from={0} durationInFrames={F(sig.from)} name="bug">
         <Bug />
       </Sequence>
       <Subtitles />
+      <Sequence from={F(sig.from)} durationInFrames={F(EDL.frames - sig.from)} name="signature">
+        <Signature frames={EDL.frames - sig.from} />
+      </Sequence>
     </AbsoluteFill>
   );
 };

@@ -1,6 +1,6 @@
-import {AbsoluteFill, interpolate, OffthreadVideo, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, interpolate, OffthreadVideo, staticFile } from 'remotion';
 import {Kicker} from '../components/Type';
-import {color, easeOut, HEIGHT, WIDTH} from '../design';
+import {color, easeOut, HEIGHT, WIDTH, useBaseFrame} from '../design';
 import {project, Shot} from './edl';
 
 /**
@@ -17,7 +17,7 @@ export const Loupe: React.FC<{
   kicker: string;
   tint?: string;
 }> = ({s, region, at, until, box, kicker, tint = color.redline}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   if (frame < at || frame > until + 10) return null;
   const p = interpolate(frame, [at, at + 12], [0, 1], {easing: easeOut, extrapolateRight: 'clamp'});
   const out = interpolate(frame, [until, until + 8], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});

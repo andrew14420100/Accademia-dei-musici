@@ -2,24 +2,24 @@
   "title": "STEAM FOCUS — ECC: REDLINE",
   "voice": "im_nicola",
   "engine": "Kokoro-82M (Apache-2.0), lang_code it",
-  "note": "'text' is what subtitles show; 'say' is a phonetic respelling for English names only.",
+  "note": "'text' = subtitles; 'say' = phonetic respelling for English names (chosen by ASR confidence tests, see README). 'kind': 'analysis' lines are editorial reading, flagged on screen.",
   "lines": [
     {
       "id": "hook1",
       "section": "hook",
-      "text": "Squadre da quattro, scivolate, rampino e crediti da spendere a metà partita."
+      "text": "Questo è il nuovo ECC: REDLINE.",
+      "say": "Questo è il nuovo E C C Rèdlain."
     },
     {
       "id": "hook2",
       "section": "hook",
-      "text": "Il gioco si chiama ECC: REDLINE.",
-      "say": "Il gioco si chiama, E C C Rèdlain."
+      "text": "Squadre da quattro, scivolate, rampino e crediti da spendere a metà partita."
     },
     {
       "id": "id1",
       "section": "identity",
       "text": "Lo sviluppa Galaxy Studio, uno studio di NetEase Games.",
-      "say": "Lo sviluppa Gàlaxi Stùdio, uno studio di Nètis Gheims."
+      "say": "Lo sviluppa Gàlaxi Stùdio, uno studio di Nèt Iis Gheims."
     },
     {
       "id": "id2",
@@ -45,7 +45,13 @@
     {
       "id": "mov3",
       "section": "movement",
-      "text": "Il rampino e i rimbalzi sulle pareti allungano l'azione: spostarsi diventa un modo per mettere pressione."
+      "text": "Il rampino e i rimbalzi sulle pareti allungano l'azione."
+    },
+    {
+      "id": "mov4",
+      "section": "movement",
+      "kind": "analysis",
+      "text": "La nostra lettura: se ci si sposta mentre si spara, il tempismo conta quanto la copertura."
     },
     {
       "id": "sq1",
@@ -71,7 +77,7 @@
       "id": "re3",
       "section": "reentry",
       "text": "La pagina Steam cita anche uno stato di roaming per rientrare: finché la squadra resiste, il round resta aperto.",
-      "say": "La pagina Stìm cita anche uno stato di ròming per rientrare: finché la squadra resiste, il raund resta aperto."
+      "say": "La pagina Stìiim cita anche uno stato di ròming per rientrare: finché la squadra resiste, il raund resta aperto."
     },
     {
       "id": "ec1",
@@ -81,14 +87,14 @@
     {
       "id": "ec2",
       "section": "economy",
-      "text": "Nel negozio una mina adesiva costa 400 crediti, e c'è perfino una siringa per rialzarsi da soli, a 4.500.",
-      "say": "Nel negozio una mina adesiva costa quattrocento crediti, e c'è perfino una siringa per rialzarsi da soli, a quattromilacinquecento."
+      "text": "Nel negozio una mina adesiva costa 400 crediti; una siringa per rialzarsi da soli, 4.500.",
+      "say": "Nel negozio una mina adesiva costa quattrocento crediti; una siringa per rialzarsi da soli, quattromilacinquecento."
     },
     {
       "id": "ec3",
       "section": "economy",
-      "text": "In pochi secondi, il saldo sullo schermo scende da 6.000 a 3.207.",
-      "say": "In pochi secondi, il saldo sullo schermo scende da seimila a tremiladuecentosette."
+      "kind": "analysis",
+      "text": "Più di dieci mine: una scelta tra pressione e sopravvivenza."
     },
     {
       "id": "wp1",
@@ -109,7 +115,7 @@
       "id": "st1",
       "section": "steam",
       "text": "Su Steam il gioco risulta in arrivo, senza una data.",
-      "say": "Su Stìm il gioco risulta in arrivo, senza una data."
+      "say": "Su Stìiim il gioco risulta in arrivo, senza una data."
     },
     {
       "id": "st2",
@@ -119,14 +125,9 @@
     {
       "id": "end1",
       "section": "outro",
-      "text": "Questo era STEAM FOCUS.",
-      "say": "Questo era Stìm Fòcus."
-    },
-    {
-      "id": "end2",
-      "section": "outro",
       "text": "Secondo voi, il movimento basterà a distinguerlo dagli altri tattici?"
     }
   ],
-  "speed": 1.06
+  "speed": 1.06,
+  "version": 2
 }

@@ -1,5 +1,5 @@
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
-import {color, font, HEIGHT, WIDTH} from '../design';
+import {AbsoluteFill, interpolate } from 'remotion';
+import {color, font, HEIGHT, WIDTH, useBaseFrame} from '../design';
 import {Kicker, MaskLine, progress} from './Type';
 
 type Pt = {x: number; y: number};
@@ -25,7 +25,7 @@ export const Callout: React.FC<{
   variant: 'open' | 'glass';
   width?: number;
 }> = ({anchor, dock, labelSide, at, until, tint, kicker, title, sub, variant, width = 720}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   if (frame < at || frame > until + 8) return null;
   const ring = progress(frame, at, 10);
   const line = progress(frame, at + 3, 12);

@@ -33,6 +33,7 @@ ap.add_argument("--samples", type=int, default=32)
 ap.add_argument("--scale", type=int, default=100)
 ap.add_argument("--frames", default="1-292")
 ap.add_argument("--anchors-only", action="store_true")
+ap.add_argument("--device", default="CPU", help="CPU, or a GPU backend: CUDA, OPTIX, HIP, ONEAPI, METAL")
 args = ap.parse_args(argv)
 
 FPS = 30
@@ -70,6 +71,15 @@ scene.render.resolution_x, scene.render.resolution_y = 1080, 1920
 scene.render.resolution_percentage = args.scale
 scene.render.engine = "CYCLES"
 scene.cycles.device = "CPU"
+if args.device != "CPU":
+    # GPU path for a workstation (the cloud runner has no GPU): enable every
+    # device of the chosen backend.
+    prefs = bpy.context.preferences.addons["cycles"].preferences
+    prefs.compute_device_type = args.device
+    prefs.get_devices()
+    for dev in prefs.devices:
+        dev.use = True
+    scene.cycles.device = "GPU"
 scene.cycles.samples = args.samples
 scene.cycles.use_adaptive_sampling = True
 scene.cycles.adaptive_threshold = 0.02

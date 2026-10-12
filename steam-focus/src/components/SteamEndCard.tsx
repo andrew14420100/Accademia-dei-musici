@@ -1,5 +1,5 @@
-import {AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame} from 'remotion';
-import {color, easeOut, font, HEIGHT, WIDTH} from '../design';
+import {AbsoluteFill, Img, interpolate, staticFile } from 'remotion';
+import {color, easeOut, font, HEIGHT, WIDTH, useBaseFrame} from '../design';
 
 const LOGO_W = 4748; // steam_logo_inverse.png, Valve "inverse" artwork
 const LOGO_H = 1433;
@@ -10,7 +10,7 @@ const LOGO_H = 1433;
  * Valve's legal attribution sits well outside the clear space.
  */
 export const SteamEndCard: React.FC<{at: number}> = ({at}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   if (frame < at) return null;
   const dim = interpolate(frame, [at, at + 12], [0, 0.9], {easing: easeOut, extrapolateRight: 'clamp'});
   const show = interpolate(frame, [at + 4, at + 16], [0, 1], {easing: easeOut, extrapolateRight: 'clamp'});

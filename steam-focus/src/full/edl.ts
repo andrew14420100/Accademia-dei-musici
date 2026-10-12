@@ -20,7 +20,8 @@ export const EDL = edlJson as unknown as {
   fps: number;
   frames: number;
   sections: Record<string, [number, number]>;
-  s3: {from: number; holdUntil: number; italianAt: number; logoAt: number};
+  s3: {from: number; bridge: number};
+  signature: {from: number; frames: number};
   shots: Shot[];
   lines: Line[];
   cues: Array<{from: number; to: number; text: string}>;

@@ -1,5 +1,5 @@
 import {loadFont} from '@remotion/fonts';
-import {Easing, staticFile} from 'remotion';
+import {Easing, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 
 // STEAM FOCUS — vertical news format.
 export const WIDTH = 1080;
@@ -8,7 +8,8 @@ export const FPS = 30;
 
 // Keep type inside the area social players leave uncovered
 // (top status bar, bottom caption/UI band, right action rail).
-export const SAFE = {left: 72, right: 1008, top: 120, bottom: 1540};
+// TikTok 9:16 safe area (top tabs, right action rail, bottom caption band).
+export const SAFE = {left: 64, right: 940, top: 170, bottom: 1440};
 
 export const color = {
   ink: '#0A0D12',
@@ -38,3 +39,26 @@ export const fontsReady = Promise.all([
 // One motion language for the whole show: fast attack, long settle.
 export const easeOut = Easing.bezier(0.16, 1, 0.3, 1);
 export const easeInOut = Easing.bezier(0.65, 0, 0.35, 1);
+
+/**
+ * All timing in this project is authored at 30 fps ("base frames"). Components
+ * read a fractional base frame, so the same animation renders natively smooth
+ * in a 60 fps composition and unchanged at 30 fps.
+ */
+export const BASE_FPS = 30;
+export const useBaseFrame = () => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  return (frame * BASE_FPS) / fps;
+};
+/** Composition frames per base frame (2 at 60 fps). */
+export const useFrameScale = () => useVideoConfig().fps / BASE_FPS;
+
+/** Sample a per-base-frame track ([x, y, ...] rows) at a fractional frame. */
+export const sampleTrack = (rows: number[][], f: number) => {
+  const i = Math.max(0, Math.min(rows.length - 1, f));
+  const a = Math.floor(i);
+  const b = Math.min(rows.length - 1, a + 1);
+  const t = i - a;
+  return rows[a].map((v, k) => v + (rows[b][k] - v) * t);
+};

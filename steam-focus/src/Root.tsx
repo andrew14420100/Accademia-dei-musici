@@ -1,7 +1,8 @@
 import {Composition} from 'remotion';
 import {RedlineDemo, DEMO_FRAMES} from './RedlineDemo';
 import {FPS, HEIGHT, WIDTH} from './design';
-import {FULL_FRAMES, RedlineFull} from './full/RedlineFull';
+import {fullFrames, RedlineFull} from './full/RedlineFull';
+import {RedlineFull4K} from './full/RedlineFull4K';
 
 export const Root: React.FC = () => (
   <>
@@ -16,10 +17,21 @@ export const Root: React.FC = () => (
   <Composition
     id="RedlineFull"
     component={RedlineFull}
-    durationInFrames={FULL_FRAMES}
+    durationInFrames={fullFrames(FPS)}
     fps={FPS}
     width={WIDTH}
     height={HEIGHT}
+  />
+  {/* Final master: 2160x3840, 60 fps CFR. Layout is authored in 1080x1920
+      units and laid out at 2x zoom, so text and vector graphics rasterize
+      natively at 4K; animations are evaluated on 60 fps frames. */}
+  <Composition
+    id="RedlineFull4K"
+    component={RedlineFull4K}
+    durationInFrames={fullFrames(60)}
+    fps={60}
+    width={WIDTH * 2}
+    height={HEIGHT * 2}
   />
   </>
 );

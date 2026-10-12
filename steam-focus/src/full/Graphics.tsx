@@ -1,6 +1,6 @@
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, interpolate } from 'remotion';
 import {Kicker, MaskLine, progress} from '../components/Type';
-import {color, easeOut, font, HEIGHT, SAFE, WIDTH} from '../design';
+import {color, easeOut, font, HEIGHT, SAFE, WIDTH, useBaseFrame} from '../design';
 
 const shadow = '0 2px 18px rgba(0,0,0,0.65), 0 0 2px rgba(0,0,0,0.45)';
 
@@ -10,7 +10,7 @@ export const DataStack: React.FC<{
   items: Array<{at: number; k: string; v: string; tint: string}>;
   until: number;
 }> = ({top, items, until}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   const out = interpolate(frame, [until, until + 8], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
     <div style={{position: 'absolute', left: SAFE.left, top, opacity: out, textShadow: shadow}}>
@@ -36,7 +36,7 @@ export const DataStack: React.FC<{
 
 /** Sprint → slide → aim → fire: each step lights on its spoken word. */
 export const Chain: React.FC<{steps: Array<{at: number; label: string}>; top: number; until: number}> = ({steps, top, until}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   const out = interpolate(frame, [until, until + 8], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const appear = progress(frame, steps[0].at - 6, 10);
   return (
@@ -76,7 +76,7 @@ export const Chain: React.FC<{steps: Array<{at: number; label: string}>; top: nu
 
 /** Three squad roles, introduced on the words that describe them. */
 export const Roles: React.FC<{roles: Array<{at: number; k: string; v: string}>; top: number; until: number}> = ({roles, top, until}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   const out = interpolate(frame, [until, until + 8], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
     <div style={{position: 'absolute', left: SAFE.left, right: WIDTH - SAFE.right, top, opacity: out, display: 'flex', gap: 16}}>
@@ -113,7 +113,7 @@ export const Roles: React.FC<{roles: Array<{at: number; k: string; v: string}>; 
  * Labelled as a diagram: the real zone position is not shown in the footage.
  */
 export const SafeZone: React.FC<{at: number; until: number; cx: number; cy: number}> = ({at, until, cx, cy}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   const p = progress(frame, at, 14);
   const shrink = interpolate(frame, [at + 10, until], [0, 1], {easing: easeOut, extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const out = interpolate(frame, [until, until + 8], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
@@ -153,7 +153,7 @@ export const UiTag: React.FC<{x: number; y: number; at: number; until: number; l
   tint = color.redline,
   side = 'right',
 }) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   if (frame < at || frame > until + 10) return null;
   const p = progress(frame, at, 10);
   const out = interpolate(frame, [until, until + 8], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
@@ -191,7 +191,7 @@ export const UiTag: React.FC<{x: number; y: number; at: number; until: number; l
 
 /** Short honest note on a claim the footage does not show. */
 export const Note: React.FC<{at: number; until: number; kicker: string; title: string; sub: string; top: number}> = ({at, until, kicker, title, sub, top}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   const out = interpolate(frame, [until, until + 8], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   if (frame < at) return null;
   return (
@@ -226,7 +226,7 @@ export const Note: React.FC<{at: number; until: number; kicker: string; title: s
 
 /** Programme sign-off: independent STEAM FOCUS branding, no third-party logos. */
 export const Outro: React.FC<{questionAt: number}> = ({questionAt}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   const dim = interpolate(frame, [0, 14], [0, 0.72], {extrapolateRight: 'clamp'});
   return (
     <AbsoluteFill>
@@ -264,6 +264,88 @@ export const Outro: React.FC<{questionAt: number}> = ({questionAt}) => {
             Voce sintetica (Kokoro TTS)
           </Kicker>
         </MaskLine>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/**
+ * Editorial analysis, visibly different from official facts: dashed frame,
+ * "Analisi" label and an explicit "not verified in a match" line.
+ */
+export const AnalysisCard: React.FC<{at: number; until: number; top: number; title: string; sub: string}> = ({at, until, top, title, sub}) => {
+  const frame = useBaseFrame();
+  if (frame < at - 2 || frame > until + 10) return null;
+  const p = progress(frame, at, 12);
+  const out = interpolate(frame, [until, until + 8], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <div style={{position: 'absolute', left: SAFE.left, top, width: SAFE.right - SAFE.left, perspective: 1200, opacity: out}}>
+      <div
+        style={{
+          transformOrigin: 'left center',
+          transform: `rotateY(${-40 * (1 - p)}deg)`,
+          opacity: p,
+          border: `3px dashed ${color.paper}`,
+          borderRadius: 10,
+          padding: '18px 24px 22px',
+          background: 'rgba(8,10,14,0.55)',
+          backdropFilter: 'blur(6px)',
+          maxWidth: 820,
+        }}
+      >
+        <Kicker tint={color.paper} style={{fontSize: 22}}>
+          Analisi STEAM FOCUS · non verificata in partita
+        </Kicker>
+        <div style={{fontFamily: font.display, fontWeight: 700, fontSize: 62, lineHeight: 1, color: color.paper, marginTop: 8, textTransform: 'uppercase'}}>
+          {title}
+        </div>
+        <div style={{fontFamily: font.text, fontWeight: 500, fontSize: 30, lineHeight: 1.25, color: color.dim, marginTop: 10}}>{sub}</div>
+      </div>
+    </div>
+  );
+};
+
+/** 1.6 s programme sign-off: STEAM FOCUS only, no third-party logos. */
+export const Signature: React.FC<{frames: number}> = ({frames}) => {
+  const frame = useBaseFrame();
+  const dim = interpolate(frame, [0, 6], [0, 0.88], {extrapolateRight: 'clamp'});
+  const a = progress(frame, 1, 10);
+  const b = progress(frame, 4, 10);
+  const rule = progress(frame, 6, 12);
+  const streak = interpolate(frame, [8, 26], [-20, 120], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const out = interpolate(frame, [frames - 5, frames], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <AbsoluteFill style={{opacity: out}}>
+      <AbsoluteFill style={{backgroundColor: color.ink, opacity: dim}} />
+      <div style={{position: 'absolute', left: SAFE.left + 20, top: 700, overflow: 'hidden'}}>
+        <div style={{display: 'flex', alignItems: 'center', gap: 22, transform: `translateY(${(1 - a) * 110}%)`}}>
+          <div style={{width: 34, height: 34, backgroundColor: color.redline, transform: `rotate(45deg) scale(${a})`}} />
+          <div style={{fontFamily: font.display, fontWeight: 700, fontSize: 168, lineHeight: 0.9, color: color.paper, letterSpacing: '0.04em'}}>STEAM</div>
+        </div>
+      </div>
+      <div style={{position: 'absolute', left: SAFE.left + 76, top: 860, overflow: 'hidden'}}>
+        <div
+          style={{
+            fontFamily: font.display,
+            fontWeight: 700,
+            fontSize: 168,
+            lineHeight: 0.9,
+            color: color.redline,
+            letterSpacing: '0.04em',
+            transform: `translateY(${(1 - b) * 110}%)`,
+            backgroundImage: `linear-gradient(100deg, ${color.redline} ${streak - 10}%, #FF8A8F ${streak}%, ${color.redline} ${streak + 10}%)`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
+          FOCUS
+        </div>
+      </div>
+      <div style={{position: 'absolute', left: SAFE.left + 76, top: 1036, height: 6, width: 560 * rule, backgroundColor: color.paper}} />
+      <div style={{position: 'absolute', left: SAFE.left + 76, top: 1066, opacity: rule}}>
+        <Kicker tint={color.dim} style={{fontSize: 24}}>
+          Format indipendente · non affiliato a Valve o NetEase
+        </Kicker>
       </div>
     </AbsoluteFill>
   );

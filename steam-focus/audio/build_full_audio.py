@@ -1,10 +1,12 @@
-"""STEAM FOCUS — ECC: REDLINE full report: voice + trailer audio + design.
+"""STEAM FOCUS — ECC: REDLINE full report (v2): voice + original score + design.
 
-Narration (Kokoro TTS) on top; each shot's original trailer audio underneath,
-ducked whenever the voice speaks; synthesized design elements on the cuts and
-graphics. Output is pre-master (loudness is normalised at mux time).
+No third-party audio: the trailer's music and effects (NetEase) are not used
+(rights not cleared). Narration (Kokoro TTS) on top, the original procedural
+score (audio/score.py) ducked under the voice, synthesized design on the cuts
+and graphics. Output is pre-master (loudness is normalised at mux time).
+v1 (with trailer audio) is kept as build_full_audio_v1.py.
 
-usage: python3 build_full_audio.py public/full_edl.json <work> <out.wav>
+usage: python3 build_full_audio.py public/full_edl.json <work> <out.wav> [vo_dir]
 """
 import json
 import os
@@ -16,10 +18,12 @@ from scipy.signal import butter, resample_poly, sosfilt, sosfiltfilt
 
 sys.path.insert(0, os.path.dirname(__file__))
 import build_audio as d  # noqa: E402  (shared synth elements)
+import score  # noqa: E402
 
 SR = 48000
 edl = json.load(open(sys.argv[1]))
 work, out_path = sys.argv[2], sys.argv[3]
+VO = sys.argv[4] if len(sys.argv) > 4 else f"{work}/vo"
 FPS = edl["fps"]
 N = int(edl["frames"] / FPS * SR) + SR // 2
 
@@ -75,7 +79,7 @@ voice = np.zeros((N, 2), np.float32)
 hp = butter(2, 85, "highpass", fs=SR, output="sos")
 presence = butter(2, [2500, 6000], "bandpass", fs=SR, output="sos")
 for v in edl["voice"]:
-    x = load(f"{work}/vo/{v['id']}.wav")[:, 0]
+    x = load(f"{VO}/{v['id']}.wav")[:, 0]
     x = sosfilt(hp, x)
     x = x + 0.18 * sosfilt(presence, x)            # a little presence for phone speakers
     rms = np.sqrt(np.mean(x[np.abs(x) > 0.01] ** 2)) if np.any(np.abs(x) > 0.01) else 1
@@ -100,54 +104,39 @@ for i in range(0, len(duck), 64):           # block-wise one-pole (fast enough)
     y = t_ + (y - t_) * c ** 64
     sm[i:i + 64] = y
 
-# --- trailer beds -----------------------------------------------------------
-bed = np.zeros((N, 2), np.float32)
-for s in edl["shots"]:
-    if s["src"] == "G":
-        x = load(f"{work}/full_audio/{s['id']}.wav")[: at(s["frames"])]
-        put(bed, fades(x), at(s["from"]))
-
-# S3: the gameplay plate's audio, receding into the store page.
-s3 = edl["s3"]
-x = load(f"{work}/audio_s3.wav")
-seg = at(edl["sections"]["steam"][1] - edl["sections"]["steam"][0])
-x = np.concatenate([x, np.zeros((max(0, seg - len(x)), 2), np.float32)])[:seg]
-lo = np.stack([sosfiltfilt(butter(2, 900, "lowpass", fs=SR, output="sos"), x[:, c]) for c in range(2)], 1)
-i0, i1 = at(42), at(104)
-m = np.clip((np.arange(len(x)) - i0) / (i1 - i0), 0, 1)[:, None]
-x = ((1 - m) * x + m * lo) * 10 ** ((-12 * m) / 20)
-x *= np.clip(1 - (np.arange(len(x)) - at(150)) / at(120), 0, 1)[:, None]
-put(bed, fades(x.astype(np.float32)), at(s3["from"]))
-
-bed *= sm[:, None]
+# --- original score, ducked under the voice ----------------------------------
+total_s = edl["frames"] / FPS
+music = score.build(total_s + 0.5, edl["sections"], edl["signature"]["from"] / FPS, FPS)
+music = np.concatenate([music, np.zeros((max(0, N - len(music)), 2), np.float32)])[:N]
+duck_m = np.where(sm < 0.5, 10 ** (-12 / 20), 1.0).astype(np.float32)  # sm is low while speaking
+# smooth the music duck
+kern = np.ones(int(0.12 * SR)) / int(0.12 * SR)
+duck_m = np.convolve(duck_m, kern, mode="same").astype(np.float32)
+bed = music * duck_m[:, None] * 10 ** (-4 / 20)
 
 # --- design -----------------------------------------------------------------
 fx = np.zeros((N, 2), np.float32)
-put(fx, d.band(d.rng.standard_normal(at(30)), 400, 3000) * d.env(at(30), 0.5, 0.4) * 0.1, 0)
-title = word("hook2", "chiama") + 6
-put(fx, d.reverse_swell(0.6), at(title - 18), -8)
-put(fx, d.sub_hit(), at(title), -5)
+put(fx, d.reverse_swell(0.4), at(0), -10)
+put(fx, d.sub_hit(), at(8), -6)                                   # title lands
 for name, (a, b) in edl["sections"].items():
     if name in ("hook", "steam", "outro"):
         continue
-    put(fx, d.whoosh(0.7, 500, 3800), at(a - 8), -9)       # whip between chapters
-    put(fx, d.punch(0.35), at(a), -12)
-ticks = [("id1", "galaxy"), ("id1", "netis"), ("id2", "free"), ("id2", "pc"), ("id2", "data"), ("id3", "zona"),
+    put(fx, d.whoosh(0.6, 500, 3800), at(a - 6), -10)             # chapter swing
+ticks = [("id1", "galaxy"), ("id1", "netease"), ("id2", "free"), ("id2", "pc"), ("id2", "data"), ("id3", "zona"),
          ("mov2", "sprint"), ("mov2", "scivolata"), ("mov2", "mira"), ("mov2", "fuoco"),
-         ("mov3", "rampino"), ("mov3", "rimbalzi"), ("sq1", "quattro"), ("sq2", "assorbe"), ("sq2", "tiene"),
-         ("sq2", "entra"), ("re3", "roaming"), ("ec1", "crediti"), ("ec2", "mina"), ("ec2", "siringa"),
-         ("ec3", "saldo"), ("wp1", "balistica"), ("wp1", "rinculo"), ("wp1", "maneggevolezza"),
-         ("wp2", "parti"), ("wp2", "ottiche"), ("wp2", "impugnatura")]
+         ("mov3", "rampino"), ("mov3", "rimbalzi"), ("mov4", "lettura"), ("sq1", "quattro"), ("sq2", "assorbe"),
+         ("sq2", "tiene"), ("sq2", "entra"), ("re3", "roaming"), ("ec1", "crediti"), ("ec2", "mina"),
+         ("ec2", "siringa"), ("ec3", "piu"), ("wp1", "balistica"), ("wp1", "rinculo"), ("wp1", "maneggevolezza"),
+         ("wp2", "parti"), ("wp2", "ottiche"), ("wp2", "impugnatura"),
+         ("st1", "arrivo"), ("st2", "aperta"), ("st2", "italiano")]
 for lid, wd in ticks:
-    put(fx, d.ui_tick(), at(word(lid, wd)), -13, pan=-0.25)
-# Blender bridge: blast reinforcement, pull-back whoosh, plate landing, logo tail.
+    put(fx, d.ui_tick(), at(word(lid, wd)), -14, pan=-0.25)
+# Blender bridge: blast reinforcement, pull-back whoosh, plate landing.
+s3 = edl["s3"]
 put(fx, d.sub_hit(48, 28, 1.0), at(s3["from"] + 4), -9)
-put(fx, d.whoosh(2.4, 280, 2400), at(s3["from"] + 34), -8)
+put(fx, d.whoosh(2.4, 280, 2400), at(s3["from"] + 34), -9)
 put(fx, d.landing(), at(s3["from"] + 149), -6)
-put(fx, d.ui_tick(), at(s3["from"] + 168), -12)
-put(fx, d.ui_tick(), at(s3["from"] + s3["italianAt"]), -12)
-put(fx, d.end_tail(), at(s3["from"] + s3["logoAt"]), -7)
-put(fx, d.sub_hit(55, 30, 1.4), at(edl["sections"]["outro"][0] + 6), -9)
+put(fx, d.whoosh(0.8, 300, 2000), at(s3["from"] + s3["bridge"] - 14), -11)   # page recedes
 
 mix = voice + bed + fx
 peak = np.abs(mix).max()

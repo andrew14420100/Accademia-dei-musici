@@ -18,20 +18,17 @@ FPS = 30
 timing = json.load(open(sys.argv[1]))
 OUT = sys.argv[2]
 
-GAP_LINE, GAP_SECTION, START = 0.28, 0.85, 0.9
+GAP_LINE, GAP_SECTION, START = 0.32, 1.0, 0.9
 LEAD = 0.35            # picture changes slightly before the voice of a new section
 S3_FRAMES = 292
-S3_RELEASE = 168       # S3 frame where the "release date" callout appears
-LOGO_CARD = 1.4        # standalone Steam logo before the outro
-OUTRO_TAIL = 2.6
+S3_BRIDGE = 165        # Blender frames used: scope blast -> pull-back -> plate lands
+SIGNATURE = 1.6        # STEAM FOCUS sign-off after the last line
 
 # --- voice layout -----------------------------------------------------------
 lines, cur, prev = [], START, None
 for t in timing:
     if prev:
         cur += GAP_SECTION if t["section"] != prev else GAP_LINE
-    if t["id"] == "end1":
-        cur += LOGO_CARD
     lines.append({**t, "start": round(cur, 3), "end": round(cur + t["dur"], 3)})
     cur += t["dur"]
     prev = t["section"]
@@ -62,21 +59,22 @@ def last(section):
 
 # The Blender shot starts so its release callout lands on the first Steam line;
 # its first seconds (scope blast, pull-back) close the weapons section.
-s3_start = L["st1"]["start"] + 0.15 - S3_RELEASE / FPS
-s3_hold_end = L["st2"]["end"] + 0.45
-logo_end = s3_hold_end + LOGO_CARD - 0.45
-total = last("outro") + OUTRO_TAIL
+# The Blender bridge (the approved hero shot) runs until the plate lands in the
+# store page; real page details take over 0.3 s before the first Steam line.
+s3_start = L["st1"]["start"] - 0.3 - S3_BRIDGE / FPS
+outro_start = first("outro") - LEAD
+total = last("outro") + 0.25 + SIGNATURE
 
 sections = [
     ("hook", 0.0),
-    ("identity", first("identity") - LEAD),
+    ("identity", first("identity") - 0.8),
     ("movement", first("movement") - LEAD),
     ("squad", first("squad") - LEAD),
     ("reentry", first("reentry") - LEAD),
     ("economy", first("economy") - LEAD),
     ("weapons", first("weapons") - LEAD),
     ("steam", s3_start),
-    ("outro", logo_end),
+    ("outro", outro_start),
 ]
 bounds = {name: (a, sections[i + 1][1] if i + 1 < len(sections) else total) for i, (name, a) in enumerate(sections)}
 
@@ -85,28 +83,31 @@ bounds = {name: (a, sections[i + 1][1] if i + 1 < len(sections) else total) for 
 # (None = takes the rest of the section), optional cut-on-word.
 SHOTS = {
     "hook": [
-        dict(id="h_squad", src="G", sin=60.12, cx=[[0, 960]], until=("hook1", "scivolate")),
-        dict(id="h_slide", src="G", sin=264.1, cx=[[0, 1000]], until=("hook1", "rampino")),
-        dict(id="h_grapple", src="G", sin=329.25, cx=[[0, 960]], until=("hook1", "crediti")),
-        dict(id="h_credits", src="G", sin=153.05, cx=[[0, 900]], until=("hook2", "il")),
         # same reframe as the approved demo; zoom + raised centre hide the
-        # trailer's burned-in caption
-        dict(id="h_heli", src="G", sin=63.25, dur=None, allow_cuts=[65.73], zoom=[1.08, 1.13], cy=505,
+        # trailer's burned-in caption. The title lands on it within 0.5 s.
+        dict(id="h_heli", src="G", sin=63.25, until=("hook2", "squadre"), allow_cuts=[65.73], zoom=[1.08, 1.13], cy=505,
              cx=[[0, 1150], [0.3, 1090], [0.47, 1480], [0.57, 1400], [0.67, 1160], [0.8, 470], [0.93, 340],
                  [1.07, 420], [1.2, 880], [1.33, 960], [1.73, 1010], [2.47, 990], [2.5, 960], [3.43, 965]]),
+        dict(id="h_squad", src="G", sin=60.12, cx=[[0, 960]], until=("hook2", "scivolate")),
+        dict(id="h_slide", src="G", sin=264.1, cx=[[0, 1000]], until=("hook2", "rampino")),
+        dict(id="h_grapple", src="G", sin=329.25, cx=[[0, 960]], until=("hook2", "crediti")),
+        dict(id="h_credits", src="G", sin=153.05, cx=[[0, 900]], dur=None),
     ],
     "identity": [
         dict(id="i_arena", src="G", sin=217.24, cx=[[0, 900], [2, 960]], dur=2.05),
-        dict(id="i_hall", src="G", sin=219.42, cx=[[0, 960]], until=("id2", "sara")),
+        dict(id="i_hall", src="G", sin=219.42, cx=[[0, 960]], dur=2.0),
         dict(id="i_descent", src="G", sin=66.8, cx=[[0, 900], [3, 1000]], until=("id3", "si")),
-        dict(id="i_map", src="G", sin=70.7, cx=[[0, 1010], [6, 980]], dur=None),
+        dict(id="i_map", src="G", sin=71.6, cx=[[0, 1010], [6, 980]], dur=None),
     ],
     "movement": [
         dict(id="m_slide", src="G", sin=253.3, cx=[[0, 1000]], dur=3.9),
         dict(id="m_aim", src="G", sin=257.5, cx=[[0, 900], [2, 960]], dur=3.5),
         dict(id="m_grapple_tp", src="G", sin=111.15, cx=[[0, 700], [1.4, 640], [2.7, 900]], dur=2.75),
         dict(id="m_wall", src="G", sin=114.0, cx=[[0, 1000]], dur=1.55),
-        dict(id="m_grapple_fp", src="G", sin=336.5, cx=[[0, 900], [3, 1000]], dur=None, allow_cuts=[337.4]),
+        dict(id="m_grapple_fp", src="G", sin=336.5, cx=[[0, 900], [3, 1000]], dur=3.5, allow_cuts=[337.4]),
+        # analysis line: shooting while airborne / on the move
+        dict(id="m_air", src="G", sin=117.3, cx=[[0, 960]], dur=2.2),
+        dict(id="m_air2", src="G", sin=261.05, cx=[[0, 960]], dur=None),
     ],
     "squad": [
         dict(id="s_hud", src="G", sin=349.567, cx=[[0, 900], [1.8, 990]], dur=1.8, allow_cuts=[350.43]),
@@ -121,13 +122,12 @@ SHOTS = {
         dict(id="r_roof", src="G", sin=309.1, cx=[[0, 960]], dur=None),
     ],
     "economy": [
-        dict(id="e_kill", src="G", sin=167.15, cx=[[0, 1000]], dur=1.15),
+        dict(id="e_kill", src="G", sin=167.32, cx=[[0, 1000]], dur=1.15),
         dict(id="e_hud", src="G", sin=147.0, cx=[[0, 960], [5.9, 1000]], until=("ec2", "nel")),
         # Shop UI is static: play the opening, then hold an annotated freeze.
-        dict(id="e_shop", src="G", sin=96.6, cx=[[0, 580]], zoom=[1.06, 1.12], cy=600, freeze_after=1.1, until=("ec3", "in")),
+        dict(id="e_shop", src="G", sin=96.6, cx=[[0, 580]], zoom=[1.06, 1.12], cy=600, freeze_after=1.1, until=("ec3", "piu")),
         dict(id="e_funds", src="G", sin=98.45, cx=[[0, 520]], zoom=[1.2, 1.25], cy=630, dur=2.1),
-        dict(id="e_after", src="G", sin=101.9, cx=[[0, 960]], dur=2.6),
-        dict(id="e_after2", src="G", sin=104.6, cx=[[0, 960]], dur=None),
+        dict(id="e_after", src="G", sin=101.9, cx=[[0, 960]], dur=None),
     ],
     "weapons": [
         dict(id="w_range", src="G", sin=28.7, cx=[[0, 960]], dur=2.2),
@@ -136,7 +136,7 @@ SHOTS = {
         dict(id="w_inspect", src="G", sin=5.3, cx=[[0, 900], [2.4, 960]], dur=2.4),
         dict(id="w_inspect2", src="G", sin=17.25, cx=[[0, 960], [3, 1000]], dur=None),
     ],
-    "steam": [dict(id="s3", src="S3", sin=0, cx=None, dur=None)],
+    "steam": [dict(id="s3", src="S3", sin=0, cx=None, dur=None)],  # bridge + store-page details
     # zoom past the trailer's letterbox bars
     "outro": [dict(id="o_ecc", src="G", sin=379.78, cx=[[0, 960]], zoom=[1.24, 1.3], dur=None)],
 }
@@ -266,9 +266,8 @@ out = {
     "frames": round(total * FPS),
     "voice": [{"id": l["id"], "from": round(l["start"] * FPS), "dur": l["dur"], "section": l["section"]} for l in lines],
     "sections": {k: [round(v[0] * FPS), round(v[1] * FPS)] for k, v in bounds.items()},
-    "s3": {"from": round(s3_start * FPS), "holdUntil": round(s3_hold_end * FPS),
-           "italianAt": round((word_time("st2", "italiano") - s3_start) * FPS),
-           "logoAt": round((s3_hold_end - s3_start) * FPS)},
+    "s3": {"from": round(s3_start * FPS), "bridge": S3_BRIDGE},
+    "signature": {"from": round((last("outro") + 0.25) * FPS), "frames": round(SIGNATURE * FPS)},
     "shots": edl,
     "lines": subs,
 }

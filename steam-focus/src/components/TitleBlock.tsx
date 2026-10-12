@@ -1,5 +1,5 @@
-import {interpolate, useCurrentFrame} from 'remotion';
-import {color, font, SAFE} from '../design';
+import {interpolate } from 'remotion';
+import {color, font, SAFE, useBaseFrame} from '../design';
 import {Kicker, MaskLine, Rule} from './Type';
 
 /**
@@ -8,7 +8,7 @@ import {Kicker, MaskLine, Rule} from './Type';
  * It drifts slower than the footage push-in, which reads as depth.
  */
 export const TitleBlock: React.FC<{at: number}> = ({at}) => {
-  const frame = useCurrentFrame();
+  const frame = useBaseFrame();
   const drift = interpolate(frame, [at, at + 60], [10, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
     <div style={{position: 'absolute', left: SAFE.left, top: 318 + drift, width: SAFE.right - SAFE.left}}>
