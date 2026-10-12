@@ -63,7 +63,7 @@ with open('$OUT/steam_focus_ecc_redline_narrazione.txt', 'w') as f:
 "
 cp "$WORK/full_mix.wav" "$OUT/steam_focus_ecc_redline_mix.wav"
 npx remotion still src/index.ts RedlineFull "$OUT/steam_focus_ecc_redline_cover.png" \
-  --frame="${COVER_FRAME:-212}" --browser-executable="$CHROME" --log=error
+  --frame="${COVER_FRAME:-248}" --browser-executable="$CHROME" --log=error
 
 ffprobe -v error -count_frames -show_entries stream=codec_name,width,height,r_frame_rate,nb_read_frames \
   -show_entries format=duration,size -of compact "$OUT/steam_focus_ecc_redline_full.mp4"
