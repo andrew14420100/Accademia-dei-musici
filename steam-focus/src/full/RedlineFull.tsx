@@ -26,7 +26,7 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
   i_arena: (s) => (
     <DataStack
       top={620}
-      until={endOf(s) + 200}
+      until={endOf(s) + shot('i_hall').frames - 6}
       items={[
         {at: w(s, 'id1', 'galaxy'), k: 'Sviluppo', v: 'Galaxy Studio', tint: color.redline},
         {at: w(s, 'id1', 'netis'), k: 'Sviluppatore ed editore su Steam', v: 'NetEase Games', tint: color.steam},

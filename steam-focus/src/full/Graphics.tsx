@@ -250,17 +250,17 @@ export const Outro: React.FC<{questionAt: number}> = ({questionAt}) => {
         </MaskLine>
         <div style={{height: 26}} />
         <MaskLine at={questionAt + 6}>
-          <Kicker tint={color.dim} style={{fontSize: 20, lineHeight: 1.5}}>
+          <Kicker tint={color.dim} style={{fontSize: 23, lineHeight: 1.5, letterSpacing: '0.08em'}}>
             Format editoriale indipendente · non affiliato a Valve o NetEase
           </Kicker>
         </MaskLine>
         <MaskLine at={questionAt + 9}>
-          <Kicker tint={color.dim} style={{fontSize: 20, lineHeight: 1.5}}>
+          <Kicker tint={color.dim} style={{fontSize: 23, lineHeight: 1.5, letterSpacing: '0.08em'}}>
             Immagini: trailer ufficiali e pagina Steam di ECC: REDLINE
           </Kicker>
         </MaskLine>
         <MaskLine at={questionAt + 12}>
-          <Kicker tint={color.dim} style={{fontSize: 20, lineHeight: 1.5}}>
+          <Kicker tint={color.dim} style={{fontSize: 23, lineHeight: 1.5, letterSpacing: '0.08em'}}>
             Voce sintetica (Kokoro TTS)
           </Kicker>
         </MaskLine>

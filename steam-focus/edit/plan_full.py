@@ -124,7 +124,7 @@ SHOTS = {
         dict(id="e_kill", src="G", sin=167.15, cx=[[0, 1000]], dur=1.15),
         dict(id="e_hud", src="G", sin=147.0, cx=[[0, 960], [5.9, 1000]], until=("ec2", "nel")),
         # Shop UI is static: play the opening, then hold an annotated freeze.
-        dict(id="e_shop", src="G", sin=96.6, cx=[[0, 580]], zoom=[1.0, 1.06], freeze_after=1.1, until=("ec3", "in")),
+        dict(id="e_shop", src="G", sin=96.6, cx=[[0, 580]], zoom=[1.06, 1.12], cy=600, freeze_after=1.1, until=("ec3", "in")),
         dict(id="e_funds", src="G", sin=98.45, cx=[[0, 520]], zoom=[1.2, 1.25], cy=630, dur=2.1),
         dict(id="e_after", src="G", sin=101.9, cx=[[0, 960]], dur=2.6),
         dict(id="e_after2", src="G", sin=104.6, cx=[[0, 960]], dur=None),
