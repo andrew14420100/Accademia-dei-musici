@@ -26,10 +26,10 @@ export const Callout: React.FC<{
   width?: number;
 }> = ({anchor, dock, labelSide, at, until, tint, kicker, title, sub, variant, width = 720}) => {
   const frame = useCurrentFrame();
-  if (frame < at || frame > until + 12) return null;
+  if (frame < at || frame > until + 8) return null;
   const ring = progress(frame, at, 10);
   const line = progress(frame, at + 3, 12);
-  const out = interpolate(frame, [until, until + 10], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const out = interpolate(frame, [until, until + 6], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
 
   // Leader: anchor -> elbow (vertical first) -> dock.
   const elbow = {x: anchor.x, y: dock.y};

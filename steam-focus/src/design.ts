@@ -18,7 +18,7 @@ export const color = {
   steam: '#66C0F4',
   // Accent for data about the game itself (ECC: REDLINE brand red).
   redline: '#E3262E',
-  glass: 'rgba(9,12,17,0.80)',
+  glass: 'rgba(9,12,17,0.90)',
   hairline: 'rgba(255,255,255,0.16)',
 };
 

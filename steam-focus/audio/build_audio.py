@@ -213,7 +213,7 @@ def main(src, out):
     place(bus, drone(7.9), 200, -8)                     # bed under the page
     place(bus, landing(), 158 + 149, -3)                # plate seats in the player
     place(bus, ui_tick(), 158 + 168, -6, pan=-0.2)      # release callout
-    place(bus, ui_tick(), 158 + 214, -6, pan=-0.2)      # italian callout
+    place(bus, ui_tick(), 158 + 236, -6, pan=-0.2)      # italian callout
     place(bus, end_tail(), 158 + 264, -4)               # Steam end card
 
     # Gentle bus glue: soft clip only above -1 dBFS peaks.

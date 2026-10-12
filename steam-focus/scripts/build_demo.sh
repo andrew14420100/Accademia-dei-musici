@@ -28,8 +28,8 @@ python3 "$HERE/audio/build_audio.py" "$WORK" "$WORK/mix.wav"
 
 # 4. Master: fine grain, H.264 High for social, loudness -14 LUFS / -1 dBTP.
 ffmpeg -loglevel error -y -i "$OUT/redline_demo_picture.mov" -i "$WORK/mix.wav" \
-  -filter_complex "[0:v]noise=c0s=5:c0f=t,format=yuv420p[v];[1:a]loudnorm=I=-14:TP=-1.0:LRA=11[a]" \
-  -map "[v]" -map "[a]" -c:v libx264 -preset slow -crf 14 -profile:v high -level 4.2 \
+  -filter_complex "[0:v]noise=c0s=3:c0f=t,format=yuv420p[v];[1:a]loudnorm=I=-14:TP=-1.0:LRA=11[a]" \
+  -map "[v]" -map "[a]" -c:v libx264 -preset slow -crf 17 -profile:v high -level 4.2 \
   -x264-params "aq-mode=3" -movflags +faststart \
   -c:a aac -b:a 320k -ar 48000 -shortest \
   "$OUT/redline_demo_9x16.mp4"

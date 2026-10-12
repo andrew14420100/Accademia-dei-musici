@@ -87,8 +87,8 @@ const PageCallouts: React.FC = () => {
   const itaNa = pt('italian_na', frame);
   // Page px -> screen px at the current camera distance.
   const k = (itaNa.x - ita.x) / (2860 - 2372);
-  const hi = progress(frame, 218, 14);
-  const hiOut = interpolate(frame, [258, 266], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const hi = progress(frame, 238, 14);
+  const hiOut = interpolate(frame, [262, 270], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const rowW = 760 * k;
   const rowH = 54 * k;
   return (
@@ -122,10 +122,11 @@ const PageCallouts: React.FC = () => {
       </svg>
       <Callout
         anchor={{x: ita.x - 22 * k, y: ita.y}}
-        dock={{x: SAFE.left, y: ita.y - 96}}
+        // The row enters from below the safe area: hold the label inside it.
+        dock={{x: SAFE.left, y: Math.min(ita.y - 96, 1420)}}
         labelSide="above"
-        at={214}
-        until={258}
+        at={236}
+        until={262}
         tint={color.redline}
         kicker="Localizzazione"
         title="Italiano non supportato"
@@ -133,6 +134,20 @@ const PageCallouts: React.FC = () => {
         variant="glass"
       />
     </AbsoluteFill>
+  );
+};
+
+/** Keeps the programme bug legible once the store page fills the frame. */
+const PageTopScrim: React.FC = () => {
+  const frame = useCurrentFrame();
+  const o = interpolate(frame, [60, 90], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <AbsoluteFill
+      style={{
+        opacity: o,
+        background: 'linear-gradient(180deg, rgba(7,9,12,0.82) 0px, rgba(7,9,12,0.55) 200px, rgba(7,9,12,0) 360px)',
+      }}
+    />
   );
 };
 
@@ -163,6 +178,7 @@ export const RedlineDemo: React.FC = () => {
       </Sequence>
       <Sequence from={S3.from} durationInFrames={S3.len} name="S3 Steam page (Blender)">
         <OffthreadVideo src={staticFile('s3_blender.mp4')} muted />
+        <PageTopScrim />
         <PageCallouts />
         <SteamEndCard at={264} />
       </Sequence>
