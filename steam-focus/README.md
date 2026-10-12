@@ -66,6 +66,28 @@ WORK=/percorso/lavoro ./scripts/build_demo.sh       # -> out/redline_demo_9x16.m
   pagina proiettati dalla camera di Blender. Remotion lo usa per agganciare le didascalie.
 - `npm run studio` apre l'anteprima interattiva di Remotion.
 
+## Reportage completo (issue #2) — 9:16, ~118 s
+
+| File | Ruolo |
+|---|---|
+| `narration/ecc_redline_it.json` | Testo della narrazione: `text` per i sottotitoli, `say` con la fonetica dei nomi inglesi |
+| `narration/synth_voice.py` | Voce con Kokoro-82M (Apache-2.0, voce di serie `im_nicola`, nessuna clonazione) e verifica automatica: ogni frase viene ritrascritta con faster-whisper (WER per riga) e i tempi delle parole servono per i sottotitoli |
+| `edit/plan_full.py` | Montaggio guidato dalla voce. Calcola posizione delle frasi, sezioni, inquadrature (tagli sulle parole del gancio iniziale), sottotitoli bilanciati e SRT. Controlla che nessuna inquadratura attraversi un taglio del trailer o riusi immagini già mostrate |
+| `edit/extract_clips.py` | Clip frame-accurate di ogni inquadratura (video per Remotion, audio per il mix) |
+| `scripts/track_point.py` | Tracking OpenCV, usato solo dove è affidabile (rianimazione, giocatore in corsa) |
+| `src/full/` | Composizione `RedlineFull`: reframe 9:16, frusta tra i capitoli, titoli di capitolo, grafiche legate alle parole (catena di movimento, ruoli, dati, zona sicura *illustrativa*), lente sull'HUD (crediti e squadra stanno nella fascia bassa coperta dalle app), traduzioni ancorate al negozio, scena Blender della pagina Steam con "hold" 2D, firma STEAM FOCUS |
+| `audio/build_full_audio.py` | Voce (passa-alto, presenza, compressione 2:1, livello uniforme) + audio dei trailer con ducking −18 dB sotto la voce + design sincronizzato |
+| `scripts/build_full.sh` | Pipeline completa → `out/steam_focus_ecc_redline_full.mp4`, `_cover.png`, `.srt`, `_sources.txt`, `_narrazione.txt`, `_mix.wav` |
+
+Capitoli: gancio · 01 Identità · 02 Movimento · 03 Squadre · 04 Rientro ·
+05 Economia · 06 Armi e tattica · 07 Su Steam · firma.
+
+Note di metodo:
+- **Mostrato o descritto.** Le meccaniche visibili nel filmato (rianimazione, rampino, negozio, HUD) sono annotate sull'immagine. Quelle solo descritte dalla pagina Steam (stato di roaming) sono dichiarate come tali a schermo. La zona sicura è etichettata "schema illustrativo".
+- **Blender.** Un solo hero shot, riusato come ponte editoriale verso la pagina Steam (~15 s su ~118). Il container non ha GPU e Cycles su CPU impiega ~30 s/frame, quindi niente nuovi render pesanti: il tratto finale, con la pagina frontale, prosegue con un push 2D sull'ultimo frame, visivamente equivalente.
+- **Voce.** Non posso ascoltarla. È verificata con la trascrizione automatica del mix finale (WER sull'intero testo) e va comunque ascoltata da una persona prima della pubblicazione.
+- **Diritti.** Vedi `narration/steam_focus_ecc_redline_sources.txt`. Il video resta un'**anteprima privata** finché l'uso delle clip e dell'audio NetEase non è verificato.
+
 ## Licenze e scelte di strumenti
 
 - **Remotion:** gratuito per privati, aziende con al massimo 3 dipendenti e non profit,

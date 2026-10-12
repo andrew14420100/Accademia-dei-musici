@@ -4,3 +4,4 @@ out/
 # official trailer clips, Steam captures and Valve artwork are not committed.
 public/*.mp4
 public/brand/
+public/full/
