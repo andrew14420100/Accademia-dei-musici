@@ -35,14 +35,19 @@ export const DataStack: React.FC<{
 };
 
 /** Sprint → slide → aim → fire: each step lights on its spoken word. */
-export const Chain: React.FC<{steps: Array<{at: number; label: string}>; top: number; until: number}> = ({steps, top, until}) => {
+export const Chain: React.FC<{steps: Array<{at: number; label: string}>; top: number; until: number; kicker?: string}> = ({
+  steps,
+  top,
+  until,
+  kicker = 'Catena di movimento',
+}) => {
   const frame = useBaseFrame();
   const out = interpolate(frame, [until, until + 8], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const appear = progress(frame, steps[0].at - 6, 10);
   return (
     <div style={{position: 'absolute', left: SAFE.left, right: WIDTH - SAFE.right, top, opacity: out * appear}}>
       <Kicker tint={color.redline} style={{marginBottom: 14, textShadow: shadow}}>
-        Catena di movimento
+        {kicker}
       </Kicker>
       <div style={{display: 'flex', gap: 10}}>
         {steps.map((s, i) => {
@@ -343,12 +348,11 @@ export const Signature: React.FC<{frames: number}> = ({frames}) => {
       </div>
       <div style={{position: 'absolute', left: SAFE.left + 76, top: 1036, height: 6, width: 560 * rule, backgroundColor: color.paper}} />
       <div style={{position: 'absolute', left: SAFE.left + 76, top: 1066, opacity: rule}}>
-        <Kicker tint={color.dim} style={{fontSize: 24}}>
-          Format indipendente · non affiliato a Valve o NetEase
-        </Kicker>
-        <Kicker tint={color.dim} style={{fontSize: 24, marginTop: 8}}>
-          Voce sintetica (IA) · immagini: trailer ufficiale ECC: REDLINE
-        </Kicker>
+        {['Format indipendente · voce sintetica (IA)', 'Non affiliato a Valve o NetEase', 'Immagini: trailer ufficiale ECC: REDLINE'].map((line, i) => (
+          <Kicker key={i} tint={color.dim} style={{fontSize: 22, letterSpacing: '0.1em', marginTop: i ? 8 : 0, whiteSpace: 'nowrap'}}>
+            {line}
+          </Kicker>
+        ))}
       </div>
     </AbsoluteFill>
   );

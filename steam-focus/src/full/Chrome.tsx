@@ -1,4 +1,4 @@
-import {AbsoluteFill, interpolate} from 'remotion';
+import {AbsoluteFill, getInputProps, interpolate} from 'remotion';
 import {MaskLine, progress, Rule} from '../components/Type';
 import {color, easeOut, font, SAFE, useBaseFrame} from '../design';
 import {EDL} from './edl';
@@ -138,8 +138,18 @@ export const ChapterTitle: React.FC<{section: string; hold?: number}> = ({sectio
  * Burned-in subtitles inside TikTok's safe area: above the caption band and
  * clear of the right action rail; 2 lines max, high contrast.
  */
+/** Shots whose HUD (shop balance) sits on the subtitle line: cues that start
+ *  inside them are lifted into the empty band above it (bottom edge, px). */
+const RAISED: Record<string, number> = {e_shop: 1290};
+const raisedBottom = (from: number) => {
+  const s = EDL.shots.find((x) => RAISED[x.id] && from >= x.from && from < x.from + x.frames);
+  return s ? RAISED[s.id] : SAFE.bottom;
+};
+
 export const Subtitles: React.FC = () => {
   const frame = useBaseFrame();
+  // `--props='{"noSubs":true}'` renders clean stills (cover); the video always has them.
+  if ((getInputProps() as {noSubs?: boolean}).noSubs) return null;
   const cue = EDL.cues.find((c) => frame >= c.from && frame < c.to);
   if (!cue) return null;
   const t = progress(frame, cue.from, 4);
@@ -149,7 +159,7 @@ export const Subtitles: React.FC = () => {
         position: 'absolute',
         left: SAFE.left + 30,
         width: SAFE.right - SAFE.left - 30,
-        bottom: 1920 - SAFE.bottom,
+        bottom: 1920 - raisedBottom(cue.from),
         display: 'flex',
         justifyContent: 'center',
         opacity: t,

@@ -150,10 +150,13 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
     );
   },
   e_funds: (s) => {
-    const funds = project(s, 30, 300, 793);
+    // pin sits just right of the in-game figure, so the real balance stays readable
+    const funds = project(s, 20, 445, 793);
     return (
       <AbsoluteFill>
-        <UiTag x={funds.x} y={funds.y} at={4} until={endOf(s)} label="Saldo dopo gli acquisti" value="6.000 → 3.207" tint={color.paper} />
+        {/* the counter is still falling when the shop closes (clip frame ~33):
+            last legible figure 1.813; the tag leaves before the shop does */}
+        <UiTag x={funds.x} y={funds.y} at={4} until={26} label="Saldo durante gli acquisti" value="6.000 → 1.813" tint={color.paper} />
       </AbsoluteFill>
     );
   },
@@ -182,6 +185,7 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
   ),
   w_inspect: (s) => (
     <Chain
+      kicker="Modifica dell'arma"
       top={340}
       until={endOf(s) + shot('w_inspect2').frames - 4}
       steps={[

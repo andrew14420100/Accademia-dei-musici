@@ -125,3 +125,14 @@ La v1 (1080p/30) resta in `out/v1_1080p30_*`, nei file `*_v1.json`/`.srt` e nel 
   Studio). Non porterebbe miglioramenti concreti senza montaggio manuale.
 - I media (clip del trailer, catture Steam, artwork Valve) non sono nel repository:
   si rigenerano con `fetch_assets.sh`.
+
+### Verifica e confronto (v2)
+
+| Script | Uso |
+| --- | --- |
+| `scripts/render_4k60.sh` | master 2160×3840 60 fps a segmenti riprendibili + mux |
+| `scripts/verify_master.sh` | ffprobe, neri/fermi/duplicati, loudness, provini per capitolo con area sicura → `out/qc/` |
+| `scripts/compare_versions.py` | fotogrammi affiancati v1/v2 negli stessi momenti del racconto |
+| copertina | `npx remotion still src/index.ts RedlineFull4K out/steam_focus_ecc_redline_cover.png --frame=152 --props='{"noSubs":true}'` |
+
+Relazione della revisione: [`REVISIONE_V2.md`](REVISIONE_V2.md).

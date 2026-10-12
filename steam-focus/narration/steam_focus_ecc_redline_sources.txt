@@ -28,7 +28,7 @@ Prima di pubblicarlo serve la verifica dei diritti indicata sotto.
 - API Steam appdetails (stesso app id): conferma dei campi sopra.
 - Trailer ufficiale "Gameplay Footage" (Steam), schermata del negozio in partita:
   prezzi letti a schermo — 粘雷 (mina adesiva) $400, 自救针 (siringa di
-  auto-rianimazione) $4.500; il saldo mostrato scende da $6.000 a $3.207.
+  auto-rianimazione) $4.500; il saldo mostrato scende da $6.000 ad almeno $1.813 (il contatore è ancora in movimento quando il negozio si chiude; la v1 riportava per errore 3.207, una lettura intermedia).
   Le traduzioni dei termini cinesi sono nostre.
 - Wishlist aperta: pulsante "Aggiungi alla Lista dei desideri" sulla pagina Steam.
 
