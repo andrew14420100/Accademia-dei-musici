@@ -4,6 +4,7 @@ import {FPS, HEIGHT, WIDTH} from './design';
 import {fullFrames, RedlineFull} from './full/RedlineFull';
 import {RedlineFull4K} from './full/RedlineFull4K';
 import {CoverV4, CoverV4Draft} from './full/Cover';
+import {BANNER_PNG, BannerPNG} from './full/Banner';
 
 export const Root: React.FC = () => (
   <>
@@ -36,5 +37,6 @@ export const Root: React.FC = () => (
   />
     <Composition id="CoverV4" component={CoverV4} durationInFrames={1} fps={60} width={WIDTH * 2} height={HEIGHT * 2} />
     <Composition id="CoverV4Draft" component={CoverV4Draft} durationInFrames={1} fps={60} width={WIDTH * 2} height={HEIGHT * 2} />
+    <Composition id="BannerPNG" component={BannerPNG} durationInFrames={1} fps={60} width={Math.round(BANNER_PNG.w * BANNER_PNG.zoom)} height={Math.round(BANNER_PNG.h * BANNER_PNG.zoom)} />
     </>
 );

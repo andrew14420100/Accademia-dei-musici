@@ -87,9 +87,8 @@ SHOTS = {
     "hook": [
         # same reframe as the approved demo; zoom + raised centre hide the
         # trailer's burned-in caption. The title lands on it within 0.5 s.
-        dict(id="h_heli", src="G", sin=63.25, until=("hook2", "squadre"), allow_cuts=[65.73], zoom=[1.08, 1.13], cy=505,
-             cx=[[0, 1150], [0.3, 1090], [0.47, 1480], [0.57, 1400], [0.67, 1160], [0.8, 470], [0.93, 340],
-                 [1.07, 420], [1.2, 880], [1.33, 960], [1.73, 1010], [2.47, 990], [2.5, 960], [3.43, 965]]),
+        dict(id="h_heli", src="G", sin=62.86, until=("hook2", "squadre"), allow_cuts=[65.73], zoom=[1.08, 1.13], cy=505,
+             cx=[[0, 1150], [0.39, 1150], [0.69, 1090], [0.86, 1480], [0.96, 1400], [1.06, 1160], [1.19, 470], [1.32, 340], [1.46, 420], [1.59, 880], [1.72, 960], [2.12, 1010], [2.86, 990], [2.89, 960], [3.82, 965]]),  # v4: starts 0.39 s earlier (keys shifted) so the longer hook ends before the 66.73 cut
         dict(id="h_squad", src="G", sin=60.12, cx=[[0, 960]], until=("hook2", "scivolate")),
         dict(id="h_slide", src="G", sin=264.1, cx=[[0, 1000]], until=("hook2", "rampino")),
         dict(id="h_grapple", src="G", sin=329.25, cx=[[0, 960]], until=("hook2", "crediti")),
@@ -99,16 +98,16 @@ SHOTS = {
         dict(id="i_arena", src="G", sin=217.24, cx=[[0, 900], [2, 960]], dur=2.05),
         dict(id="i_hall", src="G", sin=219.42, cx=[[0, 960]], dur=2.0),
         dict(id="i_descent", src="G", sin=66.8, cx=[[0, 900], [3, 1000]], until=("id3", "si")),
-        dict(id="i_map", src="G", sin=71.72, cx=[[0, 1010], [6, 980]], dur=None),
+        dict(id="i_map", src="G", sin=72.5, cx=[[0, 1010], [6, 980]], dur=None),
     ],
     "movement": [
-        dict(id="m_slide", src="G", sin=253.3, cx=[[0, 1000]], dur=3.9),
-        dict(id="m_aim", src="G", sin=257.5, cx=[[0, 900], [2, 960]], dur=3.5),
+        dict(id="m_slide", src="G", sin=253.3, cx=[[0, 1000]], dur=3.2),
+        dict(id="m_aim", src="G", sin=257.5, cx=[[0, 900], [2, 960]], dur=3.0),
         dict(id="m_grapple_tp", src="G", sin=111.15, cx=[[0, 700], [1.4, 640], [2.7, 900]], dur=2.75),
         dict(id="m_wall", src="G", sin=114.0, cx=[[0, 1000]], dur=1.55),
-        dict(id="m_grapple_fp", src="G", sin=336.5, cx=[[0, 900], [3, 1000]], dur=3.5, allow_cuts=[337.4]),
+        dict(id="m_grapple_fp", src="G", sin=336.5, cx=[[0, 900], [3, 1000]], dur=3.0, allow_cuts=[337.4]),
         # analysis line: shooting while airborne / on the move
-        dict(id="m_air", src="G", sin=117.3, cx=[[0, 960]], dur=2.2),
+        dict(id="m_air", src="G", sin=117.3, cx=[[0, 960]], dur=1.8),
         dict(id="m_air2", src="G", sin=261.05, cx=[[0, 960]], dur=None),
     ],
     "squad": [
@@ -128,7 +127,7 @@ SHOTS = {
         dict(id="e_hud", src="G", sin=146.99, cx=[[0, 960], [5.9, 1000]], until=("ec2", "nel")),
         # Shop UI is static: play the opening, then hold an annotated freeze.
         dict(id="e_shop", src="G", sin=96.6, cx=[[0, 580]], zoom=[1.06, 1.12], cy=600, freeze_after=1.1, until=("ec3", "piu")),
-        dict(id="e_funds", src="G", sin=98.45, cx=[[0, 420]], zoom=[1.38, 1.44], cy=720, dur=2.65),
+        dict(id="e_funds", src="G", sin=98.45, cx=[[0, 420]], zoom=[1.38, 1.44], cy=720, dur=3.22),
         dict(id="e_after", src="G", sin=101.88, cx=[[0, 960]], dur=None),
     ],
     "weapons": [

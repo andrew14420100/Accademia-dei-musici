@@ -3,7 +3,7 @@ import {AbsoluteFill, continueRender, delayRender, Sequence, useVideoConfig} fro
 import interp60 from '../../public/full60/list.json';
 import revive from '../../public/track_revive.json';
 import {Callout} from '../components/Callout';
-import {TitleBlock} from '../components/TitleBlock';
+import {ApprovedBanner} from './Banner';
 import {color, fontsReady, SAFE, sampleTrack, useBaseFrame, useFrameScale} from '../design';
 import {Bug, ChapterTitle, Subtitles} from './Chrome';
 import {EDL, project, shot, Shot, wordAt} from './edl';
@@ -42,7 +42,8 @@ const RevivePin: React.FC<{s: Shot}> = ({s}) => {
 
 const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
   // Hook: the game is named on screen within the first half second.
-  h_heli: () => <TitleBlock at={8} />,
+  // v4: the approved STEAM FOCUS / ECC: REDLINE banner is the opening title card (ApprovedBanner,
+  // placed below over the first seconds); TitleBlock stays in the code for v3.
   h_credits: (s) => (
     <Loupe s={s} region={{x: 0, y: 950, w: 420, h: 95}} at={2} until={endOf(s)} box={{x: 120, y: 760, w: 760}} kicker="Crediti in partita" />
   ),
@@ -199,6 +200,8 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
 
 /** Overlays that must not outlive their own shot. */
 const SHOT_ONLY = new Set(['h_heli', 'h_credits']);
+// opening banner: in at 0.2 s, fully out at 4.4 s (base frames)
+const BANNER_OUT = 132;
 
 const firstOfSection = new Set<string>();
 const lastOfSection = new Set<string>();
@@ -265,6 +268,9 @@ export const RedlineFull: React.FC = () => {
       <AbsoluteFill
         style={{background: 'radial-gradient(120% 75% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.30) 100%)', pointerEvents: 'none'}}
       />
+      <Sequence from={0} durationInFrames={F(BANNER_OUT)} name="banner (approved)">
+        <ApprovedBanner at={6} out={BANNER_OUT} />
+      </Sequence>
       <Sequence from={0} durationInFrames={F(sig.from)} name="bug">
         <Bug />
       </Sequence>
