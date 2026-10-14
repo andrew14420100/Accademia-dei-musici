@@ -1,0 +1,47 @@
+{
+ "engine": "Chatterbox Multilingual 0.1.7 (ResembleAI, MIT), language_id=it, CPU",
+ "phonetic_sentence_1": "Questo è E Ci Ci Rèd-lain, il nuovo sparatutto tattico di Nèt-iis, in arrivo su Steam.",
+ "pauses_s": [
+  0.34,
+  0.3,
+  0.24
+ ],
+ "voices": {
+  "A": {
+   "reference": "ref_nicola.wav (Kokoro-82M im_nicola, sintetica)",
+   "exaggeration": 0.55,
+   "cfg_weight": 0.5
+  },
+  "B": {
+   "reference": "ref_parler.wav (Parler-TTS mini multilingual v1.1, voce generata da descrizione, sintetica)",
+   "exaggeration": "0.75 (frase 1: 0.65)",
+   "cfg_weight": "0.35 (frase 1: 0.4)"
+  },
+  "C": {
+   "reference": "ref_george.wav (Kokoro-82M bm_george, sintetica)",
+   "exaggeration": 0.4,
+   "cfg_weight": 0.6
+  }
+ },
+ "takes": {
+  "A": [
+   "A_0_p4",
+   "A_1_1",
+   "A_2_1",
+   "A_3_3"
+  ],
+  "B": [
+   "B_0_p8",
+   "B_1_1",
+   "B_2_1",
+   "B_3_2"
+  ],
+  "C": [
+   "C_0_p4",
+   "C_1_2",
+   "C_2_2",
+   "C_3_1"
+  ]
+ },
+ "note": "Ogni frase: 3-5 take, scelta automatica con faster-whisper (narration/pick_takes.py) solo per escludere parole sbagliate o mancanti; la naturalezza va giudicata ascoltando."
+}

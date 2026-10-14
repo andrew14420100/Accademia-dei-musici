@@ -1,0 +1,133 @@
+{
+ "version": "v4",
+ "engine": "Chatterbox Multilingual 0.1.7 (MIT), language_id=it, voce B (riferimento sintetico ref_parler.wav)",
+ "mode": "un paragrafo per capitolo, velocità naturale (nessuna accelerazione)",
+ "params": {
+  "exaggeration": 0.7,
+  "cfg_weight": 0.35
+ },
+ "note": "Righe mov4 ed ec3: analisi editoriale.",
+ "lines": [
+  {
+   "id": "hook1",
+   "section": "hook",
+   "text": "Questo è il nuovo ECC: REDLINE.",
+   "say": "Questo è il nuovo E Ci Ci Rèd-lain."
+  },
+  {
+   "id": "hook2",
+   "section": "hook",
+   "text": "Squadre da quattro, scivolate, rampino e crediti da spendere in partita."
+  },
+  {
+   "id": "id1",
+   "section": "identity",
+   "text": "Lo sviluppa Galaxy Studio, uno studio di NetEase Games.",
+   "say": "Lo sviluppa Gàlaxi Stùdio, uno studio di Net Ìis Gheims."
+  },
+  {
+   "id": "id2",
+   "section": "identity",
+   "text": "Sarà free-to-play su PC, ma una data d'uscita ancora non c'è.",
+   "say": "Sarà fri-tu-plèi su PC, ma una data d'uscita ancora non c'è."
+  },
+  {
+   "id": "id3",
+   "section": "identity",
+   "text": "Si raccoglie equipaggiamento e si combatte mentre la zona sicura si restringe."
+  },
+  {
+   "id": "mov1",
+   "section": "movement",
+   "text": "Il cuore del gioco è il movimento."
+  },
+  {
+   "id": "mov2",
+   "section": "movement",
+   "text": "Sprint, scivolata, mira e fuoco: un'unica catena, senza interruzioni."
+  },
+  {
+   "id": "mov3",
+   "section": "movement",
+   "text": "Il rampino e i rimbalzi sulle pareti allungano l'azione."
+  },
+  {
+   "id": "mov4",
+   "section": "movement",
+   "text": "La nostra lettura: se ci si sposta mentre si spara, il tempismo conta quanto la copertura."
+  },
+  {
+   "id": "sq1",
+   "section": "squad",
+   "text": "Si gioca in quattro, e ogni atleta ha un ruolo."
+  },
+  {
+   "id": "sq2",
+   "section": "squad",
+   "text": "C'è chi assorbe il fuoco, chi tiene in vita i compagni e chi entra col rampino."
+  },
+  {
+   "id": "re1",
+   "section": "reentry",
+   "text": "Essere abbattuti non significa essere fuori."
+  },
+  {
+   "id": "re2",
+   "section": "reentry",
+   "text": "Qui un compagno rimette in piedi un giocatore a terra."
+  },
+  {
+   "id": "re3",
+   "section": "reentry",
+   "text": "La pagina Steam descrive anche uno stato di roaming: finché la squadra resiste, si può rientrare.",
+   "say": "La pagina Steam descrive anche uno stato di ròming: finché la squadra resiste, si può rientrare."
+  },
+  {
+   "id": "ec1",
+   "section": "economy",
+   "text": "Eliminazioni e obiettivi danno crediti, da spendere subito in armi, potenziamenti e armatura."
+  },
+  {
+   "id": "ec2",
+   "section": "economy",
+   "text": "Nel negozio una mina adesiva costa 400 crediti; una siringa per rialzarsi da soli, 4.500.",
+   "say": "Nel negozio una mina adesiva costa quattrocento crediti; una siringa per rialzarsi da soli, quattromilacinquecento."
+  },
+  {
+   "id": "ec3",
+   "section": "economy",
+   "text": "Più di dieci mine adesive: una scelta tra pressione e sopravvivenza.",
+   "say": "Più di dieci, mine adesive: una scelta tra pressione e sopravvivenza."
+  },
+  {
+   "id": "wp1",
+   "section": "weapons",
+   "text": "Sulle armi, gli sviluppatori insistono su balistica, rinculo e maneggevolezza."
+  },
+  {
+   "id": "wp2",
+   "section": "weapons",
+   "text": "Si cambiano le parti, si montano le ottiche, si regola l'impugnatura."
+  },
+  {
+   "id": "wp3",
+   "section": "weapons",
+   "text": "E il posizionamento, tra alture, vicoli e coperture, può decidere lo scontro."
+  },
+  {
+   "id": "st1",
+   "section": "steam",
+   "text": "Su Steam il gioco risulta in arrivo, senza una data."
+  },
+  {
+   "id": "st2",
+   "section": "steam",
+   "text": "La lista dei desideri è già aperta, ma l'italiano, per ora, non è tra le lingue supportate."
+  },
+  {
+   "id": "end1",
+   "section": "outro",
+   "text": "Secondo voi, il movimento basterà a distinguerlo dagli altri tattici?"
+  }
+ ]
+}

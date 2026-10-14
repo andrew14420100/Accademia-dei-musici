@@ -1,0 +1,87 @@
+STEAM FOCUS — ECC: REDLINE · reportage verticale (9:16) · fonti e stato dei diritti
+Verifica dei fatti: 12 ottobre 2026 (pagina Steam e API appdetails ricontrollate al momento del montaggio)
+
+VERSIONE: v2 — master 2160x3840, 60 fps (out/steam_focus_ecc_redline_full_4K_60fps.mp4)
+v1 (1080p30, con audio dei trailer) conservata in out/v1_1080p30_* e nel commit dea4b07.
+
+STATO: ANTEPRIMA PRIVATA — NON PRONTO ALLA PUBBLICAZIONE
+Il video usa materiale di terzi (NetEase Games, Valve) senza una licenza esplicita.
+Prima di pubblicarlo serve la verifica dei diritti indicata sotto.
+
+1. FONTI DEI FATTI (citati nella narrazione)
+- Pagina Steam ufficiale, app 5268340, versione italiana
+  https://store.steampowered.com/app/5268340/ECC_REDLINE/?l=italian
+  * Sviluppatore ed editore indicati: NetEase Games. Nella descrizione: "self-developed
+    ... shooter from Galaxy Studio under NetEase Games".
+  * Free-to-play. Data di uscita: "In arrivo" (nessuna data). Wishlist disponibile.
+  * Requisiti minimi indicati: Windows 10/11, 64 bit.
+  * Descrizione ufficiale: loot, posizioni chiave, zona sicura che si restringe;
+    sprint, scivolata, mira e fuoco in un'unica catena; rampino (grappling) e
+    rimbalzi sulle pareti; "roaming state" per rientrare e rianimazione da parte
+    dei compagni; crediti in partita da eliminazioni e obiettivi, spendibili in
+    equipaggiamento, armi e armatura; atleti con ruoli diversi, squadre da quattro;
+    posizionamento (alture, vicoli, coperture); balistica, rinculo, ricarica e
+    maneggevolezza; modifica libera di parti, ottiche e impugnatura.
+  * Lingue elencate (7): cinese semplificato, inglese, giapponese, cinese tradizionale,
+    portoghese (Brasile), spagnolo (America Latina), coreano. L'italiano non c'è.
+    Nel video si dice "per ora": non è dichiarato escluso per sempre.
+- API Steam appdetails (stesso app id): conferma dei campi sopra.
+- Trailer ufficiale "Gameplay Footage" (Steam), schermata del negozio in partita:
+  prezzi letti a schermo — 粘雷 (mina adesiva) $400, 自救针 (siringa di
+  auto-rianimazione) $4.500; il saldo mostrato scende da $6.000 ad almeno $1.813 (il contatore è ancora in movimento quando il negozio si chiude; la v1 riportava per errore 3.207, una lettura intermedia).
+  Le traduzioni dei termini cinesi sono nostre.
+- Wishlist aperta: pulsante "Aggiungi alla Lista dei desideri" sulla pagina Steam.
+
+Distinzione tra mostrato e descritto:
+- MOSTRATO nel filmato: rianimazione da parte di un compagno, rampino, scivolata,
+  negozio e prezzi, HUD di squadra da 4 con i crediti, mappa aerea.
+- DESCRITTO solo dalla pagina Steam (nel video è segnalato come tale): stato di roaming.
+- La zona sicura nel capitolo 01 è uno SCHEMA ILLUSTRATIVO, non la zona reale della partita.
+- Ruoli (scudo, supporto, ingresso): riassunto della descrizione ufficiale, non
+  identificati nei singoli atleti del filmato.
+- ANALISI EDITORIALI (v2), etichettate a schermo "Analisi STEAM FOCUS · non verificata
+  in partita": (1) sparare in movimento rende il tempismo importante quanto la
+  copertura; (2) 4.500 ÷ 400 ≈ 11: una siringa costa quanto circa 11 mine (calcolo
+  sui prezzi visibili). Sono letture, non prove di gameplay.
+Non dichiarati (di proposito): numero di giocatori per partita, prestazioni, nomi delle
+mappe, data di uscita, prezzi delle microtransazioni, prove personali.
+
+2. MATERIALI AUDIOVISIVI E DIRITTI
+a) Clip di gameplay — trailer ufficiale "Gameplay Footage" della pagina Steam
+   (CDN Steam, video.akamai.steamstatic.com). © NetEase Games.
+   Essere su una CDN pubblica NON equivale a una licenza di ripubblicazione.
+   L'uso in un servizio giornalistico può rientrare nel diritto di cronaca e di critica
+   (art. 65 e 70 L. 633/1941) solo se rispetta le sue condizioni: uso parziale e
+   funzionale, citazione della fonte, nessuna concorrenza all'opera originale.
+   Questo non è un parere legale. Opzioni: chiedere il press kit / l'autorizzazione a
+   NetEase, oppure usare materiale catturato personalmente.
+   v2: l'audio dei trailer (musica ed effetti © NetEase) NON è più usato. Il mix
+   contiene solo la voce sintetica, una colonna sonora originale generata dal
+   codice (audio/score.py) e sound design sintetizzato: nessuna traccia di terzi.
+   Restano da chiarire i diritti sulle immagini.
+b) Pagina Steam catturata (Chromium headless, 12 ottobre 2026, densità 3x; ricontrollata
+   per la v2 lo stesso giorno): layout © Valve, contenuti © NetEase. Ritagli autentici
+   mostrati nel capitolo 07 (titolo, data, sviluppatore/editore, wishlist, lingue).
+   Il logo Steam compare solo come parte della vera intestazione della pagina; la
+   firma finale è solo STEAM FOCUS (nessun lockup con marchi di terzi).
+c) Logo Steam: versione "inverse" ufficiale dal PDF delle linee guida Valve
+   (steam_brandGuidelines.pdf), isolato, senza alterazioni, con ® e nota legale
+   ufficiale in italiano. Nessun lockup con STEAM FOCUS. Valve si riserva di
+   approvare le comunicazioni che usano il marchio.
+d) Nessuna affiliazione: STEAM FOCUS è un format editoriale indipendente, non
+   affiliato a Valve né a NetEase (dichiarato nel cartello finale).
+
+3. VOCE SINTETICA
+- Motore: Kokoro-82M (hexgrad), modello e voci con licenza Apache-2.0.
+  Voce di serie "im_nicola" (italiano, maschile). Nessuna clonazione di persone reali.
+- Fonetica dei nomi inglesi adattata solo nel testo dato al motore
+  (narration/ecc_redline_it.json, campo "say"); i sottotitoli usano la grafia corretta.
+- Etichettatura: la voce è dichiarata sintetica nel cartello finale. Su TikTok attivare
+  l'etichetta per i contenuti generati dall'IA. Su YouTube valutare la dichiarazione
+  dei contenuti alterati o sintetici.
+
+4. STRUMENTI (tutti gratuiti)
+Blender 4.2 LTS (GPL), Remotion 4 (licenza gratuita per privati e aziende fino a 3
+dipendenti), FFmpeg (LGPL/GPL), faster-whisper (MIT; usato solo per la verifica
+automatica e i tempi dei sottotitoli), OpenCV (Apache-2.0), font Barlow Condensed,
+Inter Tight, JetBrains Mono (OFL).

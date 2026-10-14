@@ -1,0 +1,133 @@
+{
+  "title": "STEAM FOCUS — ECC: REDLINE",
+  "voice": "im_nicola",
+  "engine": "Kokoro-82M (Apache-2.0), lang_code it",
+  "note": "'text' = subtitles; 'say' = phonetic respelling for English names (chosen by ASR confidence tests, see README). 'kind': 'analysis' lines are editorial reading, flagged on screen.",
+  "lines": [
+    {
+      "id": "hook1",
+      "section": "hook",
+      "text": "Questo è il nuovo ECC: REDLINE.",
+      "say": "Questo è il nuovo E C C Rèdlain."
+    },
+    {
+      "id": "hook2",
+      "section": "hook",
+      "text": "Squadre da quattro, scivolate, rampino e crediti da spendere a metà partita."
+    },
+    {
+      "id": "id1",
+      "section": "identity",
+      "text": "Lo sviluppa Galaxy Studio, uno studio di NetEase Games.",
+      "say": "Lo sviluppa Gàlaxi Stùdio, uno studio di Nèt Iis Gheims."
+    },
+    {
+      "id": "id2",
+      "section": "identity",
+      "text": "Sarà free-to-play su PC, ma una data d'uscita ancora non c'è.",
+      "say": "Sarà fri tu plèi su PC, ma una data d'uscita ancora non c'è."
+    },
+    {
+      "id": "id3",
+      "section": "identity",
+      "text": "Si raccoglie equipaggiamento e si combatte mentre la zona sicura si restringe."
+    },
+    {
+      "id": "mov1",
+      "section": "movement",
+      "text": "Il cuore del gioco è il movimento."
+    },
+    {
+      "id": "mov2",
+      "section": "movement",
+      "text": "Sprint, scivolata, mira e fuoco sono pensati come un'unica catena, senza interruzioni."
+    },
+    {
+      "id": "mov3",
+      "section": "movement",
+      "text": "Il rampino e i rimbalzi sulle pareti allungano l'azione."
+    },
+    {
+      "id": "mov4",
+      "section": "movement",
+      "kind": "analysis",
+      "text": "La nostra lettura: se ci si sposta mentre si spara, il tempismo conta quanto la copertura."
+    },
+    {
+      "id": "sq1",
+      "section": "squad",
+      "text": "Si gioca in quattro, e ogni atleta ha un ruolo."
+    },
+    {
+      "id": "sq2",
+      "section": "squad",
+      "text": "C'è chi assorbe il fuoco nemico, chi tiene in vita i compagni e chi entra col rampino nella linea avversaria."
+    },
+    {
+      "id": "re1",
+      "section": "reentry",
+      "text": "Essere abbattuti non significa essere fuori."
+    },
+    {
+      "id": "re2",
+      "section": "reentry",
+      "text": "Qui un compagno rimette in piedi un giocatore a terra."
+    },
+    {
+      "id": "re3",
+      "section": "reentry",
+      "text": "La pagina Steam cita anche uno stato di roaming per rientrare: finché la squadra resiste, il round resta aperto.",
+      "say": "La pagina Stìiim cita anche uno stato di ròming per rientrare: finché la squadra resiste, il raund resta aperto."
+    },
+    {
+      "id": "ec1",
+      "section": "economy",
+      "text": "Eliminazioni e obiettivi fanno guadagnare crediti, da spendere subito in armi, potenziamenti e armatura."
+    },
+    {
+      "id": "ec2",
+      "section": "economy",
+      "text": "Nel negozio una mina adesiva costa 400 crediti; una siringa per rialzarsi da soli, 4.500.",
+      "say": "Nel negozio una mina adesiva costa quattrocento crediti; una siringa per rialzarsi da soli, quattromilacinquecento."
+    },
+    {
+      "id": "ec3",
+      "section": "economy",
+      "kind": "analysis",
+      "text": "Più di dieci mine: una scelta tra pressione e sopravvivenza."
+    },
+    {
+      "id": "wp1",
+      "section": "weapons",
+      "text": "Sulle armi, gli sviluppatori insistono su balistica, rinculo e maneggevolezza."
+    },
+    {
+      "id": "wp2",
+      "section": "weapons",
+      "text": "La modifica è libera: si cambiano le parti, si montano le ottiche, si regola l'impugnatura."
+    },
+    {
+      "id": "wp3",
+      "section": "weapons",
+      "text": "E il posizionamento, tra alture, vicoli e coperture, può decidere lo scontro."
+    },
+    {
+      "id": "st1",
+      "section": "steam",
+      "text": "Su Steam il gioco risulta in arrivo, senza una data.",
+      "say": "Su Stìiim il gioco risulta in arrivo, senza una data."
+    },
+    {
+      "id": "st2",
+      "section": "steam",
+      "text": "La lista dei desideri è già aperta, ma l'italiano, per ora, non è tra le lingue supportate."
+    },
+    {
+      "id": "end1",
+      "section": "outro",
+      "text": "Secondo voi, il movimento basterà a distinguerlo dagli altri tattici?"
+    }
+  ],
+  "speed": 1.06,
+  "version": 2
+}

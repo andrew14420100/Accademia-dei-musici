@@ -1,0 +1,836 @@
+[
+ {
+  "line": "hook1",
+  "take": "hook1_1.wav",
+  "score": 0.517,
+  "dur": 2.36,
+  "rate": 1.23,
+  "missing": [
+   "ecc"
+  ],
+  "asr": "Questo è il nuovo, è ccredline."
+ },
+ {
+  "line": "hook1",
+  "take": "hook1_2.wav",
+  "score": 0.683,
+  "dur": 2.13,
+  "rate": 1.11,
+  "missing": [
+   "ecc"
+  ],
+  "asr": "Questo è il nuovo HCC Redline."
+ },
+ {
+  "line": "hook1",
+  "take": "hook1_3.wav",
+  "score": 1.0,
+  "dur": 2.25,
+  "rate": 1.17,
+  "missing": [],
+  "asr": "Questo è il nuovo ECC Redline."
+ },
+ {
+  "line": "hook1",
+  "take": "hook1_4.wav",
+  "score": 0.683,
+  "dur": 2.52,
+  "rate": 1.31,
+  "missing": [
+   "redline"
+  ],
+  "asr": "Questo è il nuovo ECC RedLan."
+ },
+ {
+  "line": "hook1",
+  "take": "hook1_5.wav",
+  "score": 0.683,
+  "dur": 2.68,
+  "rate": 1.39,
+  "missing": [
+   "redline"
+  ],
+  "asr": "Questo è il nuovo ECC RedLane."
+ },
+ {
+  "line": "hook2",
+  "take": "hook2_1.wav",
+  "score": 0.917,
+  "dur": 5.47,
+  "rate": 1.19,
+  "missing": [],
+  "asr": "Squadre da 4, scivolate, rampino e crediti da spendere a metà partita."
+ },
+ {
+  "line": "hook2",
+  "take": "hook2_2.wav",
+  "score": 0.917,
+  "dur": 5.5,
+  "rate": 1.2,
+  "missing": [],
+  "asr": "Squadre da 4, scivolate, rampino e crediti da spendere a metà partita."
+ },
+ {
+  "line": "hook2",
+  "take": "hook2_3.wav",
+  "score": 1.0,
+  "dur": 5.89,
+  "rate": 1.28,
+  "missing": [],
+  "asr": "squadre da quattro, scivolate, rampino e crediti da spendere a metà partita."
+ },
+ {
+  "line": "id1",
+  "take": "id1_1.wav",
+  "score": 0.628,
+  "dur": 3.83,
+  "rate": 1.15,
+  "missing": [
+   "netease"
+  ],
+  "asr": "lo sviluppa Galaxy Studio, uno studio di netai Scanes."
+ },
+ {
+  "line": "id1",
+  "take": "id1_11.wav",
+  "score": 0.739,
+  "dur": 4.64,
+  "rate": 1.39,
+  "missing": [
+   "netease"
+  ],
+  "asr": "Lo sviluppa Galaxy Studio, uno studio di Netis Games."
+ },
+ {
+  "line": "id1",
+  "take": "id1_12.wav",
+  "score": 0.739,
+  "dur": 3.98,
+  "rate": 1.19,
+  "missing": [
+   "netease"
+  ],
+  "asr": "Lo sviluppa Galaxy Studio, uno studio di Netis Games."
+ },
+ {
+  "line": "id1",
+  "take": "id1_13.wav",
+  "score": 1.0,
+  "dur": 4.19,
+  "rate": 1.26,
+  "missing": [],
+  "asr": "Lo sviluppa Galaxy Studio, uno studio di NetEase Games."
+ },
+ {
+  "line": "id1",
+  "take": "id1_14.wav",
+  "score": 0.739,
+  "dur": 4.13,
+  "rate": 1.24,
+  "missing": [
+   "netease"
+  ],
+  "asr": "lo sviluppa Galaxy Studio, uno studio di neteis games."
+ },
+ {
+  "line": "id1",
+  "take": "id1_2.wav",
+  "score": 0.739,
+  "dur": 3.98,
+  "rate": 1.19,
+  "missing": [
+   "netease"
+  ],
+  "asr": "Lo sviluppa Galaxy Studio, uno studio di Netis Games."
+ },
+ {
+  "line": "id1",
+  "take": "id1_3.wav",
+  "score": 0.739,
+  "dur": 4.17,
+  "rate": 1.25,
+  "missing": [
+   "netease"
+  ],
+  "asr": "Lo sviluppa Galaxy Studio, uno studio di Netis Games."
+ },
+ {
+  "line": "id1",
+  "take": "id1_4.wav",
+  "score": 0.739,
+  "dur": 4.34,
+  "rate": 1.3,
+  "missing": [
+   "netease"
+  ],
+  "asr": "lo sviluppa Galaxy Studio, uno studio di Netis Games."
+ },
+ {
+  "line": "id1",
+  "take": "id1_5.wav",
+  "score": 0.739,
+  "dur": 4.34,
+  "rate": 1.3,
+  "missing": [
+   "netease"
+  ],
+  "asr": "Lo sviluppa Galaxy Studio, uno studio di Netis Games."
+ },
+ {
+  "line": "id2",
+  "take": "id2_1.wav",
+  "score": 1.0,
+  "dur": 4.39,
+  "rate": 1.35,
+  "missing": [],
+  "asr": "Sarà free to play su PC, ma una data d 'uscita ancora non c 'è."
+ },
+ {
+  "line": "id2",
+  "take": "id2_2.wav",
+  "score": 0.5,
+  "dur": 5.28,
+  "rate": 1.62,
+  "missing": [],
+  "asr": "Sarà free to play su PC, ma una data d 'uscita ancora non c 'è."
+ },
+ {
+  "line": "id2",
+  "take": "id2_3.wav",
+  "score": 1.0,
+  "dur": 3.98,
+  "rate": 1.22,
+  "missing": [],
+  "asr": "Sarà free to play su PC, ma una data d 'uscita ancora non c 'è."
+ },
+ {
+  "line": "id2",
+  "take": "id2_4.wav",
+  "score": 0.5,
+  "dur": 4.88,
+  "rate": 1.5,
+  "missing": [],
+  "asr": "Sarà free to play su PC, ma una data d 'uscita ancora non c 'è."
+ },
+ {
+  "line": "id2",
+  "take": "id2_5.wav",
+  "score": 0.5,
+  "dur": 5.01,
+  "rate": 1.54,
+  "missing": [],
+  "asr": "sarà free to play su PC, ma una data d 'uscita ancora non c 'è."
+ },
+ {
+  "line": "id3",
+  "take": "id3_1.wav",
+  "score": 1.0,
+  "dur": 5.18,
+  "rate": 1.06,
+  "missing": [],
+  "asr": "Si raccoglie equipaggiamento e si combatte mentre la zona sicura si restringe."
+ },
+ {
+  "line": "id3",
+  "take": "id3_2.wav",
+  "score": 1.0,
+  "dur": 5.37,
+  "rate": 1.1,
+  "missing": [],
+  "asr": "Si raccoglie equipaggiamento e si combatte mentre la zona sicura si restringe."
+ },
+ {
+  "line": "id3",
+  "take": "id3_3.wav",
+  "score": 1.0,
+  "dur": 4.86,
+  "rate": 0.99,
+  "missing": [],
+  "asr": "Si raccoglie equipaggiamento e si combatte mentre la zona sicura si restringe."
+ },
+ {
+  "line": "mov1",
+  "take": "mov1_1.wav",
+  "score": 1.0,
+  "dur": 2.4,
+  "rate": 1.2,
+  "missing": [],
+  "asr": "Il cuore del gioco è il movimento."
+ },
+ {
+  "line": "mov1",
+  "take": "mov1_2.wav",
+  "score": 1.0,
+  "dur": 2.13,
+  "rate": 1.06,
+  "missing": [],
+  "asr": "il cuore del gioco e il movimento."
+ },
+ {
+  "line": "mov1",
+  "take": "mov1_3.wav",
+  "score": 0.5,
+  "dur": 3.75,
+  "rate": 1.87,
+  "missing": [],
+  "asr": "Il cuore del gioco è il movimento."
+ },
+ {
+  "line": "mov2",
+  "take": "mov2_1.wav",
+  "score": 1.0,
+  "dur": 6.2,
+  "rate": 1.2,
+  "missing": [],
+  "asr": "Sprint scivolata, mira e fuoco sono pensati come un 'unica catena senza interruzioni."
+ },
+ {
+  "line": "mov2",
+  "take": "mov2_2.wav",
+  "score": 1.0,
+  "dur": 6.71,
+  "rate": 1.29,
+  "missing": [],
+  "asr": "Sprint, scivolata, mira e fuoco sono pensati come un 'unica catena, senza interruzioni."
+ },
+ {
+  "line": "mov2",
+  "take": "mov2_3.wav",
+  "score": 0.923,
+  "dur": 7.45,
+  "rate": 1.44,
+  "missing": [],
+  "asr": "Sprint, scivolata, mira e fuoco sono pensate come un 'unica catena, senza interruzioni."
+ },
+ {
+  "line": "mov3",
+  "take": "mov3_1.wav",
+  "score": 1.0,
+  "dur": 3.9,
+  "rate": 1.14,
+  "missing": [],
+  "asr": "Il rampino e i rimbalzi sulle pareti allungano l 'azione."
+ },
+ {
+  "line": "mov3",
+  "take": "mov3_2.wav",
+  "score": 1.0,
+  "dur": 4.19,
+  "rate": 1.23,
+  "missing": [],
+  "asr": "il rampino e i rimbalzi sulle pareti allungano l 'azione."
+ },
+ {
+  "line": "mov3",
+  "take": "mov3_3.wav",
+  "score": 1.0,
+  "dur": 3.47,
+  "rate": 1.02,
+  "missing": [],
+  "asr": "Il rampino e i rimbalzi sulle pareti allungano l 'azione."
+ },
+ {
+  "line": "mov4",
+  "take": "mov4_1.wav",
+  "score": 1.0,
+  "dur": 6.18,
+  "rate": 1.16,
+  "missing": [],
+  "asr": "La nostra lettura, se ci si sposta mentre si spara, il tempismo conta quanto la copertura."
+ },
+ {
+  "line": "mov4",
+  "take": "mov4_2.wav",
+  "score": 1.0,
+  "dur": 6.09,
+  "rate": 1.14,
+  "missing": [],
+  "asr": "La nostra lettura, se ci si sposta mentre si spara, il tempismo conta quanto la copertura."
+ },
+ {
+  "line": "mov4",
+  "take": "mov4_3.wav",
+  "score": 1.0,
+  "dur": 6.85,
+  "rate": 1.29,
+  "missing": [],
+  "asr": "La nostra lettura, se ci si sposta mentre si spara, il tempismo conta quanto la copertura."
+ },
+ {
+  "line": "sq1",
+  "take": "sq1_1.wav",
+  "score": 1.0,
+  "dur": 2.91,
+  "rate": 1.09,
+  "missing": [],
+  "asr": "si gioca in quattro e ogni atleta ha un ruolo."
+ },
+ {
+  "line": "sq1",
+  "take": "sq1_2.wav",
+  "score": 0.5,
+  "dur": 4.17,
+  "rate": 1.56,
+  "missing": [],
+  "asr": "si gioca in quattro e ogni atleta ha un ruolo."
+ },
+ {
+  "line": "sq1",
+  "take": "sq1_3.wav",
+  "score": 1.0,
+  "dur": 3.0,
+  "rate": 1.12,
+  "missing": [],
+  "asr": "Si gioca in quattro e ogni atleta ha un ruolo."
+ },
+ {
+  "line": "sq2",
+  "take": "sq2_1.wav",
+  "score": 0.952,
+  "dur": 6.78,
+  "rate": 1.05,
+  "missing": [],
+  "asr": "C 'è chi assorbe il fuoco nemico, chi tiene in vita i compagni e chi entra con Rampino nella linea avversaria."
+ },
+ {
+  "line": "sq2",
+  "take": "sq2_2.wav",
+  "score": 1.0,
+  "dur": 7.61,
+  "rate": 1.18,
+  "missing": [],
+  "asr": "C 'è chi assorbe il fuoco nemico, chi tiene in vita i compagni e chi entra col rampino nella linea avversaria."
+ },
+ {
+  "line": "sq2",
+  "take": "sq2_3.wav",
+  "score": 1.0,
+  "dur": 6.95,
+  "rate": 1.08,
+  "missing": [],
+  "asr": "C 'è chi assorbe il fuoco nemico, chi tiene in vita i compagni e chi entra col rampino nella linea avversaria."
+ },
+ {
+  "line": "re1",
+  "take": "re1_1.wav",
+  "score": 0.833,
+  "dur": 2.81,
+  "rate": 1.0,
+  "missing": [],
+  "asr": "Essere ambattuti non significa essere fuori."
+ },
+ {
+  "line": "re1",
+  "take": "re1_2.wav",
+  "score": 0.833,
+  "dur": 2.68,
+  "rate": 0.95,
+  "missing": [],
+  "asr": "Essere battuti non significa essere fuori."
+ },
+ {
+  "line": "re1",
+  "take": "re1_3.wav",
+  "score": 1.0,
+  "dur": 3.58,
+  "rate": 1.27,
+  "missing": [],
+  "asr": "Essere abbattuti non significa essere fuori."
+ },
+ {
+  "line": "re2",
+  "take": "re2_1.wav",
+  "score": 1.0,
+  "dur": 3.96,
+  "rate": 1.22,
+  "missing": [],
+  "asr": "Qui un compagno rimette in piedi un giocatore a terra."
+ },
+ {
+  "line": "re2",
+  "take": "re2_2.wav",
+  "score": 0.9,
+  "dur": 3.02,
+  "rate": 0.93,
+  "missing": [],
+  "asr": "Qui un compagno rimette in piedi un giocatore a telola."
+ },
+ {
+  "line": "re2",
+  "take": "re2_3.wav",
+  "score": 1.0,
+  "dur": 4.61,
+  "rate": 1.42,
+  "missing": [],
+  "asr": "Qui un compagno rimette in piedi un giocatore a terra."
+ },
+ {
+  "line": "re3",
+  "take": "re3_1.wav",
+  "score": 0.947,
+  "dur": 7.46,
+  "rate": 1.12,
+  "missing": [],
+  "asr": "La pagina Steam cita anche uno stato di roaming per entrare, finché la squadra resiste. Il round resta aperto."
+ },
+ {
+  "line": "re3",
+  "take": "re3_2.wav",
+  "score": 1.0,
+  "dur": 8.14,
+  "rate": 1.22,
+  "missing": [],
+  "asr": "La pagina Steam cita anche uno stato di roaming per rientrare, finché la squadra resiste, il round resta aperto."
+ },
+ {
+  "line": "re3",
+  "take": "re3_3.wav",
+  "score": 1.0,
+  "dur": 7.01,
+  "rate": 1.05,
+  "missing": [],
+  "asr": "La pagina Steam cita anche uno stato di roaming per rientrare, finché la squadra resiste, il round resta aperto."
+ },
+ {
+  "line": "re3",
+  "take": "re3_4.wav",
+  "score": 1.0,
+  "dur": 6.86,
+  "rate": 1.03,
+  "missing": [],
+  "asr": "La pagina Steam cita anche uno stato di roaming per rientrare, finché la squadra resiste. Il round resta aperto."
+ },
+ {
+  "line": "re3",
+  "take": "re3_5.wav",
+  "score": 1.0,
+  "dur": 7.39,
+  "rate": 1.11,
+  "missing": [],
+  "asr": "La pagina Steam cita anche uno stato di roaming per rientrare, finché la squadra resiste, il round resta aperto."
+ },
+ {
+  "line": "ec1",
+  "take": "ec1_1.wav",
+  "score": 1.0,
+  "dur": 7.65,
+  "rate": 1.17,
+  "missing": [],
+  "asr": "Eliminazioni e obiettivi fanno guadagnare crediti, da spendere subito in armi, potenziamenti e armatura."
+ },
+ {
+  "line": "ec1",
+  "take": "ec1_2.wav",
+  "score": 1.0,
+  "dur": 7.54,
+  "rate": 1.16,
+  "missing": [],
+  "asr": "Eliminazioni e obiettivi fanno guadagnare crediti, da spendere subito in armi, potenziamenti e armatura."
+ },
+ {
+  "line": "ec1",
+  "take": "ec1_3.wav",
+  "score": 1.0,
+  "dur": 7.61,
+  "rate": 1.17,
+  "missing": [],
+  "asr": "Eliminazioni e obiettivi fanno guadagnare crediti, da spendere subito in armi, potenziamenti e armatura."
+ },
+ {
+  "line": "ec2",
+  "take": "ec2_1.wav",
+  "score": 0.903,
+  "dur": 7.48,
+  "rate": 1.03,
+  "missing": [],
+  "asr": "Nel negozio una mina adesiva, costa 400 crediti, una siringa per rialzarsi da soli, 4500."
+ },
+ {
+  "line": "ec2",
+  "take": "ec2_2.wav",
+  "score": 0.903,
+  "dur": 8.14,
+  "rate": 1.12,
+  "missing": [],
+  "asr": "Nel negozio una mina adesiva costa 400 crediti, una siringa per rialzarsi da soli 4500."
+ },
+ {
+  "line": "ec2",
+  "take": "ec2_3.wav",
+  "score": 0.839,
+  "dur": 9.2,
+  "rate": 1.27,
+  "missing": [],
+  "asr": "Nel negozio una mina adesiva, costa 400 crediti, una sieringa per rialzarsi da soli 4500."
+ },
+ {
+  "line": "ec2",
+  "take": "ec2_4.wav",
+  "score": 0.903,
+  "dur": 8.4,
+  "rate": 1.16,
+  "missing": [],
+  "asr": "Nel negozio una mina adesiva costa 400 crediti, una siringa per rialzarsi da soli, 4500."
+ },
+ {
+  "line": "ec2",
+  "take": "ec2_5.wav",
+  "score": 1.0,
+  "dur": 8.21,
+  "rate": 1.13,
+  "missing": [],
+  "asr": "Nel negozio una mina adesiva costa 400 crediti, una siringa per rialzarsi da soli, 4 .500."
+ },
+ {
+  "line": "ec3",
+  "take": "ec3_1.wav",
+  "score": 0.818,
+  "dur": 4.62,
+  "rate": 1.11,
+  "missing": [],
+  "asr": "più di 10 .000 adesive, una scelta tra pressione e sopravvivenza."
+ },
+ {
+  "line": "ec3",
+  "take": "ec3_2.wav",
+  "score": 0.909,
+  "dur": 4.6,
+  "rate": 1.11,
+  "missing": [],
+  "asr": "più di 10 mine adesive, una scelta tra pressione e sopravvivenza."
+ },
+ {
+  "line": "ec3",
+  "take": "ec3_3.wav",
+  "score": 0.909,
+  "dur": 5.92,
+  "rate": 1.43,
+  "missing": [],
+  "asr": "Più di 10 mine adesive, una scelta tra pressione e sopravvivenza."
+ },
+ {
+  "line": "ec3",
+  "take": "ec3_31.wav",
+  "score": 0.909,
+  "dur": 5.52,
+  "rate": 1.33,
+  "missing": [],
+  "asr": "più di 10 mine adesive, una scelta tra pressione e sopravvivenza."
+ },
+ {
+  "line": "ec3",
+  "take": "ec3_32.wav",
+  "score": 1.0,
+  "dur": 4.84,
+  "rate": 1.17,
+  "missing": [],
+  "asr": "Più di dieci, mine adesive, una scelta tra pressione e sopravvivenza."
+ },
+ {
+  "line": "ec3",
+  "take": "ec3_33.wav",
+  "score": 0.909,
+  "dur": 6.0,
+  "rate": 1.45,
+  "missing": [],
+  "asr": "più di 10 mine adesive, una scelta tra pressione e sopravvivenza."
+ },
+ {
+  "line": "ec3",
+  "take": "ec3_34.wav",
+  "score": 0.727,
+  "dur": 5.69,
+  "rate": 1.37,
+  "missing": [],
+  "asr": "più di 10 .000. Adesive, una scelta tra questione e sopravvivenza."
+ },
+ {
+  "line": "ec3",
+  "take": "ec3_4.wav",
+  "score": 0.909,
+  "dur": 5.01,
+  "rate": 1.21,
+  "missing": [],
+  "asr": "più di 10 mine adesive, una scelta tra pressione e sopravvivenza."
+ },
+ {
+  "line": "wp1",
+  "take": "wp1_1.wav",
+  "score": 1.0,
+  "dur": 6.67,
+  "rate": 1.36,
+  "missing": [],
+  "asr": "Sulle armi, gli sviluppatori insistono su balistica, rinculo e maneggevolezza."
+ },
+ {
+  "line": "wp1",
+  "take": "wp1_2.wav",
+  "score": 0.857,
+  "dur": 5.41,
+  "rate": 1.11,
+  "missing": [],
+  "asr": "Sulle armi, gli sviluppatori insistono su balistica, l 'inculo e maneggevolezza."
+ },
+ {
+  "line": "wp1",
+  "take": "wp1_3.wav",
+  "score": 0.9,
+  "dur": 5.18,
+  "rate": 1.06,
+  "missing": [],
+  "asr": "Sulle armi, gli sviluppatori insistono su balistica, rinculo e maneggiolesza."
+ },
+ {
+  "line": "wp2",
+  "take": "wp2_1.wav",
+  "score": 1.0,
+  "dur": 6.2,
+  "rate": 1.16,
+  "missing": [],
+  "asr": "La modifica è libera, si cambiano le parti, si montano le ottiche, si regola l 'impugnatura."
+ },
+ {
+  "line": "wp2",
+  "take": "wp2_2.wav",
+  "score": 1.0,
+  "dur": 6.03,
+  "rate": 1.13,
+  "missing": [],
+  "asr": "La modifica è libera. Si cambiano le parti, si montano le ottiche, si regola l 'impugnatura."
+ },
+ {
+  "line": "wp2",
+  "take": "wp2_3.wav",
+  "score": 1.0,
+  "dur": 6.92,
+  "rate": 1.3,
+  "missing": [],
+  "asr": "La modifica è libera. Si cambiano le parti, si montano le ottiche, si regola l 'impugnatura."
+ },
+ {
+  "line": "wp3",
+  "take": "wp3_1.wav",
+  "score": 1.0,
+  "dur": 4.98,
+  "rate": 1.09,
+  "missing": [],
+  "asr": "e il posizionamento tra alture, vicoli e coperture può decidere lo scontro."
+ },
+ {
+  "line": "wp3",
+  "take": "wp3_2.wav",
+  "score": 1.0,
+  "dur": 5.07,
+  "rate": 1.1,
+  "missing": [],
+  "asr": "e il posizionamento tra alture, vicoli e coperture può decidere lo scontro."
+ },
+ {
+  "line": "wp3",
+  "take": "wp3_3.wav",
+  "score": 1.0,
+  "dur": 5.29,
+  "rate": 1.15,
+  "missing": [],
+  "asr": "e il posizionamento tra alture, vicoli e coperture può decidere lo scontro."
+ },
+ {
+  "line": "wp3",
+  "take": "wp3_4.wav",
+  "score": 1.0,
+  "dur": 5.24,
+  "rate": 1.14,
+  "missing": [],
+  "asr": "e il posizionamento tra alture, vicoli e coperture può decidere lo scontro."
+ },
+ {
+  "line": "wp3",
+  "take": "wp3_5.wav",
+  "score": 1.0,
+  "dur": 6.09,
+  "rate": 1.33,
+  "missing": [],
+  "asr": "e il posizionamento tra alture, vicoli e coperture può decidere lo scontro."
+ },
+ {
+  "line": "st1",
+  "take": "st1_1.wav",
+  "score": 1.0,
+  "dur": 3.73,
+  "rate": 1.23,
+  "missing": [],
+  "asr": "Su Steam il gioco risulta in arrivo, senza una data."
+ },
+ {
+  "line": "st1",
+  "take": "st1_2.wav",
+  "score": 1.0,
+  "dur": 3.87,
+  "rate": 1.28,
+  "missing": [],
+  "asr": "Su Steam, il gioco risulta in arrivo, senza una data."
+ },
+ {
+  "line": "st1",
+  "take": "st1_3.wav",
+  "score": 1.0,
+  "dur": 3.43,
+  "rate": 1.13,
+  "missing": [],
+  "asr": "Su Steam, il gioco risulta in arrivo, senza una data."
+ },
+ {
+  "line": "st2",
+  "take": "st2_1.wav",
+  "score": 1.0,
+  "dur": 6.52,
+  "rate": 1.26,
+  "missing": [],
+  "asr": "La lista dei desideri è già aperta, ma l 'italiano per ora non è tra le lingue supportate."
+ },
+ {
+  "line": "st2",
+  "take": "st2_2.wav",
+  "score": 1.0,
+  "dur": 5.76,
+  "rate": 1.11,
+  "missing": [],
+  "asr": "La lista dei desideri è già aperta, ma l 'italiano per ora non è tra le lingue supportate."
+ },
+ {
+  "line": "st2",
+  "take": "st2_3.wav",
+  "score": 1.0,
+  "dur": 5.96,
+  "rate": 1.15,
+  "missing": [],
+  "asr": "La lista dei desideri è già aperta, ma l 'italiano per ora non è tra le lingue supportate."
+ },
+ {
+  "line": "end1",
+  "take": "end1_1.wav",
+  "score": 0.947,
+  "dur": 4.15,
+  "rate": 0.97,
+  "missing": [],
+  "asr": "Secondo voi, il movimento basterà distinguerlo dagli altri tattici?"
+ },
+ {
+  "line": "end1",
+  "take": "end1_2.wav",
+  "score": 1.0,
+  "dur": 4.09,
+  "rate": 0.95,
+  "missing": [],
+  "asr": "Secondo voi, il movimento basterà a distinguerlo dagli altri tattici."
+ },
+ {
+  "line": "end1",
+  "take": "end1_3.wav",
+  "score": 1.0,
+  "dur": 4.37,
+  "rate": 1.02,
+  "missing": [],
+  "asr": "Secondo voi, il movimento basterà a distinguerlo dagli altri tattici?"
+ }
+]

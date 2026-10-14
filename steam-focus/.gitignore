@@ -1,0 +1,10 @@
+node_modules/
+out/
+# Media is fetched/rendered locally (scripts/fetch_assets.sh, blender/):
+# official trailer clips, Steam captures and Valve artwork are not committed.
+public/*.mp4
+public/brand/
+public/full/
+public/steam/
+public/full_up/
+public/full60_up/

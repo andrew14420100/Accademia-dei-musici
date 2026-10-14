@@ -1,0 +1,1647 @@
+[
+ {
+  "id": "hook1",
+  "section": "hook",
+  "text": "Questo è il nuovo ECC: REDLINE.",
+  "dur": 2.013,
+  "words": [
+   [
+    0.0,
+    0.375,
+    "Questo"
+   ],
+   [
+    0.375,
+    0.5,
+    "è"
+   ],
+   [
+    0.5,
+    0.625,
+    "il"
+   ],
+   [
+    0.625,
+    1.0,
+    "nuovo"
+   ],
+   [
+    1.0,
+    1.429,
+    "ECC"
+   ],
+   [
+    1.429,
+    1.911,
+    "Redline."
+   ]
+  ],
+  "take": "hook1_3.wav",
+  "score": 1.0
+ },
+ {
+  "id": "hook2",
+  "section": "hook",
+  "text": "Squadre da quattro, scivolate, rampino e crediti da spendere a metà partita.",
+  "dur": 5.261,
+  "words": [
+   [
+    0.0,
+    0.518,
+    "squadre"
+   ],
+   [
+    0.518,
+    0.75,
+    "da"
+   ],
+   [
+    0.75,
+    1.161,
+    "quattro,"
+   ],
+   [
+    1.232,
+    1.75,
+    "scivolate,"
+   ],
+   [
+    1.821,
+    2.321,
+    "rampino"
+   ],
+   [
+    2.321,
+    2.75,
+    "e"
+   ],
+   [
+    2.75,
+    3.179,
+    "crediti"
+   ],
+   [
+    3.179,
+    3.339,
+    "da"
+   ],
+   [
+    3.339,
+    3.661,
+    "spendere"
+   ],
+   [
+    3.661,
+    3.804,
+    "a"
+   ],
+   [
+    3.804,
+    4.036,
+    "metà"
+   ],
+   [
+    4.036,
+    4.464,
+    "partita."
+   ]
+  ],
+  "take": "hook2_3.wav",
+  "score": 1.0
+ },
+ {
+  "id": "id1",
+  "section": "identity",
+  "text": "Lo sviluppa Galaxy Studio, uno studio di NetEase Games.",
+  "dur": 3.745,
+  "words": [
+   [
+    0.0,
+    0.286,
+    "Lo"
+   ],
+   [
+    0.286,
+    0.696,
+    "sviluppa"
+   ],
+   [
+    0.696,
+    1.196,
+    "Galaxy"
+   ],
+   [
+    1.196,
+    1.75,
+    "Studio,"
+   ],
+   [
+    2.071,
+    2.179,
+    "uno"
+   ],
+   [
+    2.179,
+    2.446,
+    "studio"
+   ],
+   [
+    2.446,
+    2.661,
+    "di"
+   ],
+   [
+    2.661,
+    3.179,
+    "NetEase"
+   ],
+   [
+    3.179,
+    3.554,
+    "Games."
+   ]
+  ],
+  "take": "id1_13.wav",
+  "score": 1.0
+ },
+ {
+  "id": "id2",
+  "section": "identity",
+  "text": "Sarà free-to-play su PC, ma una data d'uscita ancora non c'è.",
+  "dur": 3.917,
+  "words": [
+   [
+    0.0,
+    0.482,
+    "Sarà"
+   ],
+   [
+    0.482,
+    0.661,
+    "free"
+   ],
+   [
+    0.661,
+    0.821,
+    "to"
+   ],
+   [
+    0.821,
+    1.107,
+    "play"
+   ],
+   [
+    1.107,
+    1.357,
+    "su"
+   ],
+   [
+    1.357,
+    1.679,
+    "PC,"
+   ],
+   [
+    2.054,
+    2.143,
+    "ma"
+   ],
+   [
+    2.143,
+    2.375,
+    "una"
+   ],
+   [
+    2.375,
+    2.518,
+    "data"
+   ],
+   [
+    2.518,
+    2.625,
+    "d"
+   ],
+   [
+    2.625,
+    3.0,
+    "'uscita"
+   ],
+   [
+    3.0,
+    3.446,
+    "ancora"
+   ],
+   [
+    3.446,
+    3.696,
+    "non"
+   ],
+   [
+    3.696,
+    3.75,
+    "c"
+   ],
+   [
+    3.75,
+    3.839,
+    "'è."
+   ]
+  ],
+  "take": "id2_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "id3",
+  "section": "identity",
+  "text": "Si raccoglie equipaggiamento e si combatte mentre la zona sicura si restringe.",
+  "dur": 4.621,
+  "words": [
+   [
+    0.0,
+    0.286,
+    "Si"
+   ],
+   [
+    0.286,
+    0.821,
+    "raccoglie"
+   ],
+   [
+    0.821,
+    1.625,
+    "equipaggiamento"
+   ],
+   [
+    1.625,
+    2.054,
+    "e"
+   ],
+   [
+    2.054,
+    2.232,
+    "si"
+   ],
+   [
+    2.232,
+    2.75,
+    "combatte"
+   ],
+   [
+    2.75,
+    3.054,
+    "mentre"
+   ],
+   [
+    3.054,
+    3.286,
+    "la"
+   ],
+   [
+    3.286,
+    3.482,
+    "zona"
+   ],
+   [
+    3.482,
+    3.893,
+    "sicura"
+   ],
+   [
+    3.893,
+    4.054,
+    "si"
+   ],
+   [
+    4.054,
+    4.518,
+    "restringe."
+   ]
+  ],
+  "take": "id3_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "mov1",
+  "section": "movement",
+  "text": "Il cuore del gioco è il movimento.",
+  "dur": 2.145,
+  "words": [
+   [
+    0.0,
+    0.357,
+    "Il"
+   ],
+   [
+    0.357,
+    0.589,
+    "cuore"
+   ],
+   [
+    0.589,
+    0.75,
+    "del"
+   ],
+   [
+    0.75,
+    1.179,
+    "gioco"
+   ],
+   [
+    1.179,
+    1.464,
+    "è"
+   ],
+   [
+    1.464,
+    1.571,
+    "il"
+   ],
+   [
+    1.571,
+    1.964,
+    "movimento."
+   ]
+  ],
+  "take": "mov1_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "mov2",
+  "section": "movement",
+  "text": "Sprint, scivolata, mira e fuoco sono pensati come un'unica catena, senza interruzioni.",
+  "dur": 5.536,
+  "words": [
+   [
+    0.0,
+    0.625,
+    "Sprint"
+   ],
+   [
+    0.625,
+    1.393,
+    "scivolata,"
+   ],
+   [
+    1.714,
+    1.946,
+    "mira"
+   ],
+   [
+    1.946,
+    2.125,
+    "e"
+   ],
+   [
+    2.125,
+    2.661,
+    "fuoco"
+   ],
+   [
+    2.661,
+    2.964,
+    "sono"
+   ],
+   [
+    2.964,
+    3.429,
+    "pensati"
+   ],
+   [
+    3.429,
+    3.661,
+    "come"
+   ],
+   [
+    3.661,
+    3.857,
+    "un"
+   ],
+   [
+    3.857,
+    4.089,
+    "'unica"
+   ],
+   [
+    4.089,
+    4.464,
+    "catena"
+   ],
+   [
+    4.464,
+    4.804,
+    "senza"
+   ],
+   [
+    4.804,
+    5.429,
+    "interruzioni."
+   ]
+  ],
+  "take": "mov2_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "mov3",
+  "section": "movement",
+  "text": "Il rampino e i rimbalzi sulle pareti allungano l'azione.",
+  "dur": 3.479,
+  "words": [
+   [
+    0.0,
+    0.304,
+    "Il"
+   ],
+   [
+    0.304,
+    0.839,
+    "rampino"
+   ],
+   [
+    0.839,
+    1.071,
+    "e"
+   ],
+   [
+    1.071,
+    1.214,
+    "i"
+   ],
+   [
+    1.214,
+    1.607,
+    "rimbalzi"
+   ],
+   [
+    1.607,
+    1.946,
+    "sulle"
+   ],
+   [
+    1.946,
+    2.393,
+    "pareti"
+   ],
+   [
+    2.393,
+    2.839,
+    "allungano"
+   ],
+   [
+    2.839,
+    3.018,
+    "l"
+   ],
+   [
+    3.018,
+    3.321,
+    "'azione."
+   ]
+  ],
+  "take": "mov3_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "mov4",
+  "section": "movement",
+  "text": "La nostra lettura: se ci si sposta mentre si spara, il tempismo conta quanto la copertura.",
+  "dur": 5.517,
+  "words": [
+   [
+    0.0,
+    0.25,
+    "La"
+   ],
+   [
+    0.25,
+    0.482,
+    "nostra"
+   ],
+   [
+    0.482,
+    1.125,
+    "lettura,"
+   ],
+   [
+    1.214,
+    1.357,
+    "se"
+   ],
+   [
+    1.357,
+    1.5,
+    "ci"
+   ],
+   [
+    1.5,
+    1.714,
+    "si"
+   ],
+   [
+    1.714,
+    2.036,
+    "sposta"
+   ],
+   [
+    2.036,
+    2.321,
+    "mentre"
+   ],
+   [
+    2.321,
+    2.625,
+    "si"
+   ],
+   [
+    2.625,
+    3.054,
+    "spara,"
+   ],
+   [
+    3.232,
+    3.375,
+    "il"
+   ],
+   [
+    3.375,
+    3.893,
+    "tempismo"
+   ],
+   [
+    3.893,
+    4.286,
+    "conta"
+   ],
+   [
+    4.286,
+    4.643,
+    "quanto"
+   ],
+   [
+    4.643,
+    4.804,
+    "la"
+   ],
+   [
+    4.804,
+    5.429,
+    "copertura."
+   ]
+  ],
+  "take": "mov4_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "sq1",
+  "section": "squad",
+  "text": "Si gioca in quattro, e ogni atleta ha un ruolo.",
+  "dur": 2.602,
+  "words": [
+   [
+    0.0,
+    0.268,
+    "si"
+   ],
+   [
+    0.268,
+    0.5,
+    "gioca"
+   ],
+   [
+    0.5,
+    0.696,
+    "in"
+   ],
+   [
+    0.696,
+    1.179,
+    "quattro"
+   ],
+   [
+    1.179,
+    1.464,
+    "e"
+   ],
+   [
+    1.464,
+    1.661,
+    "ogni"
+   ],
+   [
+    1.661,
+    2.0,
+    "atleta"
+   ],
+   [
+    2.0,
+    2.107,
+    "ha"
+   ],
+   [
+    2.107,
+    2.25,
+    "un"
+   ],
+   [
+    2.25,
+    2.482,
+    "ruolo."
+   ]
+  ],
+  "take": "sq1_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "sq2",
+  "section": "squad",
+  "text": "C'è chi assorbe il fuoco nemico, chi tiene in vita i compagni e chi entra col rampino nella linea avversaria.",
+  "dur": 6.799,
+  "words": [
+   [
+    0.0,
+    0.196,
+    "C"
+   ],
+   [
+    0.196,
+    0.286,
+    "'è"
+   ],
+   [
+    0.286,
+    0.411,
+    "chi"
+   ],
+   [
+    0.411,
+    0.875,
+    "assorbe"
+   ],
+   [
+    0.875,
+    1.036,
+    "il"
+   ],
+   [
+    1.036,
+    1.286,
+    "fuoco"
+   ],
+   [
+    1.286,
+    1.75,
+    "nemico,"
+   ],
+   [
+    2.054,
+    2.143,
+    "chi"
+   ],
+   [
+    2.143,
+    2.357,
+    "tiene"
+   ],
+   [
+    2.357,
+    2.554,
+    "in"
+   ],
+   [
+    2.554,
+    2.679,
+    "vita"
+   ],
+   [
+    2.679,
+    2.982,
+    "i"
+   ],
+   [
+    2.982,
+    3.464,
+    "compagni"
+   ],
+   [
+    3.464,
+    3.714,
+    "e"
+   ],
+   [
+    3.714,
+    3.893,
+    "chi"
+   ],
+   [
+    3.893,
+    4.143,
+    "entra"
+   ],
+   [
+    4.143,
+    4.357,
+    "col"
+   ],
+   [
+    4.357,
+    4.893,
+    "rampino"
+   ],
+   [
+    4.893,
+    5.107,
+    "nella"
+   ],
+   [
+    5.107,
+    5.482,
+    "linea"
+   ],
+   [
+    5.482,
+    6.036,
+    "avversaria."
+   ]
+  ],
+  "take": "sq2_2.wav",
+  "score": 1.0
+ },
+ {
+  "id": "re1",
+  "section": "reentry",
+  "text": "Essere abbattuti non significa essere fuori.",
+  "dur": 3.193,
+  "words": [
+   [
+    0.0,
+    0.411,
+    "Essere"
+   ],
+   [
+    0.411,
+    0.964,
+    "abbattuti"
+   ],
+   [
+    0.964,
+    1.179,
+    "non"
+   ],
+   [
+    1.179,
+    1.554,
+    "significa"
+   ],
+   [
+    1.554,
+    1.821,
+    "essere"
+   ],
+   [
+    1.821,
+    2.143,
+    "fuori."
+   ]
+  ],
+  "take": "re1_3.wav",
+  "score": 1.0
+ },
+ {
+  "id": "re2",
+  "section": "reentry",
+  "text": "Qui un compagno rimette in piedi un giocatore a terra.",
+  "dur": 3.536,
+  "words": [
+   [
+    0.0,
+    0.268,
+    "Qui"
+   ],
+   [
+    0.268,
+    0.482,
+    "un"
+   ],
+   [
+    0.482,
+    0.964,
+    "compagno"
+   ],
+   [
+    0.964,
+    1.25,
+    "rimette"
+   ],
+   [
+    1.25,
+    1.446,
+    "in"
+   ],
+   [
+    1.446,
+    1.679,
+    "piedi"
+   ],
+   [
+    1.679,
+    1.839,
+    "un"
+   ],
+   [
+    1.839,
+    2.161,
+    "giocatore"
+   ],
+   [
+    2.161,
+    2.375,
+    "a"
+   ],
+   [
+    2.375,
+    2.571,
+    "terra."
+   ]
+  ],
+  "take": "re2_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "re3",
+  "section": "reentry",
+  "text": "La pagina Steam cita anche uno stato di roaming per rientrare: finché la squadra resiste, il round resta aperto.",
+  "dur": 7.269,
+  "words": [
+   [
+    0.0,
+    0.268,
+    "La"
+   ],
+   [
+    0.268,
+    0.679,
+    "pagina"
+   ],
+   [
+    0.679,
+    1.054,
+    "Steam"
+   ],
+   [
+    1.054,
+    1.607,
+    "cita"
+   ],
+   [
+    1.607,
+    1.857,
+    "anche"
+   ],
+   [
+    1.857,
+    2.018,
+    "uno"
+   ],
+   [
+    2.018,
+    2.304,
+    "stato"
+   ],
+   [
+    2.304,
+    2.482,
+    "di"
+   ],
+   [
+    2.482,
+    2.875,
+    "roaming"
+   ],
+   [
+    2.875,
+    3.196,
+    "per"
+   ],
+   [
+    3.196,
+    3.857,
+    "rientrare,"
+   ],
+   [
+    4.125,
+    4.339,
+    "finché"
+   ],
+   [
+    4.339,
+    4.518,
+    "la"
+   ],
+   [
+    4.518,
+    4.857,
+    "squadra"
+   ],
+   [
+    4.857,
+    5.5,
+    "resiste,"
+   ],
+   [
+    5.607,
+    5.893,
+    "il"
+   ],
+   [
+    5.893,
+    6.357,
+    "round"
+   ],
+   [
+    6.357,
+    6.893,
+    "resta"
+   ],
+   [
+    6.893,
+    7.179,
+    "aperto."
+   ]
+  ],
+  "take": "re3_2.wav",
+  "score": 1.0
+ },
+ {
+  "id": "ec1",
+  "section": "economy",
+  "text": "Eliminazioni e obiettivi fanno guadagnare crediti, da spendere subito in armi, potenziamenti e armatura.",
+  "dur": 6.831,
+  "words": [
+   [
+    0.0,
+    1.036,
+    "Eliminazioni"
+   ],
+   [
+    1.036,
+    1.196,
+    "e"
+   ],
+   [
+    1.196,
+    1.946,
+    "obiettivi"
+   ],
+   [
+    1.946,
+    2.268,
+    "fanno"
+   ],
+   [
+    2.268,
+    2.75,
+    "guadagnare"
+   ],
+   [
+    2.75,
+    3.393,
+    "crediti,"
+   ],
+   [
+    3.429,
+    3.643,
+    "da"
+   ],
+   [
+    3.643,
+    4.107,
+    "spendere"
+   ],
+   [
+    4.107,
+    4.5,
+    "subito"
+   ],
+   [
+    4.5,
+    4.768,
+    "in"
+   ],
+   [
+    4.768,
+    5.143,
+    "armi,"
+   ],
+   [
+    5.375,
+    6.125,
+    "potenziamenti"
+   ],
+   [
+    6.125,
+    6.304,
+    "e"
+   ],
+   [
+    6.304,
+    6.732,
+    "armatura."
+   ]
+  ],
+  "take": "ec1_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "ec2",
+  "section": "economy",
+  "text": "Nel negozio una mina adesiva costa 400 crediti; una siringa per rialzarsi da soli, 4.500.",
+  "dur": 7.335,
+  "words": [
+   [
+    0.0,
+    0.393,
+    "Nel"
+   ],
+   [
+    0.393,
+    0.911,
+    "negozio"
+   ],
+   [
+    0.911,
+    1.089,
+    "una"
+   ],
+   [
+    1.089,
+    1.304,
+    "mina"
+   ],
+   [
+    1.304,
+    1.839,
+    "adesiva"
+   ],
+   [
+    1.839,
+    2.196,
+    "costa"
+   ],
+   [
+    2.196,
+    2.643,
+    "400"
+   ],
+   [
+    2.643,
+    3.607,
+    "crediti,"
+   ],
+   [
+    3.679,
+    3.786,
+    "una"
+   ],
+   [
+    3.786,
+    4.232,
+    "siringa"
+   ],
+   [
+    4.232,
+    4.429,
+    "per"
+   ],
+   [
+    4.429,
+    4.911,
+    "rialzarsi"
+   ],
+   [
+    4.911,
+    5.071,
+    "da"
+   ],
+   [
+    5.071,
+    5.643,
+    "soli,"
+   ],
+   [
+    5.768,
+    6.0,
+    "4"
+   ],
+   [
+    6.0,
+    6.518,
+    ".500."
+   ]
+  ],
+  "take": "ec2_5.wav",
+  "score": 1.0
+ },
+ {
+  "id": "ec3",
+  "section": "economy",
+  "text": "Più di dieci mine adesive: una scelta tra pressione e sopravvivenza.",
+  "dur": 4.839,
+  "words": [
+   [
+    0.0,
+    0.26,
+    "Più"
+   ],
+   [
+    0.26,
+    0.4,
+    "di"
+   ],
+   [
+    0.4,
+    1.0,
+    "dieci,"
+   ],
+   [
+    1.26,
+    1.42,
+    "mine"
+   ],
+   [
+    1.42,
+    2.08,
+    "adesive,"
+   ],
+   [
+    2.36,
+    2.52,
+    "una"
+   ],
+   [
+    2.52,
+    2.92,
+    "scelta"
+   ],
+   [
+    2.92,
+    3.08,
+    "tra"
+   ],
+   [
+    3.08,
+    3.72,
+    "pressione"
+   ],
+   [
+    3.72,
+    4.0,
+    "e"
+   ],
+   [
+    4.0,
+    4.74,
+    "sopravvivenza."
+   ]
+  ],
+  "take": "ec3_32.wav",
+  "score": 1.0
+ },
+ {
+  "id": "wp1",
+  "section": "weapons",
+  "text": "Sulle armi, gli sviluppatori insistono su balistica, rinculo e maneggevolezza.",
+  "dur": 5.958,
+  "words": [
+   [
+    0.0,
+    0.375,
+    "Sulle"
+   ],
+   [
+    0.375,
+    0.929,
+    "armi,"
+   ],
+   [
+    1.036,
+    1.161,
+    "gli"
+   ],
+   [
+    1.161,
+    1.857,
+    "sviluppatori"
+   ],
+   [
+    1.857,
+    2.518,
+    "insistono"
+   ],
+   [
+    2.518,
+    2.679,
+    "su"
+   ],
+   [
+    2.679,
+    3.339,
+    "balistica,"
+   ],
+   [
+    3.643,
+    4.018,
+    "rinculo"
+   ],
+   [
+    4.018,
+    4.357,
+    "e"
+   ],
+   [
+    4.357,
+    5.089,
+    "maneggevolezza."
+   ]
+  ],
+  "take": "wp1_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "wp2",
+  "section": "weapons",
+  "text": "La modifica è libera: si cambiano le parti, si montano le ottiche, si regola l'impugnatura.",
+  "dur": 5.536,
+  "words": [
+   [
+    0.0,
+    0.286,
+    "La"
+   ],
+   [
+    0.286,
+    0.661,
+    "modifica"
+   ],
+   [
+    0.661,
+    0.857,
+    "è"
+   ],
+   [
+    0.857,
+    1.393,
+    "libera,"
+   ],
+   [
+    1.589,
+    1.661,
+    "si"
+   ],
+   [
+    1.661,
+    2.0,
+    "cambiano"
+   ],
+   [
+    2.0,
+    2.179,
+    "le"
+   ],
+   [
+    2.179,
+    2.5,
+    "parti,"
+   ],
+   [
+    2.875,
+    2.964,
+    "si"
+   ],
+   [
+    2.964,
+    3.286,
+    "montano"
+   ],
+   [
+    3.286,
+    3.429,
+    "le"
+   ],
+   [
+    3.429,
+    3.875,
+    "ottiche,"
+   ],
+   [
+    4.179,
+    4.339,
+    "si"
+   ],
+   [
+    4.339,
+    4.696,
+    "regola"
+   ],
+   [
+    4.696,
+    4.875,
+    "l"
+   ],
+   [
+    4.875,
+    5.464,
+    "'impugnatura."
+   ]
+  ],
+  "take": "wp2_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "wp3",
+  "section": "weapons",
+  "text": "E il posizionamento, tra alture, vicoli e coperture, può decidere lo scontro.",
+  "dur": 4.45,
+  "words": [
+   [
+    0.0,
+    0.268,
+    "e"
+   ],
+   [
+    0.268,
+    0.429,
+    "il"
+   ],
+   [
+    0.429,
+    1.161,
+    "posizionamento"
+   ],
+   [
+    1.161,
+    1.357,
+    "tra"
+   ],
+   [
+    1.357,
+    1.875,
+    "alture,"
+   ],
+   [
+    2.125,
+    2.375,
+    "vicoli"
+   ],
+   [
+    2.375,
+    2.464,
+    "e"
+   ],
+   [
+    2.464,
+    3.179,
+    "coperture"
+   ],
+   [
+    3.179,
+    3.411,
+    "può"
+   ],
+   [
+    3.411,
+    3.839,
+    "decidere"
+   ],
+   [
+    3.839,
+    3.982,
+    "lo"
+   ],
+   [
+    3.982,
+    4.375,
+    "scontro."
+   ]
+  ],
+  "take": "wp3_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "st1",
+  "section": "steam",
+  "text": "Su Steam il gioco risulta in arrivo, senza una data.",
+  "dur": 3.326,
+  "words": [
+   [
+    0.0,
+    0.286,
+    "Su"
+   ],
+   [
+    0.286,
+    0.661,
+    "Steam"
+   ],
+   [
+    0.661,
+    1.018,
+    "il"
+   ],
+   [
+    1.018,
+    1.321,
+    "gioco"
+   ],
+   [
+    1.321,
+    1.696,
+    "risulta"
+   ],
+   [
+    1.696,
+    1.821,
+    "in"
+   ],
+   [
+    1.821,
+    2.339,
+    "arrivo,"
+   ],
+   [
+    2.482,
+    2.714,
+    "senza"
+   ],
+   [
+    2.714,
+    2.982,
+    "una"
+   ],
+   [
+    2.982,
+    3.161,
+    "data."
+   ]
+  ],
+  "take": "st1_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "st2",
+  "section": "steam",
+  "text": "La lista dei desideri è già aperta, ma l'italiano, per ora, non è tra le lingue supportate.",
+  "dur": 5.818,
+  "words": [
+   [
+    0.0,
+    0.25,
+    "La"
+   ],
+   [
+    0.25,
+    0.5,
+    "lista"
+   ],
+   [
+    0.5,
+    0.732,
+    "dei"
+   ],
+   [
+    0.732,
+    1.25,
+    "desideri"
+   ],
+   [
+    1.25,
+    1.393,
+    "è"
+   ],
+   [
+    1.393,
+    1.625,
+    "già"
+   ],
+   [
+    1.625,
+    2.232,
+    "aperta,"
+   ],
+   [
+    2.411,
+    2.5,
+    "ma"
+   ],
+   [
+    2.5,
+    2.661,
+    "l"
+   ],
+   [
+    2.661,
+    3.304,
+    "'italiano"
+   ],
+   [
+    3.304,
+    3.643,
+    "per"
+   ],
+   [
+    3.643,
+    4.161,
+    "ora"
+   ],
+   [
+    4.161,
+    4.429,
+    "non"
+   ],
+   [
+    4.429,
+    4.607,
+    "è"
+   ],
+   [
+    4.607,
+    4.714,
+    "tra"
+   ],
+   [
+    4.714,
+    4.893,
+    "le"
+   ],
+   [
+    4.893,
+    5.143,
+    "lingue"
+   ],
+   [
+    5.143,
+    5.786,
+    "supportate."
+   ]
+  ],
+  "take": "st2_1.wav",
+  "score": 1.0
+ },
+ {
+  "id": "end1",
+  "section": "outro",
+  "text": "Secondo voi, il movimento basterà a distinguerlo dagli altri tattici?",
+  "dur": 3.65,
+  "words": [
+   [
+    0.0,
+    0.554,
+    "Secondo"
+   ],
+   [
+    0.554,
+    0.786,
+    "voi,"
+   ],
+   [
+    1.214,
+    1.304,
+    "il"
+   ],
+   [
+    1.304,
+    1.661,
+    "movimento"
+   ],
+   [
+    1.661,
+    2.107,
+    "basterà"
+   ],
+   [
+    2.107,
+    2.321,
+    "a"
+   ],
+   [
+    2.321,
+    2.732,
+    "distinguerlo"
+   ],
+   [
+    2.732,
+    2.964,
+    "dagli"
+   ],
+   [
+    2.964,
+    3.089,
+    "altri"
+   ],
+   [
+    3.089,
+    3.554,
+    "tattici."
+   ]
+  ],
+  "take": "end1_2.wav",
+  "score": 1.0
+ }
+]
