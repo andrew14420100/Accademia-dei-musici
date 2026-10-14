@@ -116,8 +116,8 @@ stems = score_v4.build(TOTAL + 0.3, edl["sections"], sig_at, FPS, drop_at=hook2 
 stems = {k: np.concatenate([v, np.zeros((max(0, N - len(v)), 2))])[:N].astype(np.float32) for k, v in stems.items()}
 music_raw = sum(stems.values())
 
-BUS = 10 ** (-17 / 20)  # v4: score sits closer to the voice between phrases
-DUCK_DB = {'music': -12, 'drums': -6, 'bass': -6, 'fx': -9}  # v4: drums keep pushing under the voice
+BUS = 10 ** (-19 / 20)  # v4: score sits closer to the voice between phrases (-19: voice >= 12 dB over score while speaking)
+DUCK_DB = {'music': -15, 'drums': -9, 'bass': -8, 'fx': -11}  # v4: drums keep pushing under the voice
 band = butter(2, [1200, 4500], 'bandpass', fs=SR, output='sos')
 bed = np.zeros((N, 2), np.float32)
 for k, x in stems.items():
