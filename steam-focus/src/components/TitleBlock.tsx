@@ -52,7 +52,7 @@ export const TitleBlock: React.FC<{at: number}> = ({at}) => {
             textShadow: '0 2px 14px rgba(11,22,38,0.85)',
           }}
         >
-          Sparatutto tattico + sport estremi.
+          Sparatutto competitivo con movimento acrobatico.
         </div>
       </MaskLine>
       <MaskLine at={at + 14}>

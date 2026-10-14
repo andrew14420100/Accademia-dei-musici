@@ -28,7 +28,9 @@ SIGNATURE = 1.6        # STEAM FOCUS sign-off after the last line
 lines, cur, prev = [], START, None
 for t in timing:
     if prev:
-        cur += GAP_SECTION if t["section"] != prev else GAP_LINE
+        # v4: lines cut from one chapter paragraph carry their own natural pause
+        # ("gap_before": 0), so the chapter plays back exactly as it was spoken
+        cur += GAP_SECTION if t["section"] != prev else t.get("gap_before", GAP_LINE)
     lines.append({**t, "start": round(cur, 3), "end": round(cur + t["dur"], 3)})
     cur += t["dur"]
     prev = t["section"]
