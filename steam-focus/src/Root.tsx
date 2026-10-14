@@ -3,7 +3,7 @@ import {RedlineDemo, DEMO_FRAMES} from './RedlineDemo';
 import {FPS, HEIGHT, WIDTH} from './design';
 import {fullFrames, RedlineFull} from './full/RedlineFull';
 import {RedlineFull4K} from './full/RedlineFull4K';
-import {CoverV4} from './full/Cover';
+import {CoverV4, CoverV4Draft} from './full/Cover';
 
 export const Root: React.FC = () => (
   <>
@@ -35,5 +35,6 @@ export const Root: React.FC = () => (
     height={HEIGHT * 2}
   />
     <Composition id="CoverV4" component={CoverV4} durationInFrames={1} fps={60} width={WIDTH * 2} height={HEIGHT * 2} />
+    <Composition id="CoverV4Draft" component={CoverV4Draft} durationInFrames={1} fps={60} width={WIDTH * 2} height={HEIGHT * 2} />
     </>
 );
