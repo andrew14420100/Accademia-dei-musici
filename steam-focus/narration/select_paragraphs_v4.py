@@ -9,7 +9,7 @@ transcribed with faster-whisper (word timestamps) and scored against the chapter
 (narration/pick_takes.py: word match, hard words present, plausible speaking rate). The
 chosen take is split at the midpoint of the silence between two lines; every line gets
 "gap_before": 0 except the first of a chapter, so edit/plan_full.py reassembles the chapter
-seamlessly. No time-stretching. The score screens wrong or missing words only: it says
+seamlessly. No time-stretching. EXCLUDE=a.wav,b.wav skips takes rejected on listening/ASR review. The score screens wrong or missing words only: it says
 nothing about how natural the reading sounds.
 """
 import difflib
@@ -50,6 +50,8 @@ def main():
         say = ' '.join(l.get('say', l['text']) for l in lines)
         best = None
         for f in sorted(glob.glob(f'{takes}/{sec}_*.wav')):
+            if os.path.basename(f) in os.environ.get('EXCLUDE', '').split(','):
+                continue
             y, _ = librosa.load(f, sr=SR)
             y = trim(y)
             segs, _ = model.transcribe(librosa.resample(y, orig_sr=SR, target_sr=16000), language='it',
