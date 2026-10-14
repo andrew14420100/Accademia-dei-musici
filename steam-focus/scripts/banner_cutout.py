@@ -30,6 +30,7 @@ inside = ((X - cx) ** 2 + (Y - cy) ** 2 <= R * R) & (X >= X0) & (X <= X1) & (Y >
 alpha = inside.reshape(H, ss, W, ss).mean(axis=(1, 3))
 
 rgba = np.dstack([rgb, np.round(alpha * 255).astype(np.uint8)])
+rgba[rgba[..., 3] == 0, :3] = 0  # no stray colour under fully transparent pixels (no fringes in editors)
 x0, x1, y0, y1 = int(np.floor(X0)), int(np.ceil(X1)), int(np.floor(Y0)), int(np.ceil(Y1))
 Image.fromarray(rgba[y0:y1, x0:x1], 'RGBA').save(out, optimize=True)
 print(out, x1 - x0, 'x', y1 - y0, 'transparent px', int((alpha[y0:y1, x0:x1] == 0).sum()))
