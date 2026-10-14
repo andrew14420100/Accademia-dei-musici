@@ -1,0 +1,35 @@
+# Assembles the STEAM FOCUS V4 4K/60 master from its parts (GitHub refuses single files > 100 MB),
+# verifies the SHA-256 and publishes it unchanged as a Release asset. Runs only on this branch.
+name: Release STEAM FOCUS master
+on:
+  push:
+    branches: [media/steam-focus-master-v4]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refuse to publish from a public repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          vis=$(gh api repos/${{ github.repository }} --jq .visibility)
+          echo "visibility: $vis"
+          test "$vis" = private
+      - name: Assemble and verify
+        run: |
+          cat parts/STEAM_FOCUS_4K60.mp4.part* > STEAM_FOCUS_ECC_REDLINE_FINAL_4K60.mp4
+          ls -l STEAM_FOCUS_ECC_REDLINE_FINAL_4K60.mp4
+          sha256sum -c SHA256SUMS
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create steam-focus-v4-master \
+            --target "${{ github.sha }}" \
+            --title "STEAM FOCUS ECC: REDLINE - master 4K/60 (bozza privata)" \
+            --notes "Master V4 2160x3840 60 fps, 113.57 s, H.264 High@5.2, AAC 48 kHz. SHA-256 016bd28e520b232fd70176ed48f5705521816aa56eb8fc2dc60df70599c42567. Bozza privata: non pubblicare (marchi Valve, filmato NetEase senza licenza)." \
+            STEAM_FOCUS_ECC_REDLINE_FINAL_4K60.mp4 SHA256SUMS
+          gh release view steam-focus-v4-master --json assets --jq '.assets[] | "\(.name) \(.size) \(.digest // "")"'
