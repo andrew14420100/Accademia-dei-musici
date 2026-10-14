@@ -1,3 +1,4 @@
+import {BANNER_T} from './Banner';
 import {AbsoluteFill, getInputProps, interpolate} from 'remotion';
 import {progress} from '../components/Type';
 import {color, easeOut, font, SAFE, useBaseFrame} from '../design';
@@ -38,8 +39,9 @@ export const Bug: React.FC = () => {
   const out = interpolate(frame, [sig - 8, sig], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const chStart = ch ? EDL.sections[sec][0] : 0;
   const chIn = ch ? progress(frame, chStart + 2, 12) : 0;
-  const reveal = interpolate(frame, [3, 15], [0, 1], {easing: easeOut, extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const scrim = bugScrim(frame);
+  // v4: hidden while the opening banner (which carries the full STEAM FOCUS logo) is on screen
+  const reveal = interpolate(frame, [BANNER_T.end - 4, BANNER_T.end + 8], [0, 1], {easing: easeOut, extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const scrim = bugScrim(frame) * reveal;
   const pageScrim = interpolate(frame, [steam[0] + EDL.s3.bridge - 70, steam[0] + EDL.s3.bridge - 40], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
@@ -59,7 +61,7 @@ export const Bug: React.FC = () => {
           background: 'radial-gradient(520px 260px at 170px 205px, rgba(11,22,38,0.62), rgba(11,22,38,0) 100%)',
         }}
       />
-      <div style={{position: 'absolute', left: SAFE.left, top: SAFE.top}}>
+      <div style={{position: 'absolute', left: SAFE.left, top: SAFE.top, opacity: Math.min(1, reveal * 1.5)}}>
         <div
           style={{
             clipPath: `inset(0 ${(1 - reveal) * 100}% 0 0)`,

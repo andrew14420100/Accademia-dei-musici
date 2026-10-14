@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
-import {AbsoluteFill, continueRender, delayRender, Img, interpolate, staticFile} from 'remotion';
+import {AbsoluteFill, continueRender, delayRender, Easing, Img, interpolate, staticFile} from 'remotion';
 import {Lockup} from '../brand/Lockup';
 import {MaskLine, progress, Rule} from '../components/Type';
-import {color, easeInOut, font, fontsReady, SAFE, useBaseFrame} from '../design';
+import {color, easeInOut, easeOut, font, fontsReady, SAFE, useBaseFrame, useFrameScale} from '../design';
 
 /**
  * STEAM FOCUS / ECC: REDLINE banner. Built in vector (approved lockup SVG + text), so it has
@@ -142,32 +142,127 @@ export const BannerPNG: React.FC = () => {
 /**
  * The approved banner (ChatGPT artwork supplied by the owner), cut out with
  * scripts/banner_cutout.py: transparent outside the rounded frame, unchanged inside.
- * Source 1976x642 px; shown 876 units wide (1752 px in the 4K master: downscaled, never enlarged).
- * Entry: rises 18 px, settles from 96% scale and reveals left to right; exit: short fade.
- * No drop shadow (it would read as a dark halo around the frame).
+ * Source 1976x642 px, shown 745 units wide (1490 px in the 4K master: downscaled, never enlarged),
+ * i.e. 15% smaller than the first preview, centred inside the TikTok safe area.
+ *
+ * Motion (base frames, 30 fps grid, rendered natively at 60):
+ *   entry  0 -> 24  3D fly-in from depth (z -1400, yaw -42, pitch 16) with a diagonal mask
+ *                   reveal, leading light streaks and a light sweep; visually settles on beat 1 (0.47 s, 128 BPM)
+ *   hold  24 -> 222 slow camera orbit (yaw -3 -> +3, pitch 1.5 -> -1.5) and float: depth and
+ *                   parallax against its own shadow plane
+ *   exit 222 -> 253 accelerates past the camera (z +900, pitch -22, up 420) behind a closing
+ *                   slanted mask, ending on beat 18 (8.44 s) as the Identita chapter swings in
+ * Motion blur: 7 time samples across the frame interval while it moves fast (averaged).
  */
-export const APPROVED_BANNER = {w: 1976, h: 642, top: 262};
-export const ApprovedBanner: React.FC<{at: number; out: number}> = ({at, out}) => {
-  const frame = useBaseFrame();
-  const t = progress(frame, at, 18);
-  const wipe = progress(frame, at, 22);
-  const exit = interpolate(frame, [out - 10, out], [0, 1], {easing: easeInOut, extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const w = SAFE.right - SAFE.left;
-  const h = (w * APPROVED_BANNER.h) / APPROVED_BANNER.w;
+export const BANNER_T = {in0: 0, land: 24, out0: 222, end: 253};
+const BW = 745;
+const BH = (BW * 642) / 1976;
+const BLEFT = (1080 - BW) / 2;
+const BTOP = 200;
+const easeLand = Easing.bezier(0.33, 0.9, 0.25, 1);
+const easeAway = Easing.bezier(0.45, 0, 0.75, 0.1);
+const cl = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
+
+type Pose = {x: number; y: number; z: number; rx: number; ry: number; o: number; reveal: number; close: number};
+const pose = (f: number): Pose => {
+  const p = interpolate(f, [BANNER_T.in0, BANNER_T.land], [0, 1], {...cl, easing: easeLand});
+  const u = interpolate(f, [BANNER_T.land, BANNER_T.out0], [0, 1], cl);
+  const e = interpolate(f, [BANNER_T.out0, BANNER_T.end], [0, 1], {...cl, easing: easeAway});
+  return {
+    x: 260 * (1 - p),
+    y: 60 * (1 - p) + Math.sin(f / 38) * 2.5 * p - 420 * e,
+    z: -1400 * (1 - p) + 24 * u + 900 * e,
+    rx: 16 * (1 - p) + (1.5 - 3 * u) * p - 22 * e,
+    ry: -42 * (1 - p) + (-3 + 6 * u) * p + 8 * e,
+    o: interpolate(p, [0, 0.35], [0, 1], cl) * interpolate(e, [0.5, 1], [1, 0], cl),
+    reveal: interpolate(f, [BANNER_T.in0 + 1, BANNER_T.land - 3], [0, 1], {...cl, easing: easeOut}),
+    close: e,
+  };
+};
+const tf = (q: Pose, dz = 0) =>
+  `translate3d(${q.x}px, ${q.y}px, ${q.z + dz}px) rotateX(${q.rx}deg) rotateY(${q.ry}deg)`;
+
+/** 0..1: how much of the banner is on screen (the small corner lockup hides meanwhile). */
+export const bannerPresence = (f: number) =>
+  interpolate(f, [BANNER_T.in0, BANNER_T.in0 + 6, BANNER_T.end - 6, BANNER_T.end], [0, 1, 1, 0], cl);
+
+const BannerFace: React.FC<{q: Pose; sweep: number}> = ({q, sweep}) => {
+  // entry: diagonal reveal left -> right; exit: slanted shutter closing from the bottom
+  const r = q.reveal * 135;
+  const c = q.close * 125;
+  const clip = `polygon(0% ${c}%, ${r}% ${Math.max(0, c - 25)}%, ${r - 35}% 100%, 0% 100%)`;
   return (
-    <div
-      style={{
-        position: 'absolute',
-        left: SAFE.left,
-        top: APPROVED_BANNER.top,
-        width: w,
-        height: h,
-        opacity: Math.min(1, t * 1.4) * (1 - exit),
-        transform: `translateY(${(1 - t) * 18 - exit * 6}px) scale(${0.96 + 0.04 * t + 0.015 * exit})`,
-        clipPath: `inset(0 ${(1 - wipe) * 100}% 0 0 round 22px)`,
-      }}
-    >
-      <Img src={staticFile('banner_steam_focus.png')} style={{width: w, height: h, display: 'block'}} />
+    <div style={{position: 'absolute', inset: 0, clipPath: q.close > 0 ? `polygon(0% 0%, 100% 0%, 100% ${100 - c}%, 0% ${100 - c + 25}%)` : clip}}>
+      <Img src={staticFile('banner_steam_focus.png')} style={{width: BW, height: BH, display: 'block'}} />
+      {sweep > 0 && sweep < 1 ? (
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            WebkitMaskImage: `url(${staticFile('banner_steam_focus.png')})`,
+            WebkitMaskSize: '100% 100%',
+            maskImage: `url(${staticFile('banner_steam_focus.png')})`,
+            maskSize: '100% 100%',
+            background: `linear-gradient(105deg, rgba(255,255,255,0) ${sweep * 160 - 40}%, rgba(200,235,255,0.42) ${sweep * 160 - 25}%, rgba(255,255,255,0) ${sweep * 160 - 10}%)`,
+          }}
+        />
+      ) : null}
+    </div>
+  );
+};
+
+export const ApprovedBanner: React.FC = () => {
+  const frame = useBaseFrame();
+  const k = useFrameScale();
+  const q = pose(frame);
+  if (q.o <= 0.001) return null;
+  const moving = frame < BANNER_T.land + 2 || frame > BANNER_T.out0;
+  // shutter-angle style motion blur: samples spread over the last 0.8 composition frame
+  const N = moving ? 7 : 1;
+  const span = (0.8 / k);
+  const sweep = interpolate(frame, [BANNER_T.land - 6, BANNER_T.land + 16], [0, 1], cl);
+  const streak = interpolate(frame, [BANNER_T.in0, BANNER_T.land - 2], [0, 1], {...cl, easing: easeOut});
+  const ox = 1080 / 2 + (frame - BANNER_T.land) * 0.15;
+  return (
+    <div style={{position: 'absolute', inset: 0, perspective: 1300, perspectiveOrigin: `${ox}px ${BTOP + BH / 2}px`, pointerEvents: 'none'}}>
+      <div style={{position: 'absolute', left: BLEFT, top: BTOP, width: BW, height: BH, opacity: q.o}}>
+        {/* shadow plane behind the banner: parallax/depth cue and readability over bright fog */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            transform: `${tf(q, -90)} translateY(16px)`,
+            borderRadius: 26,
+            backgroundColor: 'rgba(6,14,28,0.42)',
+            filter: 'blur(26px)',
+          }}
+        />
+        {Array.from({length: N}).map((_, i) => {
+          const qi = pose(frame - (span * i) / Math.max(1, N - 1));
+          return (
+            <div key={i} style={{position: 'absolute', inset: 0, transform: tf(qi), opacity: 1 / (N - i), backfaceVisibility: 'hidden'}}>
+              <BannerFace q={qi} sweep={sweep} />
+            </div>
+          );
+        })}
+      </div>
+      {/* entry light streaks (Steam blue), leading the banner in along its top and bottom edges */}
+      {streak > 0 && streak < 1
+        ? [BTOP - 6, BTOP + BH + 4].map((y, i) => (
+            <div
+              key={y}
+              style={{
+                position: 'absolute',
+                top: y,
+                left: BLEFT - 220 + streak * (BW + 420) * (i ? 0.92 : 1),
+                width: 260,
+                height: 2,
+                opacity: Math.sin(streak * Math.PI) * 0.85,
+                background: 'linear-gradient(90deg, rgba(102,192,244,0), rgba(160,220,255,0.95), rgba(102,192,244,0))',
+              }}
+            />
+          ))
+        : null}
     </div>
   );
 };

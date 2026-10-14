@@ -150,6 +150,14 @@ s3 = edl['s3']
 put(fx, d.whoosh(2.4, 280, 2400), at(s3['from'] + 34), -19)  # under the last weapons line
 put(fx, d.landing(), at(s3['from'] + 149), -8)
 put(fx, d.whoosh(0.8, 300, 2000), at(s3['from'] + s3['bridge'] - 14), -12)
+# v4 opening banner (src/full/Banner.tsx BANNER_T): fly-in whoosh, soft landing on beat 1,
+# exit swell + whoosh accelerating out, small punch on beat 18 as Identita swings in
+BEAT = 60 / 128
+put(fx, d.whoosh(0.5, 450, 4200), at(0), -13, pan=0.3)
+put(fx, d.landing(), int(round(1 * BEAT * SR)), -15)
+put(fx, d.reverse_swell(0.55), int(round((18 * BEAT - 0.55) * SR)), -16)
+put(fx, d.whoosh(0.8, 350, 3600), at(226), -14, pan=-0.3)
+put(fx, d.punch(0.4), int(round(18 * BEAT * SR)), -17)
 fx = fx * (10 ** (-8 * speak / 20))[:, None]  # design ducks under the voice too
 stems['design'] = fx
 

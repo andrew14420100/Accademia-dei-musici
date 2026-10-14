@@ -3,7 +3,7 @@ import {AbsoluteFill, continueRender, delayRender, Sequence, useVideoConfig} fro
 import interp60 from '../../public/full60/list.json';
 import revive from '../../public/track_revive.json';
 import {Callout} from '../components/Callout';
-import {ApprovedBanner} from './Banner';
+import {ApprovedBanner, BANNER_T} from './Banner';
 import {color, fontsReady, SAFE, sampleTrack, useBaseFrame, useFrameScale} from '../design';
 import {Bug, ChapterTitle, Subtitles} from './Chrome';
 import {EDL, project, shot, Shot, wordAt} from './edl';
@@ -200,8 +200,8 @@ const OVERLAYS: Record<string, (s: Shot) => React.ReactNode> = {
 
 /** Overlays that must not outlive their own shot. */
 const SHOT_ONLY = new Set(['h_heli', 'h_credits']);
-// opening banner: in at 0.2 s, fully out at 4.4 s (base frames)
-const BANNER_OUT = 132;
+// the Identita plate waits for the opening banner to clear the top of the frame
+const CHAPTER_AFTER_BANNER = Math.max(0, BANNER_T.end - 2 - EDL.sections.identity[0]);
 
 const firstOfSection = new Set<string>();
 const lastOfSection = new Set<string>();
@@ -239,7 +239,8 @@ export const RedlineFull: React.FC = () => {
         }
         const swingIn = firstOfSection.has(s.id) && !['hook', 'outro'].includes(s.section);
         const swingOut = lastOfSection.has(s.id) && !['weapons', 'outro', 'hook'].includes(s.section);
-        const src = fps === 60 && INTERP.has(s.id) ? `full60/${s.id}.mp4` : undefined;
+        // 4K/60: Lanczos-upscaled sources (scripts/upscale_clips.sh), 60 fps interpolated where listed
+        const src = fps === 60 ? (INTERP.has(s.id) ? `full60_up/${s.id}.mp4` : s.src === 'G' ? `full_up/${s.id}.mp4` : undefined) : undefined;
         return (
           <Sequence key={s.id} from={F(s.from)} durationInFrames={F(s.frames)} name={s.id}>
             <FullShot s={s} swingIn={swingIn} swingOut={swingOut} src={src} />
@@ -260,7 +261,7 @@ export const RedlineFull: React.FC = () => {
       {Object.keys(EDL.sections)
         .filter((sec) => !['hook', 'steam', 'outro'].includes(sec))
         .map((sec) => (
-          <Sequence key={sec} from={F(EDL.sections[sec][0])} durationInFrames={F(60)} name={`chapter ${sec}`}>
+          <Sequence key={sec} from={F(EDL.sections[sec][0] + (sec === 'identity' ? CHAPTER_AFTER_BANNER : 0))} durationInFrames={F(60)} name={`chapter ${sec}`}>
             <ChapterTitle section={sec} />
           </Sequence>
         ))}
@@ -268,8 +269,8 @@ export const RedlineFull: React.FC = () => {
       <AbsoluteFill
         style={{background: 'radial-gradient(120% 75% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.30) 100%)', pointerEvents: 'none'}}
       />
-      <Sequence from={0} durationInFrames={F(BANNER_OUT)} name="banner (approved)">
-        <ApprovedBanner at={6} out={BANNER_OUT} />
+      <Sequence from={0} durationInFrames={F(BANNER_T.end + 1)} name="banner (approved)">
+        <ApprovedBanner />
       </Sequence>
       <Sequence from={0} durationInFrames={F(sig.from)} name="bug">
         <Bug />
